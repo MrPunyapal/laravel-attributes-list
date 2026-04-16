@@ -87,21 +87,6 @@ class SendEmail implements ShouldQueue {}
 
 ---
 
-## 📡 Event / Listener Attributes
-
-### `#[AsListener]`
-
-Register a class as an event listener.
-
-```php
-use Illuminate\Events\Attributes\AsListener;
-
-#[AsListener]
-class SendNotification {}
-```
-
----
-
 ## 📨 Request Attributes
 
 ### `#[Validate]`
