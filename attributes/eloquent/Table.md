@@ -10,7 +10,7 @@
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
-#[Table('posts', key: 'post_id', keyType: 'string', incrementing: false)]
+#[Table('posts', key: 'post_id', keyType: 'string', incrementing: false, timestamps: false, dateFormat: 'Y-m-d H:i:s')]
 class Post extends Model
 {
 }
