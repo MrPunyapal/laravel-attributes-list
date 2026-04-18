@@ -25,7 +25,7 @@ class ReportService
 
 ---
 
-> [! Note]
+> [!NOTE]
 > The `#[DB]` currently just alias of `#[Database]`.
 
 [← Back to README](../../README.md)
