@@ -1,6 +1,6 @@
 # Laravel PHP Attributes List
 
-A curated list of **PHP Attributes available in Laravel**.
+A curated list of **PHP Attributes available in Laravel Framework**.
 
 ---
 
