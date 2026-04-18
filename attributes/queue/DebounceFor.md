@@ -10,7 +10,7 @@
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DebounceFor;
 
-#[DebounceFor(seconds: 30)]
+#[DebounceFor(seconds: 30, maxWait: 60)]
 class SyncUserToMailchimp implements ShouldQueue
 {
     public function __construct(
