@@ -25,4 +25,7 @@ class OrderService
 
 ---
 
+> [! Note]
+> The `#[CurrentUser]` currently just alias of `#[Authenticated]`.
+
 [← Back to README](../../README.md)
