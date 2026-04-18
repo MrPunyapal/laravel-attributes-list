@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel PHP Attributes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #ff2d20; --dark: #0f0f0f; --gray-900: #111827; --gray-800: #1f2937; --gray-700: #374151; --gray-600: #4b5563; --gray-500: #6b7280; --gray-400: #9ca3af; --gray-300: #d1d5db; --gray-200: #e5e7eb; --bg-gradient: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%); }
+        * { font-family: 'Inter', sans-serif; }
+        body { background-color: #0f0f0f; color: var(--gray-200); min-height: 100vh; margin: 0; }
+        .navbar { background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+        .navbar-brand { font-weight: 800; font-size: 1.25rem; color: var(--primary) !important; text-decoration: none; }
+        .hero { background: var(--bg-gradient); padding: 4rem 0 3rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(255, 45, 32, 0.08) 0%, transparent 50%); animation: pulse 15s ease-in-out infinite; pointer-events: none; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.5; } }
+        .hero-title { font-weight: 800; font-size: 3rem; letter-spacing: -2px; margin: 0 0 0.5rem; background: linear-gradient(135deg, #fff 0%, var(--gray-400) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { color: var(--gray-400); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .search-box { background: var(--gray-900); border: 1px solid var(--gray-700); border-radius: 16px; padding: 14px 20px; font-size: 1rem; color: #fff; width: 100%; max-width: 400px; transition: all 0.3s; }
+        .search-box:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(255, 45, 32, 0.15); }
+        .attr-count { background: rgba(255, 45, 32, 0.15); color: var(--primary); padding: 8px 16px; border-radius: 50px; font-weight: 600; font-size: 0.875rem; display: inline-block; margin-top: 1rem; }
+        .category-nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 1.5rem 0; }
+        .category-btn { background: var(--gray-900); border: 1px solid var(--gray-700); color: var(--gray-300); padding: 8px 16px; border-radius: 50px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; }
+        .category-btn:hover { border-color: var(--gray-500); color: #fff; }
+        .category-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .category-section { padding: 2rem 0; }
+        .category-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+        .category-title { font-weight: 700; font-size: 1.3rem; color: #fff; margin: 0; }
+        .category-count { background: var(--gray-800); color: var(--gray-400); padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; }
+        .row { display: flex; flex-wrap: wrap; margin: -0.75rem; }
+        .col-md-6 { width: 50%; padding: 0.75rem; box-sizing: border-box; }
+        @media (max-width: 768px) { .col-md-6 { width: 100%; } .hero-title { font-size: 2rem; } }
+        .attr-card { background: var(--gray-900); border: 1px solid var(--gray-800); border-radius: 12px; overflow: hidden; transition: all 0.3s; height: 100%; }
+        .attr-card:hover { border-color: var(--gray-600); transform: translateY(-2px); }
+        .attr-card-header { background: var(--gray-800); padding: 1rem 1.25rem; border-bottom: 1px solid var(--gray-800); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+        .attr-name { font-weight: 700; font-size: 1rem; color: #fff; font-family: 'JetBrains Mono', monospace; }
+        .namespace-badge { font-size: 0.65rem; background: var(--gray-800); color: var(--gray-400); padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+        .attr-card-body { padding: 1rem 1.25rem; }
+        .attr-description { color: var(--gray-400); font-size: 0.85rem; margin-bottom: 0.75rem; line-height: 1.5; }
+        .code-block { background: #1a1a1a; border-radius: 8px; padding: 1rem; position: relative; }
+        .code-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--primary); border-radius: 8px 8px 0 0; }
+        .code-block pre { margin: 0; overflow-x: auto; }
+        .code-block code { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+        .copy-btn { position: absolute; top: 6px; right: 6px; background: var(--gray-700); border: none; color: var(--gray-400); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; }
+        .copy-btn:hover { background: var(--primary); color: #fff; }
+        .no-results { text-align: center; padding: 3rem; color: var(--gray-500); }
+        footer { background: var(--gray-900); padding: 2rem 0; margin-top: 3rem; text-align: center; }
+        footer p { color: var(--gray-500); margin: 0; }
+        .see-more-btn { background: var(--gray-800); border: 1px solid var(--gray-700); color: var(--gray-300); padding: 8px 16px; border-radius: 8px; font-weight: 500; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; width: 100%; margin-top: 1rem; }
+        .see-more-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">#[Table]</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Laravel PHP Attributes</h1>
+            <p class="hero-subtitle">A curated collection of PHP 8 Attributes for Laravel Framework</p>
+            <input type="text" class="search-box" id="searchInput" placeholder="Search attributes...">
+            <div><span class="attr-count"><span id="totalCount">--</span> Attributes</span></div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="category-nav" id="categoryNav"></div>
+        <div id="attributesGrid"></div>
+        <div class="no-results" id="noResults" style="display:none">
+            <p>No attributes found</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Laravel PHP Attributes - Created by Love ❤️</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-overlay.show { display: flex; }
+        .modal { background: var(--gray-900); border-radius: 12px; max-width: 700px; width: 90%; max-height: 80vh; overflow: hidden; display: flex; flex-direction: column; position: relative; margin: auto; }
+        .modal-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--gray-800); display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-weight: 700; color: #fff; font-size: 1.1rem; }
+        .modal-close { background: none; border: none; color: var(--gray-400); font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1; }
+        .modal-close:hover { color: #fff; }
+        .modal-body { padding: 1.25rem; overflow-y: auto; flex: 1; }
+        .modal-body h1 { font-size: 1.3rem; color: var(--primary); margin: 0 0 0.5rem; }
+        .modal-body h2 { font-size: 1.1rem; color: #fff; margin: 1.5rem 0 0.5rem; }
+        .modal-body p { color: var(--gray-300); margin: 0.5rem 0; }
+        .modal-body code { background: var(--gray-800); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+        .modal-body pre { background: #1a1a1a; padding: 1rem; border-radius: 8px; overflow-x: auto; margin: 0.5rem 0; }
+        .modal-body pre code { background: none; padding: 0; }
+        .modal-body hr { border: none; border-top: 1px solid var(--gray-800); margin: 1.5rem 0; }
+        .modal-body a { color: var(--primary); }
+    </style>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="modalTitle">#[Attribute]</span>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+// ========== DATA ==========
+var rawData = [
+["Table","Illuminate\\Database\\Eloquent\\Attributes\\Table","Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model.","use Illuminate\\Database\\Eloquent\\Attributes\\Table;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Table('posts', key: 'post_id', keyType: 'string', incrementing: false)]\nclass Post extends Model {}","eloquent"],
+["Fillable","Illuminate\\Database\\Eloquent\\Attributes\\Fillable","Defines the mass assignable attributes for an Eloquent model.","use Illuminate\\Database\\Eloquent\\Attributes\\Fillable;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Fillable(['name', 'email', 'password'])]\nclass User extends Model {}","eloquent"],
+["Guarded","Illuminate\\Database\\Eloquent\\Attributes\\Guarded","Defines the attributes that are not mass assignable for an Eloquent model.","use Illuminate\\Database\\Eloquent\\Attributes\\Guarded;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Guarded(['id', 'is_admin'])]\nclass User extends Model {}","eloquent"],
+["Hidden","Illuminate\\Database\\Eloquent\\Attributes\\Hidden","Hides the specified attributes from model serialization.","use Illuminate\\Database\\Eloquent\\Attributes\\Hidden;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Hidden(['password', 'remember_token'])]\nclass User extends Model {}","eloquent"],
+["Visible","Illuminate\\Database\\Eloquent\\Attributes\\Visible","Defines the attributes that should be visible in model serialization.","use Illuminate\\Database\\Eloquent\\Attributes\\Visible;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Visible(['id', 'name', 'email'])]\nclass User extends Model {}","eloquent"],
+["Appends","Illuminate\\Database\\Eloquent\\Attributes\\Appends","Appends accessor attributes to the model’s array and JSON representation.","use Illuminate\\Database\\Eloquent\\Attributes\\Appends;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Appends(['full_name'])]\nclass User extends Model {}", "eloquent"],
+["Touches","Illuminate\\Database\\Eloquent\\Attributes\\Touches","Defines the relationships whose parent model’s updated_at timestamp should be updated.","use Illuminate\\Database\\Eloquent\\Attributes\\Touches;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Touches(['post', 'user'])]\nclass Comment extends Model {}", "eloquent"],
+["Connection","Illuminate\\Database\\Eloquent\\Attributes\\Connection","Specifies the database connection to use for the Eloquent model.","use Illuminate\\Database\\Eloquent\\Attributes\\Connection;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Connection('pgsql')]\nclass Order extends Model {}", "eloquent"],
+["Unguarded","Illuminate\\Database\\Eloquent\\Attributes\\Unguarded","Disables mass assignment protection for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\Unguarded;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Unguarded]\nclass Post extends Model {}", "eloquent"],
+["CollectedBy","Illuminate\\Database\\Eloquent\\Attributes\\CollectedBy","Specifies a custom Eloquent collection class.","use Illuminate\\Database\\Eloquent\\Attributes\\CollectedBy;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[CollectedBy(PostCollection::class)]\nclass Post extends Model {}", "eloquent"],
+["WithoutTimestamps","Illuminate\\Database\\Eloquent\\Attributes\\WithoutTimestamps","Disables automatic timestamp management.","use Illuminate\\Database\\Eloquent\\Attributes\\WithoutTimestamps;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[WithoutTimestamps]\nclass EventLog extends Model {}", "eloquent"],
+["WithoutIncrementing","Illuminate\\Database\\Eloquent\\Attributes\\WithoutIncrementing","Disables auto-incrementing IDs for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\WithoutIncrementing;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[WithoutIncrementing]\nclass UUIDModel extends Model {}", "eloquent"],
+["ScopedBy","Illuminate\\Database\\Eloquent\\Attributes\\ScopedBy","Applies one or more global scopes to the model automatically.","use Illuminate\\Database\\Eloquent\\Attributes\\ScopedBy;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[ScopedBy([ActiveScope::class])]\nclass Post extends Model {}", "eloquent"],
+["ObservedBy","Illuminate\\Database\\Eloquent\\Attributes\\ObservedBy","Registers model observer(s) for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\ObservedBy;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[ObservedBy(PostObserver::class)]\nclass Post extends Model {}", "eloquent"],
+["DateFormat","Illuminate\\Database\\Eloquent\\Attributes\\DateFormat","Defines the date format for model timestamps.","use Illuminate\\Database\\Eloquent\\Attributes\\DateFormat;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[DateFormat('Y-m-d H:i:s')]\nclass Event extends Model {}", "eloquent"],
+["Scope","Illuminate\\Database\\Eloquent\\Attributes\\Scope","Marks a model method as a local query scope.","use Illuminate\\Database\\Eloquent\\Attributes\\Scope;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[Scope]\npublic function published($query) { $query->where('is_published', true); }", "eloquent"],
+["Boot","Illuminate\\Database\\Eloquent\\Attributes\\Boot","Marks a trait method as a model boot hook.","use Illuminate\\Database\\Eloquent\\Attributes\\Boot;\n\n#[Boot]\npublic static function creating($model) { }", "eloquent"],
+["Initialize","Illuminate\\Database\\Eloquent\\Attributes\\Initialize","Marks a trait method as a model initialize hook.","use Illuminate\\Database\\Eloquent\\Attributes\\Initialize;\n\n#[Initialize]\npublic function initializeDefaultAttributes() { }", "eloquent"],
+["UseEloquentBuilder","Illuminate\\Database\\Eloquent\\Attributes\\UseEloquentBuilder","Specifies a custom Eloquent builder class.","use Illuminate\\Database\\Eloquent\\Attributes\\UseEloquentBuilder;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[UseEloquentBuilder(CustomBuilder::class)]\nclass Post extends Model {}", "eloquent"],
+["UseFactory","Illuminate\\Database\\Eloquent\\Attributes\\UseFactory","Specifies the factory class for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\UseFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[UseFactory(PostFactory::class)]\nclass Post extends Model {}", "eloquent"],
+["UsePolicy","Illuminate\\Database\\Eloquent\\Attributes\\UsePolicy","Specifies the policy class for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\UsePolicy;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[UsePolicy(PostPolicy::class)]\nclass Post extends Model {}", "eloquent"],
+["UseResource","Illuminate\\Database\\Eloquent\\Attributes\\UseResource","Specifies the API resource for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\UseResource;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[UseResource(PostResource::class)]\nclass Post extends Model {}", "eloquent"],
+["UseResourceCollection","Illuminate\\Database\\Eloquent\\Attributes\\UseResourceCollection","Specifies the resource collection for the model.","use Illuminate\\Database\\Eloquent\\Attributes\\UseResourceCollection;\nuse Illuminate\\Database\\Eloquent\\Model;\n\n#[UseResourceCollection(PostCollection::class)]\nclass Post extends Model {}", "eloquent"],
+
+["Queue","Illuminate\\Queue\\Attributes\\Queue","Defines the queue name to dispatch the job onto.","use Illuminate\\Contracts\\Queue\\ShouldQueue;\nuse Illuminate\\Queue\\Attributes\\Queue;\n\n#[Queue('podcasts')]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["Connection","Illuminate\\Queue\\Attributes\\Connection","Defines the queue connection to dispatch the job on.","use Illuminate\\Queue\\Attributes\\Connection;\n\n#[Connection('redis')]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["Delay","Illuminate\\Queue\\Attributes\\Delay","Delays the job execution by the given number of seconds.","use Illuminate\\Queue\\Attributes\\Delay;\n\n#[Delay(60)]\nclass SendWelcomeEmail implements ShouldQueue {}", "queue"],
+["Backoff","Illuminate\\Queue\\Attributes\\Backoff","Configures the delay between job retry attempts.","use Illuminate\\Queue\\Attributes\\Backoff;\n\n#[Backoff([10, 30, 60])]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["Tries","Illuminate\\Queue\\Attributes\\Tries","Defines the maximum number of times the job should be attempted.","use Illuminate\\Queue\\Attributes\\Tries;\n\n#[Tries(3)]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["Timeout","Illuminate\\Queue\\Attributes\\Timeout","Defines the number of seconds the job is allowed to run.","use Illuminate\\Queue\\Attributes\\Timeout;\n\n#[Timeout(120)]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["UniqueFor","Illuminate\\Queue\\Attributes\\UniqueFor","Ensures only one instance of the job is queued at a time.","use Illuminate\\Queue\\Attributes\\UniqueFor;\n\n#[UniqueFor(3600)]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["DeleteWhenMissingModels","Illuminate\\Queue\\Attributes\\DeleteWhenMissingModels","Automatically deletes the job if injected models are missing.","use Illuminate\\Queue\\Attributes\\DeleteWhenMissingModels;\n\n#[DeleteWhenMissingModels]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["FailOnTimeout","Illuminate\\Queue\\Attributes\\FailOnTimeout","Marks the job as failed when it exceeds its timeout limit.","use Illuminate\\Queue\\Attributes\\FailOnTimeout;\n\n#[FailOnTimeout]\n#[Timeout(30)]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["MaxExceptions","Illuminate\\Queue\\Attributes\\MaxExceptions","Defines the maximum number of exceptions allowed before the job fails.","use Illuminate\\Queue\\Attributes\\MaxExceptions;\n\n#[MaxExceptions(5)]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["WithoutRelations","Illuminate\\Queue\\Attributes\\WithoutRelations","Excludes model relations from job data during serialization.","use Illuminate\\Queue\\Attributes\\WithoutRelations;\n\n#[WithoutRelations]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+["DebounceFor","Illuminate\\Queue\\Attributes\\DebounceFor","Debounces job execution for a given duration.","use Illuminate\\Queue\\Attributes\\DebounceFor;\n\n#[DebounceFor(300)]\nclass ProcessPodcast implements ShouldQueue {}", "queue"],
+
+["Signature","Illuminate\\Console\\Attributes\\Signature","Defines the Artisan command signature.","use Illuminate\\Console\\Attributes\\Signature;\nuse Illuminate\\Console\\Command;\n\n#[Signature('mail:send {user}')]\nclass SendMailCommand extends Command {}", "console"],
+["Description","Illuminate\\Console\\Attributes\\Description","Sets the description for the Artisan command.","use Illuminate\\Console\\Attributes\\Description;\nuse Illuminate\\Console\\Command;\n\n#[Description('Send email')]\nclass SendMailCommand extends Command {}", "console"],
+["Aliases","Illuminate\\Console\\Attributes\\Aliases","Defines one or more aliases for the Artisan command.","use Illuminate\\Console\\Attributes\\Aliases;\nuse Illuminate\\Console\\Command;\n\n#[Aliases(['ms'])]", "console"],
+["Usage","Illuminate\\Console\\Attributes\\Usage","Defines additional command usage examples.","use Illuminate\\Console\\Attributes\\Usage;\n\n#[Usage('make:command SendMail')]", "console"],
+["Help","Illuminate\\Console\\Attributes\\Help","Sets the help text for the Artisan command.","use Illuminate\\Console\\Attributes\\Help;\n\n#[Help('Help text here')]", "console"],
+["Hidden","Illuminate\\Console\\Attributes\\Hidden","Hides the command from the Artisan command list.","use Illuminate\\Console\\Attributes\\Hidden;\n\n#[Hidden]", "console"],
+
+["Middleware","Illuminate\\Routing\\Attributes\\Controllers\\Middleware","Assigns middleware to a controller class or action methods.","use Illuminate\\Routing\\Attributes\\Controllers\\Middleware;\n\n#[Middleware('auth')]\nclass UserController {}", "controllers"],
+["Authorize","Illuminate\\Routing\\Attributes\\Controllers\\Authorize","Authorizes a controller action using the Gate.","use Illuminate\\Routing\\Attributes\\Controllers\\Authorize;\n\n#[Authorize('create', Comment::class)]", "controllers"],
+
+["RedirectTo","Illuminate\\Foundation\\Http\\Attributes\\RedirectTo","Defines the URL to redirect to on validation failure.","use Illuminate\\Foundation\\Http\\Attributes\\RedirectTo;\nuse Illuminate\\Foundation\\Http\\FormRequest;\n\n#[RedirectTo('/posts/create')]\nclass StorePostRequest extends FormRequest {}", "form-requests"],
+["RedirectToRoute","Illuminate\\Foundation\\Http\\Attributes\\RedirectToRoute","Defines the redirect route on validation failure.","use Illuminate\\Foundation\\Http\\Attributes\\RedirectToRoute;\n\n#[RedirectToRoute('posts.create')]", "form-requests"],
+["StopOnFirstFailure","Illuminate\\Foundation\\Http\\Attributes\\StopOnFirstFailure","Stops validation on the first failure.","use Illuminate\\Foundation\\Http\\Attributes\\StopOnFirstFailure;\n\n#[StopOnFirstFailure]", "form-requests"],
+["ErrorBag","Illuminate\\Foundation\\Http\\Attributes\\ErrorBag","Defines the named error bag for validation errors.","use Illuminate\\Foundation\\Http\\Attributes\\ErrorBag;\n\n#[ErrorBag('login')]", "form-requests"],
+["FailOnUnknownFields","Illuminate\\Foundation\\Http\\Attributes\\FailOnUnknownFields","Fails validation if the request contains unknown fields.","use Illuminate\\Foundation\\Http\\Attributes\\FailOnUnknownFields;\n\n#[FailOnUnknownFields]", "form-requests"],
+
+["Seeder","Illuminate\\Foundation\\Testing\\Attributes\\Seeder","Runs a specific seeder class before a test.","use Illuminate\\Foundation\\Testing\\Attributes\\Seeder;\n\n#[Seeder(OrderSeeder::class)]", "testing"],
+["Seed","Illuminate\\Foundation\\Testing\\Attributes\\Seed","Runs the default database seeder before a test.","use Illuminate\\Foundation\\Testing\\Attributes\\Seed;\n\n#[Seed]", "testing"],
+["SetUp","Illuminate\\Foundation\\Testing\\Attributes\\SetUp","Marks a trait method as a test setup hook.","use Illuminate\\Foundation\\Testing\\Attributes\\SetUp;\n\n#[SetUp]", "testing"],
+["TearDown","Illuminate\\Foundation\\Testing\\Attributes\\TearDown","Marks a trait method as a test teardown hook.","use Illuminate\\Foundation\\Testing\\Attributes\\TearDown;\n\n#[TearDown]", "testing"],
+["UnitTest","Illuminate\\Foundation\\Testing\\Attributes\\UnitTest","Skips framework boot for individual test methods.","use Illuminate\\Foundation\\Testing\\Attributes\\UnitTest;\n\n#[UnitTest]", "testing"],
+
+["UseModel","Illuminate\\Database\\Eloquent\\Factories\\UseModel","Defines the Eloquent model class that the factory creates.","use Illuminate\\Database\\Eloquent\\Factories\\UseModel;\n\n#[UseModel(User::class)]", "factories"],
+
+["Collects","Illuminate\\Http\\Resources\\Collects","Defines the resource collection mapping for the resource.","use Illuminate\\Http\\Resources\\Collects;\n\n#[Collects(PostResource::class)]", "api-resources"],
+["PreserveKeys","Illuminate\\Http\\Resources\\PreserveKeys","Preserves keys in resource collection output.","use Illuminate\\Http\\Resources\\PreserveKeys;\n\n#[PreserveKeys]", "api-resources"],
+
+["Auth","Illuminate\\Container\\Attributes\\Auth","Injects an auth guard instance.","use Illuminate\\Container\\Attributes\\Auth;\n\n#[Auth('web')] Guard $guard", "di"],
+["Authenticated","Illuminate\\Container\\Attributes\\Authenticated","Injects the currently authenticated user.","use Illuminate\\Container\\Attributes\\Authenticated;\n\n#[Authenticated] User $user", "di"],
+["Bind","Illuminate\\Container\\Attributes\\Bind","Contextually binds to a specific implementation.","use Illuminate\\Container\\Attributes\\Bind;\n\n#[Bind(FileStore::class)]", "di"],
+["Cache","Illuminate\\Container\\Attributes\\Cache","Injects a cache store instance.","use Illuminate\\Container\\Attributes\\Cache;\n\n#[Cache] Store $cache", "di"],
+["Config","Illuminate\\Container\\Attributes\\Config","Injects a configuration value.","use Illuminate\\Container\\Attributes\\Config;\n\n#[Config('app.locale')]", "di"],
+["Context","Illuminate\\Container\\Attributes\\Context","Injects a value from the application's shared context.","use Illuminate\\Container\\Attributes\\Context;\n\n#[Context('trace_id')]", "di"],
+["CurrentUser","Illuminate\\Container\\Attributes\\CurrentUser","Injects the currently authenticated user model.","use Illuminate\\Container\\Attributes\\CurrentUser;\n\n#[CurrentUser] ?User $user", "di"],
+["DB","Illuminate\\Container\\Attributes\\DB","Injects a database connection instance.","use Illuminate\\Container\\Attributes\\DB;\n\n#[DB] Connection $db", "di"],
+["Database","Illuminate\\Container\\Attributes\\Database","Injects a named database connection.","use Illuminate\\Container\\Attributes\\Database;\n\n#[Database('mysql')]", "di"],
+["Give","Illuminate\\Container\\Attributes\\Give","Gives a specific binding contextually.","use Illuminate\\Container\\Attributes\\Give;\n\n#[Give(PaymentGateway::class)]", "di"],
+["Log","Illuminate\\Container\\Attributes\\Log","Injects a logger with a named channel.","use Illuminate\\Container\\Attributes\\Log;\n\n#[Log('custom')]", "di"],
+["RouteParameter","Illuminate\\Container\\Attributes\\RouteParameter","Injects a route parameter value.","use Illuminate\\Container\\Attributes\\RouteParameter;\n\n#[RouteParameter('user')]", "di"],
+["Scoped","Illuminate\\Container\\Attributes\\Scoped","Registers a class as a scoped singleton in the container.","use Illuminate\\Container\\Attributes\\Scoped;\n\n#[Scoped(PaymentService::class)]", "di"],
+["Singleton","Illuminate\\Container\\Attributes\\Singleton","Registers a class as a singleton in the container.","use Illuminate\\Container\\Attributes\\Singleton;\n\n#[Singleton]", "di"],
+["Storage","Illuminate\\Container\\Attributes\\Storage","Injects a storage disk instance.","use Illuminate\\Container\\Attributes\\Storage;\n\n#[Storage('local')]", "di"],
+["Tag","Illuminate\\Container\\Attributes\\Tag","Injects all bindings tagged with a given tag.","use Illuminate\\Container\\Attributes\\Tag;\n\n#[Tag('workers')]", "di"]
+];
+
+var ATTRIBUTES = rawData.map(function(item) {
+    return { name: item[0], namespace: item[1], description: item[2], example: item[3], category: item[4] };
+});
+
+var CATEGORIES = [
+    { key: "eloquent", name: "Eloquent", icon: "📊" },
+    { key: "queue", name: "Queue", icon: "📦" },
+    { key: "console", name: "Console", icon: "⚙️" },
+    { key: "controllers", name: "Controllers", icon: "🎛️" },
+    { key: "form-requests", name: "Form Requests", icon: "📝" },
+    { key: "testing", name: "Testing", icon: "🧪" },
+    { key: "factories", name: "Factories", icon: "🏭" },
+    { key: "api-resources", name: "API Resources", icon: "📡" },
+    { key: "di", name: "Dependency Injection", icon: "🔌" }
+];
+
+// ========== FUNCTIONS ==========
+function renderCategories() {
+    var nav = document.getElementById("categoryNav");
+    var html = "";
+    for (var i = 0; i < CATEGORIES.length; i++) {
+        var c = CATEGORIES[i];
+        html += '<button class="category-btn" data-cat="' + c.key + '">' + c.icon + ' ' + c.name + '</button>';
+    }
+    nav.innerHTML = html;
+    var btns = nav.querySelectorAll(".category-btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = function() {
+            var cat = this.getAttribute("data-cat");
+            for (var j = 0; j < btns.length; j++) btns[j].classList.remove("active");
+            this.classList.add("active");
+            filterByCategory(cat);
+        };
+    }
+}
+
+function renderAttributeCard(attr) {
+    var link = attr.category + "/" + attr.name + ".md";
+    return '<div class="col-md-6">' +
+        '<div class="attr-card">' +
+            '<div class="attr-card-header">' +
+                '<span class="attr-name">#[' + attr.name + ']</span>' +
+                '<span class="namespace-badge" title="' + attr.namespace + '">' + attr.namespace + '</span>' +
+            '</div>' +
+            '<div class="attr-card-body">' +
+                '<p class="attr-description">' + attr.description + '</p>' +
+                '<div class="code-block">' +
+                    '<button class="copy-btn" onclick="copyCode(this)">Copy</button>' +
+                    '<pre><code class="language-php">' + escapeHtml(attr.example) + '</code></pre>' +
+                '</div>' +
+                '<button class="see-more-btn" onclick="openModal(\'' + link + '\', \'' + attr.name + '\')">See more examples</button>' +
+            '</div>' +
+        '</div>' +
+    '</div>';
+}
+
+function renderAttributes(list) {
+    var grid = document.getElementById("attributesGrid");
+    var grouped = {};
+    for (var i = 0; i < list.length; i++) {
+        var a = list[i];
+        if (!grouped[a.category]) grouped[a.category] = [];
+        grouped[a.category].push(a);
+    }
+    var html = "";
+    var cats = Object.keys(grouped);
+    for (var i = 0; i < cats.length; i++) {
+        var catKey = cats[i];
+        var cat = null;
+        for (var j = 0; j < CATEGORIES.length; j++) {
+            if (CATEGORIES[j].key === catKey) { cat = CATEGORIES[j]; break; }
+        }
+        var attrs = grouped[catKey];
+        if (cat && attrs.length > 0) {
+            html += '<section class="category-section" id="' + catKey + '">' +
+                '<div class="category-header">' +
+                    '<h2 class="category-title">' + cat.icon + ' ' + cat.name + '</h2>' +
+                    '<span class="category-count">' + attrs.length + '</span>' +
+                '</div>' +
+                '<div class="row">';
+            for (var k = 0; k < attrs.length; k++) {
+                html += renderAttributeCard(attrs[k]);
+            }
+            html += '</div></section>';
+        }
+    }
+    grid.innerHTML = html;
+}
+
+function escapeHtml(text) {
+    var d = document.createElement("div");
+    d.textContent = text;
+    return d.innerHTML;
+}
+
+function copyCode(btn) {
+    var code = btn.nextElementSibling.textContent;
+    navigator.clipboard.writeText(code).then(function() {
+        btn.textContent = "Copied!";
+        setTimeout(function() { btn.textContent = "Copy"; }, 2000);
+    });
+}
+
+var GITHUB_BASE = "https://raw.githubusercontent.com/MrPunyapal/laravel-attributes-list/refs/heads/feat/ai-skill/attributes/";
+
+async function openModal(path, name) {
+    var modal = document.getElementById("modal");
+    var modalTitle = document.getElementById("modalTitle");
+    var modalBody = document.getElementById("modalBody");
+    modalTitle.textContent = "#[" + name + "]";
+    modalBody.innerHTML = "Loading...";
+    modal.classList.add("show");
+    var url = GITHUB_BASE + path;
+    try {
+        var response = await fetch(url);
+        if (!response.ok) throw new Error("Not found");
+        var text = await response.text();
+        var lines = text.split('\n');
+        while (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+        var lastLine = lines[lines.length - 1] || '';
+        if (lastLine.includes('Back to README')) {
+            lines.pop();
+            while (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+            if (lines[lines.length - 1] === '---') lines.pop();
+            text = lines.join('\n');
+        }
+        modalBody.innerHTML = marked.parse(text);
+    } catch (e) {
+        modalBody.innerHTML = "<p style='color:#ff6b6b'>Could not load: " + url + "</p>";
+    }
+}
+
+function closeModal() {
+    document.getElementById("modal").classList.remove("show");
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeModal();
+});
+
+function filterByCategory(cat) {
+    var list = ATTRIBUTES.filter(function(a) { return a.category === cat; });
+    renderAttributes(list);
+    document.getElementById("totalCount").textContent = list.length;
+    var first = document.querySelector(".category-section");
+    if (first) first.scrollIntoView({ behavior: "smooth" });
+}
+
+function filterBySearch(term) {
+    var list = ATTRIBUTES.filter(function(a) {
+        return (a.name + " " + a.description + " " + a.namespace).toLowerCase().indexOf(term.toLowerCase()) > -1;
+    });
+    if (list.length === 0) {
+        document.getElementById("attributesGrid").innerHTML = "";
+        document.getElementById("noResults").style.display = "";
+    } else {
+        document.getElementById("noResults").style.display = "none";
+        renderAttributes(list);
+    }
+    document.getElementById("totalCount").textContent = list.length;
+}
+
+// ========== INIT ==========
+document.getElementById("totalCount").textContent = ATTRIBUTES.length;
+renderCategories();
+renderAttributes(ATTRIBUTES);
+
+var searchInput = document.getElementById("searchInput");
+var searchTimeout;
+searchInput.oninput = function(e) {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function() {
+        var term = e.target.value.trim();
+        if (term) {
+            var btns = document.querySelectorAll(".category-btn");
+            for (var i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+            filterBySearch(term);
+        } else {
+            renderAttributes(ATTRIBUTES);
+            document.getElementById("totalCount").textContent = ATTRIBUTES.length;
+        }
+    }, 300);
+};
+    </script>
+</body>
+</html>
