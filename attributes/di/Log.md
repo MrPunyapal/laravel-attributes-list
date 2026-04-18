@@ -13,7 +13,7 @@ use Psr\Log\LoggerInterface;
 class PaymentService
 {
     public function __construct(
-        #[Log('payments')] private readonly LoggerInterface $logger
+        #[Log(channel: 'payments', name: 'custom_logger')] private readonly LoggerInterface $logger
     ) {}
 
     public function charge(int $amount): void
