@@ -14,7 +14,7 @@ php artisan boost:add-skill MrPunyapal/laravel-attributes-list --skill laravel-a
 - NPX
 
 ```bash
-npx skills add MrPunyapal/laravel-attributes-list
+npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 ```
 
 ---
