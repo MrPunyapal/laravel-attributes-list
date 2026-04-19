@@ -4,6 +4,21 @@ A curated list of **PHP Attributes available in Laravel Framework**.
 
 ---
 
+## Install the skill
+
+- Boost (recommended):
+
+```bash
+php artisan boost:add-skill MrPunyapal/laravel-attributes-list --skill laravel-attributes
+```
+- NPX
+
+```bash
+npx skills add MrPunyapal/laravel-attributes-list
+```
+
+---
+
 ## 📊 Eloquent (Models)
 
 * [`#[Table]`](attributes/eloquent/Table.md) — Define database table
