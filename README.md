@@ -152,6 +152,6 @@ Contributions are welcome.
 
 ## 👤 Author
 
-**Punyapal Shah**
+[@MrPunyapal](https://github.com/MrPunyapal)
 
 ---
