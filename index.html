@@ -28,9 +28,7 @@
     .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); border-color: #FF2D20 !important; }
     .card.active { border-color: #FF2D20 !important; box-shadow: 0 0 0 3px rgba(255,45,32,.12); }
 
-    /* Filter bar — horizontal scroll on mobile, no wrapping */
-    #filter-scroll { scrollbar-width: none; }
-    #filter-scroll::-webkit-scrollbar { display: none; }
+
 
     /* Markdown panel body */
     .md h2 { font-size: 1rem; font-weight: 600; color: #111827; margin: 1.4rem 0 .4rem; }
@@ -83,8 +81,8 @@
                class="w-full pl-8 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF2D20]/30 focus:border-[#FF2D20] focus:bg-white transition-colors" />
       </div>
       <!-- Category pills — horizontal scroll, no wrap -->
-      <div id="filter-scroll" class="overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
-        <div id="filters" class="flex gap-1.5 px-4 sm:px-6 lg:px-8 pb-0.5 whitespace-nowrap"></div>
+      <div id="filter-scroll" class="">
+        <div id="filters" class="flex flex-wrap gap-1.5 pb-0.5"></div>
       </div>
     </div>
   </div>
