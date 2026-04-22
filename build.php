@@ -101,13 +101,35 @@ foreach ($attributes as &$attr) {
     $md = (string) preg_replace('/\[←\s*Back to README\]\([^)]+\)/ui', '', $md);
     $md = trim($md);
 
-    $attr['html'] = (string) $converter->convert($md);
+    $html = (string) $converter->convert($md);
+    // Strip the leading <h1> — it's already displayed in the panel header
+    $html = (string) preg_replace('/<h1[^>]*>.*?<\/h1>\s*/si', '', $html, 1);
+    $attr['html'] = $html;
 }
 unset($attr);
 
 // ─── Build output ─────────────────────────────────────────────────────────────
 
 $categoriesList = array_values($categories);
+
+// Assign stable colours in PHP so JS needs no runtime lookup
+$catColors = [
+    'bg-blue-100 text-blue-700',
+    'bg-emerald-100 text-emerald-700',
+    'bg-violet-100 text-violet-700',
+    'bg-amber-100 text-amber-700',
+    'bg-pink-100 text-pink-700',
+    'bg-sky-100 text-sky-700',
+    'bg-orange-100 text-orange-700',
+    'bg-teal-100 text-teal-700',
+    'bg-rose-100 text-rose-700',
+    'bg-indigo-100 text-indigo-700',
+];
+
+foreach ($categoriesList as $i => &$cat) {
+    $cat['color'] = $catColors[$i % count($catColors)];
+}
+unset($cat);
 
 printf("Building: %d attributes across %d categories\n", count($attributes), count($categoriesList));
 
@@ -134,12 +156,7 @@ function buildHtml(string $jsonData): string
       <script src="https://cdn.tailwindcss.com"></script>
       <script>
         tailwind.config = {
-          theme: {
-            extend: {
-              colors: { laravel: '#FF2D20' },
-              fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-            }
-          }
+          theme: { extend: { colors: { laravel: '#FF2D20' }, fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] } } }
         }
       </script>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -148,41 +165,53 @@ function buildHtml(string $jsonData): string
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
       <style>
-        #panel { transform: translateX(100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); }
+        /* Panel slide-in */
+        #panel { transform: translateX(100%); transition: transform .28s cubic-bezier(.4,0,.2,1); }
         #panel.open { transform: translateX(0); }
-        #backdrop { opacity: 0; pointer-events: none; transition: opacity 0.28s ease; }
+        #backdrop { opacity: 0; pointer-events: none; transition: opacity .28s ease; }
         #backdrop.open { opacity: 1; pointer-events: auto; }
-        .card { transition: box-shadow 0.15s ease, transform 0.15s ease; }
-        .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.09); transform: translateY(-1px); }
-        .md-content h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; color: #111827; }
-        .md-content h2 { font-size: 1.05rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #374151; }
-        .md-content p { margin-bottom: 0.875rem; color: #374151; line-height: 1.7; }
-        .md-content pre { margin: 1rem 0; border-radius: 0.5rem; overflow: auto; font-size: 0.82rem; }
-        .md-content code:not(pre code) { background: #f3f4f6; color: #111827; padding: 0.15em 0.4em; border-radius: 0.3rem; font-size: 0.85em; font-family: monospace; }
-        .md-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 0.875rem; color: #374151; }
-        .md-content li { margin-bottom: 0.25rem; line-height: 1.6; }
-        .md-content hr { border-color: #e5e7eb; margin: 1.5rem 0; }
-        .md-content a { color: #FF2D20; text-decoration: underline; }
-        .md-content strong { color: #111827; }
-        #panel-body::-webkit-scrollbar { width: 5px; }
-        #panel-body::-webkit-scrollbar-track { background: #f9fafb; }
-        #panel-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+
+        /* Cards */
+        .card { transition: box-shadow .15s ease, border-color .15s ease; }
+        .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); border-color: #FF2D20 !important; }
+        .card.active { border-color: #FF2D20 !important; box-shadow: 0 0 0 3px rgba(255,45,32,.12); }
+
+        /* Filter bar — horizontal scroll on mobile, no wrapping */
+        #filter-scroll { scrollbar-width: none; }
+        #filter-scroll::-webkit-scrollbar { display: none; }
+
+        /* Markdown panel body */
+        .md h2 { font-size: 1rem; font-weight: 600; color: #111827; margin: 1.4rem 0 .4rem; }
+        .md p  { color: #4b5563; line-height: 1.75; margin-bottom: .8rem; }
+        .md pre { margin: .8rem 0; border-radius: .5rem; overflow: auto; font-size: .8rem; }
+        .md code:not(pre code) { background: #f3f4f6; color: #111827; padding: .15em .4em; border-radius: .3rem; font-size: .82em; font-family: monospace; }
+        .md ul { list-style: disc; padding-left: 1.4rem; margin-bottom: .8rem; color: #4b5563; }
+        .md li { margin-bottom: .2rem; line-height: 1.65; }
+        .md hr { border-color: #e5e7eb; margin: 1.25rem 0; }
+        .md a  { color: #FF2D20; text-decoration: underline; }
+        .md strong { color: #111827; font-weight: 600; }
+
+        /* Panel scrollbar */
+        #panel-body::-webkit-scrollbar { width: 4px; }
+        #panel-body::-webkit-scrollbar-track { background: transparent; }
+        #panel-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 8px; }
+
         @media (max-width: 640px) { #panel { width: 100vw !important; } }
       </style>
     </head>
     <body class="font-sans bg-gray-50 min-h-screen">
 
       <!-- Header -->
-      <header class="bg-[#1C1C1E] shadow-lg sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <span class="text-[#FF2D20] font-bold text-xl tracking-tight">Laravel</span>
-            <span class="text-white/30 font-light text-xl">|</span>
-            <span class="text-white font-medium text-lg">PHP Attributes</span>
+      <header class="bg-[#1C1C1E] sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[#FF2D20] font-bold text-lg tracking-tight">Laravel</span>
+            <span class="text-white/20">|</span>
+            <span class="text-white/90 font-medium text-base">PHP Attributes</span>
           </div>
           <a href="https://github.com/MrPunyapal/laravel-attributes-list" target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+             class="flex items-center gap-1.5 text-white/50 hover:text-white transition-colors text-xs font-medium">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
             </svg>
             GitHub
@@ -190,136 +219,122 @@ function buildHtml(string $jsonData): string
         </div>
       </header>
 
-      <!-- Controls -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-        <div class="relative mb-5">
-          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-          <input id="search" type="text" placeholder="Search attributes…"
-                 class="w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF2D20]/40 focus:border-[#FF2D20] shadow-sm" />
+      <!-- Search + Filters -->
+      <div class="bg-white border-b border-gray-100 sticky top-14 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-2.5">
+          <!-- Search -->
+          <div class="relative">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input id="search" type="text" placeholder="Search attributes…"
+                   class="w-full pl-8 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF2D20]/30 focus:border-[#FF2D20] focus:bg-white transition-colors" />
+          </div>
+          <!-- Category pills — horizontal scroll, no wrap -->
+          <div id="filter-scroll" class="overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
+            <div id="filters" class="flex gap-1.5 px-4 sm:px-6 lg:px-8 pb-0.5 whitespace-nowrap"></div>
+          </div>
         </div>
-        <div id="filters" class="flex flex-wrap gap-2 mb-1"></div>
       </div>
 
       <!-- Grid -->
-      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div id="count" class="text-xs text-gray-400 mb-4"></div>
-        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
-        <div id="empty" class="hidden text-center py-20 text-gray-400">
-          <svg class="w-12 h-12 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          <p class="text-sm font-medium">No attributes found</p>
+      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p id="count" class="text-xs text-gray-400 mb-4"></p>
+        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
+        <div id="empty" class="hidden text-center py-24">
+          <div class="text-5xl mb-3">🔍</div>
+          <p class="text-sm font-medium text-gray-500">No attributes match</p>
+          <p class="text-xs text-gray-400 mt-1">Try a different search or category</p>
         </div>
       </main>
 
       <!-- Backdrop -->
-      <div id="backdrop" class="fixed inset-0 bg-black/40 z-40"></div>
+      <div id="backdrop" class="fixed inset-0 bg-black/30 z-40"></div>
 
       <!-- Side Panel -->
-      <aside id="panel" class="fixed top-0 right-0 h-full w-full sm:w-[520px] bg-white z-50 flex flex-col shadow-2xl">
-        <div class="bg-[#1C1C1E] flex items-center justify-between px-5 py-4 flex-shrink-0">
-          <div>
-            <div class="text-[#FF2D20] text-xs font-semibold uppercase tracking-widest mb-0.5" id="panel-category"></div>
-            <h2 class="text-white font-bold text-base font-mono" id="panel-title"></h2>
+      <aside id="panel" class="fixed top-0 right-0 h-full w-full sm:w-[500px] bg-white z-50 flex flex-col">
+        <!-- Panel header -->
+        <div class="bg-[#1C1C1E] px-5 py-4 flex items-start justify-between gap-4 flex-shrink-0">
+          <div class="min-w-0">
+            <div class="text-[#FF2D20] text-[10px] font-bold uppercase tracking-[.12em] mb-1.5" id="panel-category"></div>
+            <h2 class="text-white font-bold text-lg font-mono leading-tight truncate" id="panel-title"></h2>
           </div>
-          <button id="close-panel" class="text-white/60 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button id="close-panel" aria-label="Close"
+                  class="flex-shrink-0 mt-0.5 text-white/40 hover:text-white hover:bg-white/10 rounded-lg p-1.5 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
-        <div id="panel-body" class="flex-1 overflow-y-auto p-6">
-          <div id="panel-content" class="md-content"></div>
+        <!-- Panel body -->
+        <div id="panel-body" class="flex-1 overflow-y-auto">
+          <div id="panel-content" class="md px-5 pt-5 pb-10"></div>
         </div>
       </aside>
 
       <script>
         var DATA = $jsonData;
 
-        var COLORS = [
-          'bg-blue-100 text-blue-700',
-          'bg-emerald-100 text-emerald-700',
-          'bg-violet-100 text-violet-700',
-          'bg-amber-100 text-amber-700',
-          'bg-pink-100 text-pink-700',
-          'bg-sky-100 text-sky-700',
-          'bg-orange-100 text-orange-700',
-          'bg-teal-100 text-teal-700',
-          'bg-rose-100 text-rose-700',
-          'bg-indigo-100 text-indigo-700',
-        ];
-        var colorMap = {};
-
-        function getCategoryColor(slug) {
-          if (!colorMap[slug]) {
-            var idx = Object.keys(colorMap).length % COLORS.length;
-            colorMap[slug] = COLORS[idx];
-          }
-          return colorMap[slug];
-        }
+        // Build slug→color lookup from PHP-assigned colors
+        var catColor = {};
+        DATA.categories.forEach(function(c) { catColor[c.slug] = c.color; });
 
         var activeCategory = 'all';
         var searchQuery    = '';
         var searchTimer    = null;
+        var activeCard     = null;
 
-        function filterBtnClass(active) {
+        // Safe HTML escaping for innerHTML usage
+        function esc(s) {
+          return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+
+        // ─── Filters ─────────────────────────────────────────────────────────
+
+        function pillClass(active) {
           return active
-            ? 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium bg-[#FF2D20] text-white shadow-sm cursor-pointer transition-all'
-            : 'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:border-[#FF2D20] hover:text-[#FF2D20] cursor-pointer transition-all';
+            ? 'flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#FF2D20] text-white cursor-pointer transition-all'
+            : 'flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer transition-all';
         }
 
         function renderFilters() {
           var container = document.getElementById('filters');
 
-          var allBtn = document.createElement('button');
-          allBtn.className    = filterBtnClass(true);
-          allBtn.textContent  = 'All';
-          allBtn.dataset.cat  = 'all';
-          container.appendChild(allBtn);
-
-          DATA.categories.forEach(function (cat) {
-            var btn = document.createElement('button');
-            btn.className   = filterBtnClass(false);
-            btn.textContent = cat.icon + ' ' + cat.name;
-            btn.dataset.cat = cat.slug;
-            container.appendChild(btn);
+          var html = '<button class="' + pillClass(true) + '" data-cat="all">All</button>';
+          DATA.categories.forEach(function(cat) {
+            html += '<button class="' + pillClass(false) + '" data-cat="' + esc(cat.slug) + '">' + cat.icon + ' ' + esc(cat.name) + '</button>';
           });
+          container.innerHTML = html;
 
-          container.addEventListener('click', function (e) {
+          container.addEventListener('click', function(e) {
             var btn = e.target.closest('button[data-cat]');
             if (!btn) return;
             activeCategory = btn.dataset.cat;
-            container.querySelectorAll('button[data-cat]').forEach(function (b) {
-              b.className = filterBtnClass(b.dataset.cat === activeCategory);
+            container.querySelectorAll('button[data-cat]').forEach(function(b) {
+              b.className = pillClass(b.dataset.cat === activeCategory);
             });
             renderGrid();
           });
         }
 
+        // ─── Grid ─────────────────────────────────────────────────────────────
+
         function getFiltered() {
-          return DATA.attributes.filter(function (attr) {
-            var matchCat = activeCategory === 'all' || attr.categorySlug === activeCategory;
-            var q        = searchQuery.toLowerCase();
-            var matchSearch = !q
-              || attr.name.toLowerCase().indexOf(q) !== -1
-              || attr.description.toLowerCase().indexOf(q) !== -1
-              || attr.categoryName.toLowerCase().indexOf(q) !== -1;
-            return matchCat && matchSearch;
+          var q = searchQuery.toLowerCase();
+          return DATA.attributes.filter(function(a) {
+            return (activeCategory === 'all' || a.categorySlug === activeCategory)
+              && (!q || a.name.toLowerCase().indexOf(q) !== -1 || a.description.toLowerCase().indexOf(q) !== -1 || a.categoryName.toLowerCase().indexOf(q) !== -1);
           });
         }
 
         function renderGrid() {
           var grid     = document.getElementById('grid');
           var empty    = document.getElementById('empty');
-          var countEl  = document.getElementById('count');
           var filtered = getFiltered();
 
-          grid.innerHTML = '';
-          countEl.textContent = filtered.length + ' attribute' + (filtered.length !== 1 ? 's' : '');
+          document.getElementById('count').textContent = filtered.length + ' attribute' + (filtered.length !== 1 ? 's' : '');
 
-          if (filtered.length === 0) {
+          if (!filtered.length) {
             grid.classList.add('hidden');
             empty.classList.remove('hidden');
             return;
@@ -328,70 +343,48 @@ function buildHtml(string $jsonData): string
           grid.classList.remove('hidden');
           empty.classList.add('hidden');
 
-          var frag = document.createDocumentFragment();
-
-          filtered.forEach(function (attr) {
-            var badgeColor = getCategoryColor(attr.categorySlug);
-            var card       = document.createElement('div');
-            card.className = 'card bg-white border border-gray-200 rounded-xl p-5 cursor-pointer select-none flex flex-col gap-3';
-
-            // Name row
-            var nameRow    = document.createElement('div');
-            nameRow.className = 'flex items-start justify-between gap-2';
-
-            var nameSpan       = document.createElement('span');
-            nameSpan.className = 'font-mono font-bold text-[15px] text-gray-900 leading-snug break-all';
-            nameSpan.textContent = '#[' + attr.name + ']';
-
-            var arrow       = document.createElement('span');
-            arrow.className = 'flex-shrink-0 text-gray-300 mt-0.5';
-            arrow.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
-
-            nameRow.appendChild(nameSpan);
-            nameRow.appendChild(arrow);
-
-            // Description
-            var desc       = document.createElement('p');
-            desc.className = 'text-gray-500 text-sm leading-relaxed flex-1';
-            desc.textContent = attr.description;
-
-            // Category badge
-            var badgeWrap = document.createElement('div');
-            var badge     = document.createElement('span');
-            badge.className  = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ' + badgeColor;
-            badge.textContent = attr.categoryIcon + ' ' + attr.categoryName;
-            badgeWrap.appendChild(badge);
-
-            card.appendChild(nameRow);
-            card.appendChild(desc);
-            card.appendChild(badgeWrap);
-
-            card.addEventListener('click', (function (a) {
-              return function () { openPanel(a); };
-            }(attr)));
-
-            frag.appendChild(card);
+          var html = '';
+          filtered.forEach(function(attr) {
+            html +=
+              '<div class="card bg-white border border-gray-200 rounded-xl p-5 cursor-pointer flex flex-col gap-2.5" data-name="' + esc(attr.name) + '">' +
+                '<div class="font-mono font-semibold text-sm text-gray-900">#[' + esc(attr.name) + ']</div>' +
+                '<p class="text-gray-500 text-xs leading-relaxed flex-1">' + esc(attr.description) + '</p>' +
+                '<span class="self-start inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ' + catColor[attr.categorySlug] + '">' +
+                  attr.categoryIcon + ' ' + esc(attr.categoryName) +
+                '</span>' +
+              '</div>';
           });
 
-          grid.appendChild(frag);
+          grid.innerHTML = html;
+
+          // Re-attach click handlers and restore active state
+          grid.querySelectorAll('.card').forEach(function(card, i) {
+            var attr = filtered[i];
+            if (activeCard && activeCard.name === attr.name) card.classList.add('active');
+            card.addEventListener('click', function() { openPanel(attr, card); });
+          });
         }
 
-        // ─── Side Panel ───────────────────────────────────────────────────────
+        // ─── Panel ────────────────────────────────────────────────────────────
 
         var panel    = document.getElementById('panel');
         var backdrop = document.getElementById('backdrop');
 
-        function openPanel(attr) {
+        function openPanel(attr, card) {
+          // Update active card highlight
+          if (activeCard) {
+            var prev = document.querySelector('.card.active');
+            if (prev) prev.classList.remove('active');
+          }
+          activeCard = attr;
+          if (card) card.classList.add('active');
+
           document.getElementById('panel-title').textContent    = '#[' + attr.name + ']';
           document.getElementById('panel-category').textContent = attr.categoryIcon + ' ' + attr.categoryName;
 
-          var content     = document.getElementById('panel-content');
+          var content = document.getElementById('panel-content');
           content.innerHTML = attr.html;
-
-          // Apply syntax highlighting to all code blocks
-          content.querySelectorAll('pre code').forEach(function (block) {
-            hljs.highlightElement(block);
-          });
+          content.querySelectorAll('pre code').forEach(function(b) { hljs.highlightElement(b); });
 
           panel.classList.add('open');
           backdrop.classList.add('open');
@@ -403,23 +396,23 @@ function buildHtml(string $jsonData): string
           panel.classList.remove('open');
           backdrop.classList.remove('open');
           document.body.style.overflow = '';
+          if (activeCard) {
+            var prev = document.querySelector('.card.active');
+            if (prev) prev.classList.remove('active');
+            activeCard = null;
+          }
         }
 
         document.getElementById('close-panel').addEventListener('click', closePanel);
         backdrop.addEventListener('click', closePanel);
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') closePanel();
-        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
 
         // ─── Search ───────────────────────────────────────────────────────────
 
-        document.getElementById('search').addEventListener('input', function (e) {
+        document.getElementById('search').addEventListener('input', function(e) {
           clearTimeout(searchTimer);
           var val = e.target.value;
-          searchTimer = setTimeout(function () {
-            searchQuery = val.trim();
-            renderGrid();
-          }, 150);
+          searchTimer = setTimeout(function() { searchQuery = val.trim(); renderGrid(); }, 150);
         });
 
         // ─── Boot ─────────────────────────────────────────────────────────────
