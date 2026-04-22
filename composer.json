@@ -1,0 +1,9 @@
+{
+    "require": {
+        "php": ">=8.3",
+        "league/commonmark": "^2.6"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
