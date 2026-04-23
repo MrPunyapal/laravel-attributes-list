@@ -136,7 +136,20 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 
 ---
 
-## 🧠 Notes
+## � AI (Agents)
+
+* [`#[MaxSteps]`](attributes/ai/MaxSteps.md) — Maximum number of steps the agent may take when using tools
+* [`#[MaxTokens]`](attributes/ai/MaxTokens.md) — Maximum number of tokens the model may generate
+* [`#[Model]`](attributes/ai/Model.md) — Define the model the agent should use
+* [`#[Provider]`](attributes/ai/Provider.md) — Define the AI provider (or providers for failover)
+* [`#[Temperature]`](attributes/ai/Temperature.md) — Define the sampling temperature for generation
+* [`#[Timeout]`](attributes/ai/Timeout.md) — Define the HTTP timeout in seconds for agent requests
+* [`#[UseCheapestModel]`](attributes/ai/UseCheapestModel.md) — Use the provider's cheapest text model
+* [`#[UseSmartestModel]`](attributes/ai/UseSmartestModel.md) — Use the provider's most capable text model
+
+---
+
+## �🧠 Notes
 
 * Attributes provide an alternative to traditional class properties
 * They are used across multiple parts of the framework
