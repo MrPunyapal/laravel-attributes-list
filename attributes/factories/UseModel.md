@@ -2,13 +2,13 @@
 
 **Description:** Defines the Eloquent model class that the factory creates, overriding the default model resolution.
 
-**Namespace:** `Illuminate\Database\Eloquent\Factories\UseModel`
+**Namespace:** `Illuminate\Database\Eloquent\Factories\Attributes\UseModel`
 
 ## Usage
 
 ```php
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\UseModel;
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use App\Models\User;
 
 #[UseModel(User::class)]

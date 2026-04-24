@@ -2,12 +2,12 @@
 
 **Description:** Defines the resource class that a resource collection wraps, used for automatic collection mapping.
 
-**Namespace:** `Illuminate\Http\Resources\Json\Collects`
+**Namespace:** `Illuminate\Http\Resources\Attributes\Collects`
 
 ## Usage
 
 ```php
-use Illuminate\Http\Resources\Json\Collects;
+use Illuminate\Http\Resources\Attributes\Collects;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Http\Resources\UserResource;
 
