@@ -157,6 +157,18 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 
 ---
 
+## 🐘 PHP Built-in Attributes
+
+* [`#[Attribute]`](attributes/php/Attribute.md) — Mark a class as a reusable custom attribute
+* [`#[AllowDynamicProperties]`](attributes/php/AllowDynamicProperties.md) — Allow dynamic properties on a class without deprecation notice
+* [`#[Deprecated]`](attributes/php/Deprecated.md) — Mark a function, method, class, or constant as deprecated
+* [`#[NoDiscard]`](attributes/php/NoDiscard.md) — Warn when a function's return value is discarded
+* [`#[Override]`](attributes/php/Override.md) — Assert that a method or property overrides a parent declaration
+* [`#[ReturnTypeWillChange]`](attributes/php/ReturnTypeWillChange.md) — Silence return type deprecation notice for cross-version compatibility
+* [`#[SensitiveParameter]`](attributes/php/SensitiveParameter.md) — Redact a parameter value from stack traces
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome.
