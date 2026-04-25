@@ -149,6 +149,14 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 
 ---
 
+
+## 🌐 Community / Third-party
+
+These attributes come from popular community packages, not from the Laravel framework itself.
+
+* [`#[Idempotent]`](attributes/controllers/Idempotent.md) — HTTP idempotency on controllers or methods — requires [`wendelladriel/laravel-idempotency`](https://github.com/WendellAdriel/laravel-idempotency)
+
+---
 ## �🧠 Notes
 
 * Attributes provide an alternative to traditional class properties
