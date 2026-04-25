@@ -1,6 +1,6 @@
 # `#[Bind]`
 
-**Description:** Contextually binds a specific implementation to an interface or abstract type for the annotated parameter.
+**Description:** Binds an interface or abstract class to a concrete implementation.
 
 **Namespace:** `Illuminate\Container\Attributes\Bind`
 
@@ -8,16 +8,25 @@
 
 ```php
 use Illuminate\Container\Attributes\Bind;
-use App\Contracts\PaymentGateway;
-use App\Services\StripeGateway;
+
+#[Bind(StripeGateway::class)]
+interface PaymentGateway
+{
+}
+
+class StripeGateway implements PaymentGateway
+{
+}
 
 class CheckoutController
 {
     public function __construct(
-        #[Bind(StripeGateway::class)] private readonly PaymentGateway $gateway
+        private PaymentGateway $gateway
     ) {}
 }
 ```
+
+Laravel automatically injects `StripeGateway` when resolving `PaymentGateway`.
 
 ---
 
