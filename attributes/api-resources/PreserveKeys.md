@@ -2,13 +2,13 @@
 
 **Description:** Preserves the original array keys when serializing a JSON resource collection.
 
-**Namespace:** `Illuminate\Http\Resources\Json\PreserveKeys`
+**Namespace:** `Illuminate\Http\Resources\Attributes\PreserveKeys`
 
 ## Usage
 
 ```php
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\PreserveKeys;
+use Illuminate\Http\Resources\Attributes\PreserveKeys;
 
 #[PreserveKeys]
 class UserResource extends JsonResource
