@@ -156,12 +156,27 @@
 
     // ─── Sidebar nav ───────────────────────────────────────────────────────
 
+    var openCategory = null;
+    var navInitialized = false;
+
     function renderNav() {
       var nav   = document.getElementById('sidebar-nav');
       var empty = document.getElementById('nav-empty');
       var q     = searchQuery.toLowerCase();
       var html  = '';
       var anyHit = false;
+
+      // Auto-open the first category only on the initial render
+      if (!navInitialized) {
+        for (var i = 0; i < DATA.categories.length; i++) {
+          var c = DATA.categories[i];
+          var its = grouped[c.slug].filter(function(a) {
+            return !q || a.name.toLowerCase().indexOf(q) !== -1 || a.description.toLowerCase().indexOf(q) !== -1;
+          });
+          if (its.length) { openCategory = c.slug; break; }
+        }
+        navInitialized = true;
+      }
 
       DATA.categories.forEach(function(cat) {
         var items = grouped[cat.slug].filter(function(a) {
@@ -170,15 +185,19 @@
         if (!items.length) return;
         anyHit = true;
 
-        html += '<div class="mb-3">';
-        html += '<div class="px-4 pt-3 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-widest select-none">' + cat.icon + '&nbsp;' + esc(cat.name) + '</div>';
+        var isOpen = openCategory === cat.slug;
 
+        html += '<div class="mb-3">';
+        html += '<button data-cat="' + esc(cat.slug) + '" class="w-full flex items-center justify-between px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-widest select-none category-toggle">' + cat.icon + '&nbsp;' + esc(cat.name) + '<svg class="w-3 h-3 text-gray-400 transform' + (isOpen ? ' rotate-90' : '') + '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>';
+
+        html += '<div class="category-items' + (isOpen ? '' : ' hidden') + '">';
         items.forEach(function(a) {
           var isActive = activeAttr && activeAttr.name === a.name;
           html += '<button class="nav-item' + (isActive ? ' active' : '') + ' w-full text-left px-4 py-2 text-sm text-gray-700 flex items-center gap-2" data-name="' + esc(a.name) + '">'
                 + '<span class="truncate">' + esc(a.name) + '</span>'
                 + '</button>';
         });
+        html += '</div>';
 
         html += '</div>';
       });
@@ -187,6 +206,20 @@
       nav.classList.toggle('hidden', !anyHit);
       empty.classList.toggle('hidden', anyHit);
 
+      // Category toggle handlers (accordion behaviour)
+      nav.querySelectorAll('.category-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var cat = btn.dataset.cat;
+          if (openCategory === cat) {
+            openCategory = null; // allow collapsing the open section
+          } else {
+            openCategory = cat; // open selected and implicitly close others on re-render
+          }
+          renderNav();
+        });
+      });
+
+      // Attribute click handlers
       nav.querySelectorAll('.nav-item').forEach(function(btn) {
         btn.addEventListener('click', function() {
           var name = btn.dataset.name;
