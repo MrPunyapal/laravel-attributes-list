@@ -108,7 +108,7 @@ foreach ($attributes as &$attr) {
 }
 unset($attr);
 
-// ─── Build output ─────────────────────────────────────────────────────────────
+// ─── Build output ───────────────────────────────────────────────────────────
 
 $categoriesList = array_values($categories);
 
@@ -141,7 +141,7 @@ $jsonData = json_encode(
 file_put_contents(__DIR__ . '/index.html', buildHtml($jsonData));
 echo "Done → index.html\n";
 
-// ─── HTML template ────────────────────────────────────────────────────────────
+// ─── HTML template ───────────────────────────────────────────────────────────
 
 function buildHtml(string $jsonData): string
 {
@@ -165,110 +165,122 @@ function buildHtml(string $jsonData): string
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
       <style>
-        /* Panel slide-in */
-        #panel { transform: translateX(100%); transition: transform .28s cubic-bezier(.4,0,.2,1); }
-        #panel.open { transform: translateX(0); }
-        #backdrop { opacity: 0; pointer-events: none; transition: opacity .28s ease; }
-        #backdrop.open { opacity: 1; pointer-events: auto; }
+        html, body { height: 100%; }
 
-        /* Cards */
-        .card { transition: box-shadow .15s ease, border-color .15s ease; }
-        .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); border-color: #FF2D20 !important; }
-        .card.active { border-color: #FF2D20 !important; box-shadow: 0 0 0 3px rgba(255,45,32,.12); }
+        /* Sidebar nav item */
+        .nav-item { transition: background .12s ease, color .12s ease; }
+        .nav-item.active { background: rgba(255,45,32,.08); color: #FF2D20; font-weight: 500; }
+        .nav-item:not(.active):hover { background: #f3f4f6; }
 
-
-
-        /* Markdown panel body */
-        .md h2 { font-size: 1rem; font-weight: 600; color: #111827; margin: 1.4rem 0 .4rem; }
-        .md p  { color: #4b5563; line-height: 1.75; margin-bottom: .8rem; }
-        .md pre { margin: .8rem 0; border-radius: .5rem; overflow: auto; font-size: .8rem; }
-        .md code:not(pre code) { background: #f3f4f6; color: #111827; padding: .15em .4em; border-radius: .3rem; font-size: .82em; font-family: monospace; }
-        .md ul { list-style: disc; padding-left: 1.4rem; margin-bottom: .8rem; color: #4b5563; }
-        .md li { margin-bottom: .2rem; line-height: 1.65; }
-        .md hr { border-color: #e5e7eb; margin: 1.25rem 0; }
+        /* Markdown content */
+        .md h1 { font-size: 1.5rem; font-weight: 700; color: #111827; margin-bottom: 1rem; }
+        .md h2 { font-size: 1.1rem; font-weight: 600; color: #111827; margin: 1.75rem 0 .5rem; padding-bottom: .35rem; border-bottom: 1px solid #e5e7eb; }
+        .md h3 { font-size: .95rem; font-weight: 600; color: #374151; margin: 1.25rem 0 .35rem; }
+        .md p  { color: #4b5563; line-height: 1.8; margin-bottom: .9rem; }
+        .md pre { margin: .9rem 0; border-radius: .6rem; overflow: auto; font-size: .82rem; }
+        .md code:not(pre code) { background: #f3f4f6; color: #111827; padding: .15em .45em; border-radius: .3rem; font-size: .82em; font-family: monospace; }
+        .md ul, .md ol { padding-left: 1.5rem; margin-bottom: .9rem; color: #4b5563; }
+        .md ul { list-style: disc; }
+        .md ol { list-style: decimal; }
+        .md li { margin-bottom: .3rem; line-height: 1.7; }
+        .md hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
         .md a  { color: #FF2D20; text-decoration: underline; }
         .md strong { color: #111827; font-weight: 600; }
+        .md blockquote { border-left: 3px solid #FF2D20; padding-left: 1rem; color: #6b7280; font-style: italic; margin: 1rem 0; }
+        .md table { width: 100%; border-collapse: collapse; font-size: .85rem; margin-bottom: 1rem; }
+        .md th { background: #f9fafb; text-align: left; padding: .5rem .75rem; border: 1px solid #e5e7eb; font-weight: 600; color: #374151; }
+        .md td { padding: .5rem .75rem; border: 1px solid #e5e7eb; color: #4b5563; }
 
-        /* Panel scrollbar */
-        #panel-body::-webkit-scrollbar { width: 4px; }
-        #panel-body::-webkit-scrollbar-track { background: transparent; }
-        #panel-body::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 8px; }
+        /* Sidebar scrollbar */
+        #sidebar-nav::-webkit-scrollbar { width: 3px; }
+        #sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+        #sidebar-nav::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 8px; }
 
-        @media (max-width: 640px) { #panel { width: 100vw !important; } }
+        /* Mobile sidebar */
+        #sidebar { transition: transform .25s cubic-bezier(.4,0,.2,1); }
+        #mob-backdrop { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+        #mob-backdrop.open { opacity: 1; pointer-events: auto; }
+        @media (max-width: 1023px) {
+          #sidebar { position: fixed; top: 0; left: 0; height: 100%; z-index: 40; transform: translateX(-100%); }
+          #sidebar.open { transform: translateX(0); }
+        }
       </style>
     </head>
-    <body class="font-sans bg-gray-50 min-h-screen">
+    <body class="font-sans bg-gray-50" style="height:100%; display:flex; flex-direction:column;">
 
-      <!-- Header -->
-      <header class="bg-[#1C1C1E] sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-          <div class="flex items-center gap-2.5">
-            <span class="text-[#FF2D20] font-bold text-lg tracking-tight">Laravel</span>
-            <span class="text-white/20">|</span>
-            <span class="text-white/90 font-medium text-base">PHP Attributes</span>
-          </div>
-          <a href="https://github.com/MrPunyapal/laravel-attributes-list" target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-1.5 text-white/50 hover:text-white transition-colors text-xs font-medium">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
-            </svg>
-            GitHub
-          </a>
+      <!-- Mobile top bar -->
+      <header class="lg:hidden bg-[#1C1C1E] h-14 flex items-center gap-3 px-4 flex-shrink-0 z-30 relative">
+        <button id="mob-toggle" class="text-white/60 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors" aria-label="Toggle sidebar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        <div class="flex items-center gap-2.5">
+          <span class="text-[#FF2D20] font-bold text-base tracking-tight">Laravel</span>
+          <span class="text-white/20">|</span>
+          <span class="text-white/80 text-sm font-medium">PHP Attributes</span>
         </div>
       </header>
 
-      <!-- Search + Filters -->
-      <div class="bg-white border-b border-gray-100 sticky top-14 z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-2.5">
+      <div class="flex flex-1 overflow-hidden">
+
+        <!-- Mobile backdrop -->
+        <div id="mob-backdrop" class="fixed inset-0 bg-black/40 z-30 lg:hidden"></div>
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-72 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 lg:relative lg:translate-x-0 lg:z-auto">
+          <!-- Sidebar header (desktop) -->
+          <div class="hidden lg:flex bg-[#1C1C1E] h-14 px-5 items-center gap-2.5 flex-shrink-0">
+            <span class="text-[#FF2D20] font-bold text-base tracking-tight">Laravel</span>
+            <span class="text-white/20">|</span>
+            <span class="text-white/80 text-sm font-medium">PHP Attributes</span>
+            <a href="https://github.com/MrPunyapal/laravel-attributes-list" target="_blank" rel="noopener noreferrer" class="ml-auto text-white/40 hover:text-white transition-colors" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+              </svg>
+            </a>
+          </div>
+
           <!-- Search -->
-          <div class="relative">
-            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            <input id="search" type="text" placeholder="Search attributes…"
-                   class="w-full pl-8 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF2D20]/30 focus:border-[#FF2D20] focus:bg-white transition-colors" />
+          <div class="px-3 py-3 border-b border-gray-100 flex-shrink-0">
+            <div class="relative">
+              <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+              <input id="search" type="text" placeholder="Search attributes…" class="w-full pl-8 pr-3 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF2D20]/30 focus:border-[#FF2D20] focus:bg-white transition-colors" />
+            </div>
           </div>
-          <!-- Category pills — horizontal scroll, no wrap -->
-          <div id="filter-scroll" class="">
-            <div id="filters" class="flex flex-wrap gap-1.5 pb-0.5"></div>
+
+          <!-- Nav groups -->
+          <nav id="sidebar-nav" class="flex-1 overflow-y-auto py-2"></nav>
+
+          <!-- Empty search state -->
+          <div id="nav-empty" class="hidden px-5 py-8 text-center text-xs text-gray-400">No attributes match</div>
+        </aside>
+
+        <!-- Main content -->
+        <main id="main" class="flex-1 overflow-y-auto">
+          <!-- Welcome / empty state -->
+          <div id="welcome" class="flex flex-col items-center justify-center h-full text-center px-6 py-20">
+            <div class="text-6xl mb-5">🔍</div>
+            <h2 class="text-xl font-bold text-gray-800 mb-2">Laravel PHP Attributes</h2>
+            <p class="text-sm text-gray-500 max-w-xs">Select an attribute from the sidebar to read its documentation.</p>
           </div>
-        </div>
+
+          <!-- Attribute content (hidden until selected) -->
+          <div id="content-wrap" class="hidden px-6 sm:px-10 py-10">
+            <!-- Header -->
+            <div class="mb-8">
+              <span id="content-badge" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium mb-4"></span>
+              <h1 id="content-title" class="text-2xl font-bold text-gray-900 font-mono mb-2"></h1>
+              <p id="content-desc" class="text-gray-500 text-sm leading-relaxed"></p>
+            </div>
+            <!-- Markdown body -->
+            <div id="content-body" class="md"></div>
+          </div>
+        </main>
+
       </div>
-
-      <!-- Grid -->
-      <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <p id="count" class="text-xs text-gray-400 mb-4"></p>
-        <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
-        <div id="empty" class="hidden text-center py-24">
-          <div class="text-5xl mb-3">🔍</div>
-          <p class="text-sm font-medium text-gray-500">No attributes match</p>
-          <p class="text-xs text-gray-400 mt-1">Try a different search or category</p>
-        </div>
-      </main>
-
-      <!-- Backdrop -->
-      <div id="backdrop" class="fixed inset-0 bg-black/30 z-40"></div>
-
-      <!-- Side Panel -->
-      <aside id="panel" class="fixed top-0 right-0 h-full w-full sm:w-[500px] bg-white z-50 flex flex-col">
-        <!-- Panel header -->
-        <div class="bg-[#1C1C1E] px-5 py-4 flex items-start justify-between gap-4 flex-shrink-0">
-          <div class="min-w-0">
-            <div class="text-[#FF2D20] text-[10px] font-bold uppercase tracking-[.12em] mb-1.5" id="panel-category"></div>
-            <h2 class="text-white font-bold text-lg font-mono leading-tight truncate" id="panel-title"></h2>
-          </div>
-          <button id="close-panel" aria-label="Close"
-                  class="flex-shrink-0 mt-0.5 text-white/40 hover:text-white hover:bg-white/10 rounded-lg p-1.5 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
-        <!-- Panel body -->
-        <div id="panel-body" class="flex-1 overflow-y-auto">
-          <div id="panel-content" class="md px-5 pt-5 pb-10"></div>
-        </div>
-      </aside>
 
       <script>
         var DATA = $jsonData;
@@ -277,146 +289,119 @@ function buildHtml(string $jsonData): string
         var catColor = {};
         DATA.categories.forEach(function(c) { catColor[c.slug] = c.color; });
 
-        var activeCategory = 'all';
-        var searchQuery    = '';
-        var searchTimer    = null;
-        var activeCard     = null;
+        // Group attributes by category slug
+        var grouped = {};
+        DATA.categories.forEach(function(c) { grouped[c.slug] = []; });
+        DATA.attributes.forEach(function(a) { grouped[a.categorySlug].push(a); });
 
-        // Safe HTML escaping for innerHTML usage
+        var searchQuery  = '';
+        var searchTimer  = null;
+        var activeAttr   = null;
+
         function esc(s) {
           return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
         }
 
-        // ─── Filters ─────────────────────────────────────────────────────────
+        // ─── Sidebar nav ───────────────────────────────────────────────────────
 
-        function pillClass(active) {
-          return active
-            ? 'flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#FF2D20] text-white cursor-pointer transition-all'
-            : 'flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 cursor-pointer transition-all';
-        }
+        function renderNav() {
+          var nav   = document.getElementById('sidebar-nav');
+          var empty = document.getElementById('nav-empty');
+          var q     = searchQuery.toLowerCase();
+          var html  = '';
+          var anyHit = false;
 
-        function renderFilters() {
-          var container = document.getElementById('filters');
-
-          var html = '<button class="' + pillClass(true) + '" data-cat="all">All</button>';
           DATA.categories.forEach(function(cat) {
-            html += '<button class="' + pillClass(false) + '" data-cat="' + esc(cat.slug) + '">' + cat.icon + ' ' + esc(cat.name) + '</button>';
-          });
-          container.innerHTML = html;
-
-          container.addEventListener('click', function(e) {
-            var btn = e.target.closest('button[data-cat]');
-            if (!btn) return;
-            activeCategory = btn.dataset.cat;
-            container.querySelectorAll('button[data-cat]').forEach(function(b) {
-              b.className = pillClass(b.dataset.cat === activeCategory);
+            var items = grouped[cat.slug].filter(function(a) {
+              return !q || a.name.toLowerCase().indexOf(q) !== -1 || a.description.toLowerCase().indexOf(q) !== -1;
             });
-            renderGrid();
+            if (!items.length) return;
+            anyHit = true;
+
+            html += '<div class="mb-3">';
+            html += '<div class="px-4 pt-3 pb-1 text-[10px] font-semibold text-gray-400 uppercase tracking-widest select-none">' + cat.icon + '&nbsp;' + esc(cat.name) + '</div>';
+
+            items.forEach(function(a) {
+              var isActive = activeAttr && activeAttr.name === a.name;
+              html += '<button class="nav-item' + (isActive ? ' active' : '') + ' w-full text-left px-4 py-2 text-sm text-gray-700 flex items-center gap-2" data-name="' + esc(a.name) + '">'
+                    + '<span class="truncate">' + esc(a.name) + '</span>'
+                    + '</button>';
+            });
+
+            html += '</div>';
+          });
+
+          nav.innerHTML = html;
+          nav.classList.toggle('hidden', !anyHit);
+          empty.classList.toggle('hidden', anyHit);
+
+          nav.querySelectorAll('.nav-item').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              var name = btn.dataset.name;
+              var attr = DATA.attributes.find(function(f) { return f.name === name; });
+              if (attr) showAttr(attr);
+            });
           });
         }
 
-        // ─── Grid ─────────────────────────────────────────────────────────────
+        // ─── Show attribute ───────────────────────────────────────────────────
 
-        function getFiltered() {
-          var q = searchQuery.toLowerCase();
-          return DATA.attributes.filter(function(a) {
-            return (activeCategory === 'all' || a.categorySlug === activeCategory)
-              && (!q || a.name.toLowerCase().indexOf(q) !== -1 || a.description.toLowerCase().indexOf(q) !== -1 || a.categoryName.toLowerCase().indexOf(q) !== -1);
-          });
+        function showAttr(attr) {
+          activeAttr = attr;
+
+          var badge = document.getElementById('content-badge');
+          badge.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium mb-4 ' + catColor[attr.categorySlug];
+          badge.textContent = attr.categoryIcon + ' ' + attr.categoryName;
+
+          document.getElementById('content-title').textContent = '#[' + attr.name + ']';
+          document.getElementById('content-desc').textContent = attr.description;
+
+          var body = document.getElementById('content-body');
+          body.innerHTML = attr.html;
+          body.querySelectorAll('pre code').forEach(function(b) { hljs.highlightElement(b); });
+
+          document.getElementById('welcome').classList.add('hidden');
+          document.getElementById('content-wrap').classList.remove('hidden');
+          document.getElementById('main').scrollTop = 0;
+
+          // Close mobile sidebar
+          closeMobileSidebar();
+
+          // Re-render nav to update active highlight
+          renderNav();
         }
-
-        function renderGrid() {
-          var grid     = document.getElementById('grid');
-          var empty    = document.getElementById('empty');
-          var filtered = getFiltered();
-
-          document.getElementById('count').textContent = filtered.length + ' attribute' + (filtered.length !== 1 ? 's' : '');
-
-          if (!filtered.length) {
-            grid.classList.add('hidden');
-            empty.classList.remove('hidden');
-            return;
-          }
-
-          grid.classList.remove('hidden');
-          empty.classList.add('hidden');
-
-          var html = '';
-          filtered.forEach(function(attr) {
-            html +=
-              '<div class="card bg-white border border-gray-200 rounded-xl p-5 cursor-pointer flex flex-col gap-2.5" data-name="' + esc(attr.name) + '">' +
-                '<div class="font-mono font-semibold text-sm text-gray-900">#[' + esc(attr.name) + ']</div>' +
-                '<p class="text-gray-500 text-xs leading-relaxed flex-1">' + esc(attr.description) + '</p>' +
-                '<span class="self-start inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium ' + catColor[attr.categorySlug] + '">' +
-                  attr.categoryIcon + ' ' + esc(attr.categoryName) +
-                '</span>' +
-              '</div>';
-          });
-
-          grid.innerHTML = html;
-
-          // Re-attach click handlers and restore active state
-          grid.querySelectorAll('.card').forEach(function(card, i) {
-            var attr = filtered[i];
-            if (activeCard && activeCard.name === attr.name) card.classList.add('active');
-            card.addEventListener('click', function() { openPanel(attr, card); });
-          });
-        }
-
-        // ─── Panel ────────────────────────────────────────────────────────────
-
-        var panel    = document.getElementById('panel');
-        var backdrop = document.getElementById('backdrop');
-
-        function openPanel(attr, card) {
-          // Update active card highlight
-          if (activeCard) {
-            var prev = document.querySelector('.card.active');
-            if (prev) prev.classList.remove('active');
-          }
-          activeCard = attr;
-          if (card) card.classList.add('active');
-
-          document.getElementById('panel-title').textContent    = '#[' + attr.name + ']';
-          document.getElementById('panel-category').textContent = attr.categoryIcon + ' ' + attr.categoryName;
-
-          var content = document.getElementById('panel-content');
-          content.innerHTML = attr.html;
-          content.querySelectorAll('pre code').forEach(function(b) { hljs.highlightElement(b); });
-
-          panel.classList.add('open');
-          backdrop.classList.add('open');
-          document.body.style.overflow = 'hidden';
-          document.getElementById('panel-body').scrollTop = 0;
-        }
-
-        function closePanel() {
-          panel.classList.remove('open');
-          backdrop.classList.remove('open');
-          document.body.style.overflow = '';
-          if (activeCard) {
-            var prev = document.querySelector('.card.active');
-            if (prev) prev.classList.remove('active');
-            activeCard = null;
-          }
-        }
-
-        document.getElementById('close-panel').addEventListener('click', closePanel);
-        backdrop.addEventListener('click', closePanel);
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePanel(); });
 
         // ─── Search ───────────────────────────────────────────────────────────
 
         document.getElementById('search').addEventListener('input', function(e) {
           clearTimeout(searchTimer);
           var val = e.target.value;
-          searchTimer = setTimeout(function() { searchQuery = val.trim(); renderGrid(); }, 150);
+          searchTimer = setTimeout(function() { searchQuery = val.trim(); renderNav(); }, 150);
         });
+
+        // ─── Mobile sidebar toggle ────────────────────────────────────────────
+
+        var sidebar = document.getElementById('sidebar');
+        var mobBackdrop = document.getElementById('mob-backdrop');
+
+        function closeMobileSidebar() {
+          sidebar.classList.remove('open');
+          mobBackdrop.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+
+        document.getElementById('mob-toggle').addEventListener('click', function() {
+          var isOpen = sidebar.classList.toggle('open');
+          mobBackdrop.classList.toggle('open', isOpen);
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        mobBackdrop.addEventListener('click', closeMobileSidebar);
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMobileSidebar(); });
 
         // ─── Boot ─────────────────────────────────────────────────────────────
 
-        renderFilters();
-        renderGrid();
+        renderNav();
       </script>
     </body>
     </html>
