@@ -31,7 +31,7 @@ jobs:
         run: composer install --no-interaction --prefer-dist --no-progress
 
       - name: Generate index.html
-        run: php build.php
+        run: composer docs:build
 
       - name: Commit generated index.html
         run: |
