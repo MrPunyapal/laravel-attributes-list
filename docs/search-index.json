@@ -1,0 +1,625 @@
+[
+    {
+        "title": "Laravel PHP Attributes List",
+        "description": "A curated list of PHP Attributes available in Laravel Framework.",
+        "url": "/",
+        "content": "A curated list of PHP Attributes available in Laravel Framework.",
+        "headings": ""
+    },
+    {
+        "title": "Table",
+        "description": "Define database table",
+        "url": "/attributes/eloquent/Table",
+        "content": "Description: Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Table Usage use Illuminate\\Database\\Eloquent\\Attributes\\Table; use Illuminate\\Database\\Eloquent\\Model; #[Table('posts', key: 'post_id', keyType: 'string', incrementing: false, timestamps: false, dateFormat: 'Y-m-d H:i:s')] class Post extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Fillable",
+        "description": "Define mass assignable attributes",
+        "url": "/attributes/eloquent/Fillable",
+        "content": "Description: Defines the mass assignable attributes for an Eloquent model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Fillable Usage use Illuminate\\Database\\Eloquent\\Attributes\\Fillable; use Illuminate\\Database\\Eloquent\\Model; #[Fillable(['name', 'email', 'password'])] class User extends Model { } Variadic form is also supported: #[Fillable('name', 'email', 'password')] class User extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Guarded",
+        "description": "Define guarded attributes",
+        "url": "/attributes/eloquent/Guarded",
+        "content": "Description: Defines the attributes that are not mass assignable for an Eloquent model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Guarded Usage use Illuminate\\Database\\Eloquent\\Attributes\\Guarded; use Illuminate\\Database\\Eloquent\\Model; #[Guarded(['id', 'is_admin'])] class User extends Model { } Variadic form is also supported: #[Guarded('id', 'is_admin')] class User extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Hidden",
+        "description": "Hide attributes from serialization",
+        "url": "/attributes/eloquent/Hidden",
+        "content": "Description: Hides the specified attributes from model serialization (toArray / toJson). Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Hidden Usage use Illuminate\\Database\\Eloquent\\Attributes\\Hidden; use Illuminate\\Database\\Eloquent\\Model; #[Hidden(['password', 'remember_token'])] class User extends Model { } Variadic form is also supported: #[Hidden('password', 'remember_token')] class User extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Visible",
+        "description": "Define visible attributes",
+        "url": "/attributes/eloquent/Visible",
+        "content": "Description: Defines the attributes that should be visible in model serialization (toArray / toJson). Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Visible Usage use Illuminate\\Database\\Eloquent\\Attributes\\Visible; use Illuminate\\Database\\Eloquent\\Model; #[Visible(['id', 'name', 'email'])] class User extends Model { } Variadic form is also supported: #[Visible('id', 'name', 'email')] class User extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Appends",
+        "description": "Append accessors to arrays",
+        "url": "/attributes/eloquent/Appends",
+        "content": "Description: Appends accessor attributes to the model's array and JSON representation. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Appends Usage use Illuminate\\Database\\Eloquent\\Attributes\\Appends; use Illuminate\\Database\\Eloquent\\Model; #[Appends(['full_name', 'is_admin'])] class User extends Model { public function getFullNameAttribute(): string { return \"{$this->first_name} {$this->last_name}\"; } } Variadic form is also supported: #[Appends('full_name', 'is_admin')] class User extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Touches",
+        "description": "Touch related models",
+        "url": "/attributes/eloquent/Touches",
+        "content": "Description: Defines the relationships whose parent model's updated_at timestamp should be updated when the model is saved. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Touches Usage use Illuminate\\Database\\Eloquent\\Attributes\\Touches; use Illuminate\\Database\\Eloquent\\Model; #[Touches(['post', 'user'])] class Comment extends Model { public function post() { return $this->belongsTo(Post::class); } } Variadic form is also supported: #[Touches('post', 'user')] class Comment extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Connection",
+        "description": "Specify database connection",
+        "url": "/attributes/eloquent/Connection",
+        "content": "Description: Specifies the database connection to use for the Eloquent model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Connection Usage use Illuminate\\Database\\Eloquent\\Attributes\\Connection; use Illuminate\\Database\\Eloquent\\Model; #[Connection('pgsql')] class Order extends Model { } Enum values are also supported: use App\\Enums\\DatabaseConnection; #[Connection(DatabaseConnection::Pgsql)] class Order extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Unguarded",
+        "description": "Disable mass assignment protection",
+        "url": "/attributes/eloquent/Unguarded",
+        "content": "Description: Disables mass assignment protection for the model, allowing all attributes to be mass assigned. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Unguarded Usage use Illuminate\\Database\\Eloquent\\Attributes\\Unguarded; use Illuminate\\Database\\Eloquent\\Model; #[Unguarded] class Post extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "CollectedBy",
+        "description": "Custom collection class",
+        "url": "/attributes/eloquent/CollectedBy",
+        "content": "Description: Specifies a custom Eloquent collection class to use when retrieving multiple models. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\CollectedBy Usage use Illuminate\\Database\\Eloquent\\Attributes\\CollectedBy; use Illuminate\\Database\\Eloquent\\Model; use App\\Collections\\PostCollection; #[CollectedBy(PostCollection::class)] class Post extends Model { } // App\\Collections\\PostCollection use Illuminate\\Database\\Eloquent\\Collection; class PostCollection extends Collection { public function published(): static { return $this->filter(fn ($post) => $post->is_published); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "WithoutTimestamps",
+        "description": "Disable timestamps",
+        "url": "/attributes/eloquent/WithoutTimestamps",
+        "content": "Description: Disables automatic created_at and updated_at timestamp management for the model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\WithoutTimestamps Usage use Illuminate\\Database\\Eloquent\\Attributes\\WithoutTimestamps; use Illuminate\\Database\\Eloquent\\Model; #[WithoutTimestamps] class EventLog extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "WithoutIncrementing",
+        "description": "Disable auto-incrementing IDs",
+        "url": "/attributes/eloquent/WithoutIncrementing",
+        "content": "Description: Disables auto-incrementing primary keys for the model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\WithoutIncrementing Usage use Illuminate\\Database\\Eloquent\\Attributes\\WithoutIncrementing; use Illuminate\\Database\\Eloquent\\Model; #[WithoutIncrementing] class ApiToken extends Model { protected $keyType = 'string'; }",
+        "headings": "Usage"
+    },
+    {
+        "title": "ScopedBy",
+        "description": "Apply global scope(s) to the model",
+        "url": "/attributes/eloquent/ScopedBy",
+        "content": "Description: Applies one or more global scopes to the model automatically. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\ScopedBy Usage use Illuminate\\Database\\Eloquent\\Attributes\\ScopedBy; use Illuminate\\Database\\Eloquent\\Model; use App\\Models\\Scopes\\ActiveScope; use App\\Models\\Scopes\\PublishedScope; #[ScopedBy([ActiveScope::class, PublishedScope::class])] class Post extends Model { } // App\\Models\\Scopes\\ActiveScope use Illuminate\\Database\\Eloquent\\Builder; use Illuminate\\Database\\Eloquent\\Model; use Illuminate\\Database\\Eloquent\\Scope; class ActiveScope implements Scope { public function apply(Builder $builder, Model $model): void { $builder->where('is_active', true); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "ObservedBy",
+        "description": "Register model observer(s)",
+        "url": "/attributes/eloquent/ObservedBy",
+        "content": "Description: Registers one or more observer classes for the Eloquent model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\ObservedBy Usage use Illuminate\\Database\\Eloquent\\Attributes\\ObservedBy; use Illuminate\\Database\\Eloquent\\Model; use App\\Observers\\UserObserver; #[ObservedBy([UserObserver::class])] class User extends Model { } // App\\Observers\\UserObserver class UserObserver { public function created(User $user): void { // Send welcome email... } public function deleted(User $user): void { // Clean up related data... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "DateFormat",
+        "description": "Define the date format for model timestamps",
+        "url": "/attributes/eloquent/DateFormat",
+        "content": "Description: Defines the format used when storing and retrieving date/timestamp columns. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\DateFormat Usage use Illuminate\\Database\\Eloquent\\Attributes\\DateFormat; use Illuminate\\Database\\Eloquent\\Model; #[DateFormat('U')] class Event extends Model { } // Using a custom date format string #[DateFormat('Y-m-d')] class Appointment extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Scope",
+        "description": "Mark a method as a local query scope",
+        "url": "/attributes/eloquent/Scope",
+        "content": "Description: Marks a model method as a local query scope, allowing it to be called without the scope prefix. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Scope Usage use Illuminate\\Database\\Eloquent\\Attributes\\Scope; use Illuminate\\Database\\Eloquent\\Builder; use Illuminate\\Database\\Eloquent\\Model; class Post extends Model { #[Scope] public function published(Builder $query): void { $query->where('is_published', true); } #[Scope] public function ofType(Builder $query, string $type): void { $query->where('type', $type); } } // Usage: Post::query()->published()->ofType('article')->get();",
+        "headings": "Usage"
+    },
+    {
+        "title": "Boot",
+        "description": "Mark a trait method as a model boot hook",
+        "url": "/attributes/eloquent/Boot",
+        "content": "Description: Marks a trait method as a model boot hook. The method is automatically called when the model class is booted. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Boot Usage use Illuminate\\Database\\Eloquent\\Attributes\\Boot; use Illuminate\\Database\\Eloquent\\Model; trait HasSlug { #[Boot] public static function bootHasSlug(): void { static::creating(function (Model $model) { $model->slug = str($model->title)->slug(); }); } } class Post extends Model { use HasSlug; }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Initialize",
+        "description": "Mark a trait method as a model initialize hook",
+        "url": "/attributes/eloquent/Initialize",
+        "content": "Description: Marks a trait method as a model initialize hook. The method is automatically called when a new model instance is created. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\Initialize Usage use Illuminate\\Database\\Eloquent\\Attributes\\Initialize; use Illuminate\\Database\\Eloquent\\Model; trait HasDefaultStatus { #[Initialize] public function initializeHasDefaultStatus(): void { $this->attributes['status'] ??= 'draft'; } } class Post extends Model { use HasDefaultStatus; }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseEloquentBuilder",
+        "description": "Specify a custom Eloquent builder class",
+        "url": "/attributes/eloquent/UseEloquentBuilder",
+        "content": "Description: Specifies a custom Eloquent builder class to use for the model, replacing the default builder. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\UseEloquentBuilder Usage use Illuminate\\Database\\Eloquent\\Attributes\\UseEloquentBuilder; use Illuminate\\Database\\Eloquent\\Model; use App\\Builders\\PostBuilder; #[UseEloquentBuilder(PostBuilder::class)] class Post extends Model { } // App\\Builders\\PostBuilder use Illuminate\\Database\\Eloquent\\Builder; class PostBuilder extends Builder { public function published(): static { return $this->where('is_published', true); } public function featured(): static { return $this->where('is_featured', true); } } // Usage: Post::query()->published()->featured()->get();",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseFactory",
+        "description": "Specify the factory class for the model",
+        "url": "/attributes/eloquent/UseFactory",
+        "content": "Description: Specifies the factory class to use for the model, overriding the default factory resolution. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\UseFactory Usage use Illuminate\\Database\\Eloquent\\Attributes\\UseFactory; use Illuminate\\Database\\Eloquent\\Model; use Database\\Factories\\PostFactory; #[UseFactory(PostFactory::class)] class Post extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UsePolicy",
+        "description": "Specify the policy class for the model",
+        "url": "/attributes/eloquent/UsePolicy",
+        "content": "Description: Specifies the policy class to use for the model, overriding automatic policy discovery. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\UsePolicy Usage use Illuminate\\Database\\Eloquent\\Attributes\\UsePolicy; use Illuminate\\Database\\Eloquent\\Model; use App\\Policies\\PostPolicy; #[UsePolicy(PostPolicy::class)] class Post extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseResource",
+        "description": "Specify the API resource for the model",
+        "url": "/attributes/eloquent/UseResource",
+        "content": "Description: Specifies the API resource class to use when transforming the model. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\UseResource Usage use Illuminate\\Database\\Eloquent\\Attributes\\UseResource; use Illuminate\\Database\\Eloquent\\Model; use App\\Http\\Resources\\PostResource; #[UseResource(PostResource::class)] class Post extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseResourceCollection",
+        "description": "Specify the resource collection for the model",
+        "url": "/attributes/eloquent/UseResourceCollection",
+        "content": "Description: Specifies the API resource collection class to use when transforming a collection of models. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\UseResourceCollection Usage use Illuminate\\Database\\Eloquent\\Attributes\\UseResourceCollection; use Illuminate\\Database\\Eloquent\\Model; use App\\Http\\Resources\\PostCollection; #[UseResourceCollection(PostCollection::class)] class Post extends Model { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Connection",
+        "description": "Define queue connection",
+        "url": "/attributes/queue/Connection",
+        "content": "Description: Defines the queue connection to dispatch the job, listener, or notification on. Namespace: Illuminate\\Queue\\Attributes\\Connection Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\Connection; #[Connection('redis')] class ProcessPodcast implements ShouldQueue { public function handle(): void { // ... } } Enum values are also supported: use App\\Enums\\QueueConnection; #[Connection(QueueConnection::Redis)] class ProcessPodcast implements ShouldQueue { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Queue",
+        "description": "Define queue name",
+        "url": "/attributes/queue/Queue",
+        "content": "Description: Defines the queue name to dispatch the job, listener, or notification onto. Namespace: Illuminate\\Queue\\Attributes\\Queue Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\Queue; #[Queue('podcasts')] class ProcessPodcast implements ShouldQueue { public function handle(): void { // ... } } Enum values are also supported: use App\\Enums\\QueueName; #[Queue(QueueName::Podcasts)] class ProcessPodcast implements ShouldQueue { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Delay",
+        "description": "Delay execution",
+        "url": "/attributes/queue/Delay",
+        "content": "Description: Delays the job execution by the given number of seconds. Supported on jobs, listeners, notifications, and mailables. Namespace: Illuminate\\Queue\\Attributes\\Delay Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\Delay; #[Delay(60)] class SendWelcomeEmail implements ShouldQueue { public function handle(): void { // Runs 60 seconds after dispatch } } Also works on mailables: use Illuminate\\Mail\\Mailable; use Illuminate\\Contracts\\Queue\\ShouldQueue; #[Delay(30)] class WelcomeEmail extends Mailable implements ShouldQueue { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Backoff",
+        "description": "Configure retry delay",
+        "url": "/attributes/queue/Backoff",
+        "content": "Description: Configures the delay in seconds between job retry attempts. Namespace: Illuminate\\Queue\\Attributes\\Backoff Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\Backoff; // Fixed delay of 10 seconds between retries #[Backoff(10)] class ProcessPodcast implements ShouldQueue { public function handle(): void { // ... } } Exponential backoff using an array: // 10s, then 30s, then 60s between retries #[Backoff([10, 30, 60])] class ProcessPodcast implements ShouldQueue { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Tries",
+        "description": "Maximum retry attempts",
+        "url": "/attributes/queue/Tries",
+        "content": "Description: Defines the maximum number of times the job should be attempted before failing. Namespace: Illuminate\\Queue\\Attributes\\Tries Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\Tries; #[Tries(3)] class ProcessPodcast implements ShouldQueue { public function handle(): void { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Timeout",
+        "description": "Job timeout duration",
+        "url": "/attributes/queue/Timeout",
+        "content": "Description: Defines the number of seconds the job is allowed to run before it is killed. Namespace: Illuminate\\Queue\\Attributes\\Timeout Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\Timeout; #[Timeout(120)] class ProcessPodcast implements ShouldQueue { public function handle(): void { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UniqueFor",
+        "description": "Unique job duration",
+        "url": "/attributes/queue/UniqueFor",
+        "content": "Description: Ensures only one instance of the job is queued at a time for the given duration (in seconds). Namespace: Illuminate\\Queue\\Attributes\\UniqueFor Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\UniqueFor; #[UniqueFor(3600)] class ProcessPodcast implements ShouldQueue { public function handle(): void { // Only one instance can be queued per hour } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "DeleteWhenMissingModels",
+        "description": "Delete if models are missing",
+        "url": "/attributes/queue/DeleteWhenMissingModels",
+        "content": "Description: Automatically deletes the job if any of its injected Eloquent models are missing (soft-deleted or not found). Namespace: Illuminate\\Queue\\Attributes\\DeleteWhenMissingModels Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\DeleteWhenMissingModels; use App\\Models\\Podcast; #[DeleteWhenMissingModels] class ProcessPodcast implements ShouldQueue { public function __construct( public readonly Podcast $podcast ) {} public function handle(): void { // Job is silently deleted if $podcast no longer exists } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "FailOnTimeout",
+        "description": "Mark job as failed on timeout",
+        "url": "/attributes/queue/FailOnTimeout",
+        "content": "Description: Marks the job as failed when it exceeds its timeout limit, instead of being released back onto the queue. Namespace: Illuminate\\Queue\\Attributes\\FailOnTimeout Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\FailOnTimeout; use Illuminate\\Queue\\Attributes\\Timeout; #[FailOnTimeout] #[Timeout(30)] class ProcessPodcast implements ShouldQueue { public function handle(): void { // If this runs longer than 30s, the job is marked as failed } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "MaxExceptions",
+        "description": "Maximum exception attempts",
+        "url": "/attributes/queue/MaxExceptions",
+        "content": "Description: Defines the maximum number of unhandled exceptions allowed before the job is marked as failed. Namespace: Illuminate\\Queue\\Attributes\\MaxExceptions Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\MaxExceptions; use Illuminate\\Queue\\Attributes\\Tries; #[Tries(10)] #[MaxExceptions(3)] class ProcessPodcast implements ShouldQueue { public function handle(): void { // Job can retry up to 10 times, but fails after 3 unhandled exceptions } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "WithoutRelations",
+        "description": "Ignore relations during serialization",
+        "url": "/attributes/queue/WithoutRelations",
+        "content": "Description: Prevents Eloquent model relations from being serialized when the job is queued. Relations will not be restored when the job is executed. Namespace: Illuminate\\Queue\\Attributes\\WithoutRelations Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\WithoutRelations; use App\\Models\\User; #[WithoutRelations] class SendWelcomeEmail implements ShouldQueue { public function __construct( public readonly User $user ) {} public function handle(): void { // $user->roles will not be pre-loaded } } Can also be applied to individual constructor parameters: class SendWelcomeEmail implements ShouldQueue { public function __construct( #[WithoutRelations] public readonly User $user ) {} }",
+        "headings": "Usage"
+    },
+    {
+        "title": "DebounceFor",
+        "description": "Debounce job execution for a given duration",
+        "url": "/attributes/queue/DebounceFor",
+        "content": "Description: Debounces job execution — if the same job is dispatched multiple times within the given duration, only the last dispatch runs. Namespace: Illuminate\\Queue\\Attributes\\DebounceFor Usage use Illuminate\\Contracts\\Queue\\ShouldQueue; use Illuminate\\Queue\\Attributes\\DebounceFor; #[DebounceFor(seconds: 30, maxWait: 60)] class SyncUserToMailchimp implements ShouldQueue { public function __construct( public readonly int $userId ) {} public function handle(): void { // If dispatched multiple times in 30s, only the last dispatch runs } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Signature",
+        "description": "Define command signature",
+        "url": "/attributes/console/Signature",
+        "content": "Description: Defines the Artisan command signature, including the command name and its arguments and options. Namespace: Illuminate\\Console\\Attributes\\Signature Usage use Illuminate\\Console\\Attributes\\Signature; use Illuminate\\Console\\Command; #[Signature('mail:send {user} {--queue}')] class SendMailCommand extends Command { public function handle(): void { $user = $this->argument('user'); // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Description",
+        "description": "Define command description",
+        "url": "/attributes/console/Description",
+        "content": "Description: Sets the description for the Artisan command, shown in php artisan list. Namespace: Illuminate\\Console\\Attributes\\Description Usage use Illuminate\\Console\\Attributes\\Description; use Illuminate\\Console\\Attributes\\Signature; use Illuminate\\Console\\Command; #[Signature('mail:send {user}')] #[Description('Send a marketing email to a user')] class SendMailCommand extends Command { public function handle(): void { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Aliases",
+        "description": "Define command aliases",
+        "url": "/attributes/console/Aliases",
+        "content": "Description: Defines one or more aliases for the Artisan command. Namespace: Illuminate\\Console\\Attributes\\Aliases Usage use Illuminate\\Console\\Attributes\\Aliases; use Illuminate\\Console\\Attributes\\Signature; use Illuminate\\Console\\Command; #[Signature('mail:send {user}')] #[Aliases(['ms', 'send-mail'])] class SendMailCommand extends Command { public function handle(): void { // Can now run as: php artisan ms {user} } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Usage",
+        "description": "Define additional command usage examples",
+        "url": "/attributes/console/Usage",
+        "content": "Description: Adds additional usage examples shown in the command's help output. Namespace: Illuminate\\Console\\Attributes\\Usage Usage use Illuminate\\Console\\Attributes\\Signature; use Illuminate\\Console\\Attributes\\Usage; use Illuminate\\Console\\Command; #[Signature('mail:send {user}')] #[Usage('mail:send 1')] #[Usage('mail:send 1 --queue')] class SendMailCommand extends Command { public function handle(): void { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Help",
+        "description": "Define command help text",
+        "url": "/attributes/console/Help",
+        "content": "Description: Sets the help text for the Artisan command, shown when running php artisan help {command}. Namespace: Illuminate\\Console\\Attributes\\Help Usage use Illuminate\\Console\\Attributes\\Help; use Illuminate\\Console\\Attributes\\Signature; use Illuminate\\Console\\Command; #[Signature('mail:send {user}')] #[Help('Dispatches a marketing email to the given user ID. Pass --queue to run in background.')] class SendMailCommand extends Command { public function handle(): void { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Hidden",
+        "description": "Hide command from the Artisan list",
+        "url": "/attributes/console/Hidden",
+        "content": "Description: Hides the command from the php artisan list output. The command can still be run directly. Namespace: Illuminate\\Console\\Attributes\\Hidden Usage use Illuminate\\Console\\Attributes\\Hidden; use Illuminate\\Console\\Attributes\\Signature; use Illuminate\\Console\\Command; #[Signature('internal:sync')] #[Hidden] class SyncInternalDataCommand extends Command { public function handle(): void { // This command won't appear in `php artisan list` // but can still be run via: php artisan internal:sync } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Middleware",
+        "description": "Assign middleware to a controller class or action method",
+        "url": "/attributes/controllers/Middleware",
+        "content": "Description: Assigns middleware to a controller class or individual action methods. Can be combined with only and except options. Namespace: Illuminate\\Routing\\Attributes\\Controllers\\Middleware Usage Applied to the entire controller: use Illuminate\\Routing\\Attributes\\Controllers\\Middleware; #[Middleware('auth')] class UserController { public function index() { /* ... */ } public function store() { /* ... */ } } Applied with only / except restrictions: #[Middleware('auth')] #[Middleware('throttle:60,1', only: ['store'])] #[Middleware('subscribed', except: ['index'])] class UserController { public function index() { /* ... */ } public function store() { /* ... */ } } Applied to individual methods: #[Middleware('auth')] class UserController { #[Middleware('verified')] public function store() { /* ... */ } public function index() { /* ... */ } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Authorize",
+        "description": "Authorize a controller action via the gate",
+        "url": "/attributes/controllers/Authorize",
+        "content": "Description: Authorizes a controller action using the Gate, providing a clean alternative to Gate::authorize() or form request authorize(). Namespace: Illuminate\\Routing\\Attributes\\Controllers\\Authorize Usage use App\\Models\\Comment; use App\\Models\\Post; use Illuminate\\Routing\\Attributes\\Controllers\\Authorize; class CommentController { #[Authorize('create', [Comment::class, 'post'])] public function store(StoreCommentRequest $request, Post $post) { // ... } #[Authorize('delete', 'comment')] public function destroy(Comment $comment) { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "RedirectTo",
+        "description": "Define redirect path on validation failure",
+        "url": "/attributes/form-requests/RedirectTo",
+        "content": "Description: Defines the URL to redirect to when form request validation fails. Namespace: Illuminate\\Foundation\\Http\\Attributes\\RedirectTo Usage use Illuminate\\Foundation\\Http\\Attributes\\RedirectTo; use Illuminate\\Foundation\\Http\\FormRequest; #[RedirectTo('/posts/create')] class StorePostRequest extends FormRequest { public function rules(): array { return [ 'title' => ['required', 'string', 'max:255'], 'body' => ['required', 'string'], ]; } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "RedirectToRoute",
+        "description": "Define redirect route on validation failure",
+        "url": "/attributes/form-requests/RedirectToRoute",
+        "content": "Description: Defines the named route to redirect to when form request validation fails. Namespace: Illuminate\\Foundation\\Http\\Attributes\\RedirectToRoute Usage use Illuminate\\Foundation\\Http\\Attributes\\RedirectToRoute; use Illuminate\\Foundation\\Http\\FormRequest; #[RedirectToRoute('posts.create')] class StorePostRequest extends FormRequest { public function rules(): array { return [ 'title' => ['required', 'string', 'max:255'], 'body' => ['required', 'string'], ]; } } With route parameters: #[RedirectToRoute('posts.edit', ['post' => 1])] class UpdatePostRequest extends FormRequest { }",
+        "headings": "Usage"
+    },
+    {
+        "title": "StopOnFirstFailure",
+        "description": "Stop validation on first failure",
+        "url": "/attributes/form-requests/StopOnFirstFailure",
+        "content": "Description: Stops validation after the first validation failure instead of collecting all errors. Namespace: Illuminate\\Foundation\\Http\\Attributes\\StopOnFirstFailure Usage use Illuminate\\Foundation\\Http\\Attributes\\StopOnFirstFailure; use Illuminate\\Foundation\\Http\\FormRequest; #[StopOnFirstFailure] class StorePostRequest extends FormRequest { public function rules(): array { return [ 'title' => ['required', 'string', 'max:255'], 'body' => ['required', 'string'], ]; } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "ErrorBag",
+        "description": "Define the error bag name",
+        "url": "/attributes/form-requests/ErrorBag",
+        "content": "Description: Defines the named error bag to use when storing validation errors for this form request. Namespace: Illuminate\\Foundation\\Http\\Attributes\\ErrorBag Usage use Illuminate\\Foundation\\Http\\Attributes\\ErrorBag; use Illuminate\\Foundation\\Http\\FormRequest; #[ErrorBag('login')] class LoginRequest extends FormRequest { public function rules(): array { return [ 'email' => ['required', 'email'], 'password' => ['required', 'string'], ]; } } In the view you can then access errors via the named bag: @if ($errors->login->any()) <ul> @foreach ($errors->login->all() as $error) <li>{{ $error }}</li> @endforeach </ul> @endif",
+        "headings": "Usage"
+    },
+    {
+        "title": "FailOnUnknownFields",
+        "description": "Fail if the request contains unknown fields",
+        "url": "/attributes/form-requests/FailOnUnknownFields",
+        "content": "Description: Fails the form request validation if the request contains any fields not defined in the rules() method. Namespace: Illuminate\\Foundation\\Http\\Attributes\\FailOnUnknownFields Usage use Illuminate\\Foundation\\Http\\Attributes\\FailOnUnknownFields; use Illuminate\\Foundation\\Http\\FormRequest; #[FailOnUnknownFields] class StorePostRequest extends FormRequest { public function rules(): array { return [ 'title' => ['required', 'string', 'max:255'], 'body' => ['required', 'string'], ]; } } If the request contains an unexpected field like is_admin, validation will fail automatically.",
+        "headings": "Usage"
+    },
+    {
+        "title": "Seeder",
+        "description": "Run a specific seeder class during tests",
+        "url": "/attributes/testing/Seeder",
+        "content": "Description: Runs a specific seeder class before a test. Requires the RefreshDatabase or LazilyRefreshDatabase trait. Namespace: Illuminate\\Foundation\\Testing\\Attributes\\Seeder Usage use Illuminate\\Foundation\\Testing\\Attributes\\Seeder; use Illuminate\\Foundation\\Testing\\RefreshDatabase; use Tests\\TestCase; use Database\\Seeders\\OrderSeeder; class OrderTest extends TestCase { use RefreshDatabase; #[Seeder(OrderSeeder::class)] public function test_orders_are_listed(): void { $response = $this->get('/orders'); $response->assertOk(); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Seed",
+        "description": "Run the database seeder during tests",
+        "url": "/attributes/testing/Seed",
+        "content": "Description: Runs the default database seeder before a test. Requires the RefreshDatabase or LazilyRefreshDatabase trait. Namespace: Illuminate\\Foundation\\Testing\\Attributes\\Seed Usage use Illuminate\\Foundation\\Testing\\Attributes\\Seed; use Illuminate\\Foundation\\Testing\\RefreshDatabase; use Tests\\TestCase; class OrderTest extends TestCase { use RefreshDatabase; #[Seed] public function test_orders_are_listed(): void { // The default DatabaseSeeder runs before this test $response = $this->get('/orders'); $response->assertOk(); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "SetUp",
+        "description": "Mark a trait method as a test setup hook",
+        "url": "/attributes/testing/SetUp",
+        "content": "Description: Marks a trait method as a test set-up hook. The method is automatically called before each test when the trait is used. Namespace: Illuminate\\Foundation\\Testing\\Attributes\\SetUp Usage use Illuminate\\Foundation\\Testing\\Attributes\\SetUp; trait CreatesUser { #[SetUp] public function createUser(): void { $this->user = User::factory()->create(); } } class UserTest extends TestCase { use CreatesUser; public function test_user_can_view_profile(): void { $this->actingAs($this->user) ->get('/profile') ->assertOk(); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "TearDown",
+        "description": "Mark a trait method as a test teardown hook",
+        "url": "/attributes/testing/TearDown",
+        "content": "Description: Marks a trait method as a test tear-down hook. The method is automatically called after each test when the trait is used. Namespace: Illuminate\\Foundation\\Testing\\Attributes\\TearDown Usage use Illuminate\\Foundation\\Testing\\Attributes\\TearDown; trait CleansUpFiles { #[TearDown] public function cleanUpFiles(): void { Storage::disk('local')->deleteDirectory('test-uploads'); } } class FileUploadTest extends TestCase { use CleansUpFiles; public function test_file_can_be_uploaded(): void { // ... } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UnitTest",
+        "description": "Skip framework boot for individual test methods",
+        "url": "/attributes/testing/UnitTest",
+        "content": "Description: Marks a test method to run without booting the Laravel framework, making it significantly faster. Useful for pure unit tests mixed into a feature test class. Namespace: Illuminate\\Foundation\\Testing\\Attributes\\UnitTest Usage use Illuminate\\Foundation\\Testing\\Attributes\\UnitTest; use Tests\\TestCase; class LocationServiceTest extends TestCase { // This test boots the framework (uses Http facade) public function test_get_coordinates_calls_api(): void { Http::fake([...]); // ... } // This test skips framework boot entirely — runs much faster #[UnitTest] public function test_get_state_returns_state_from_abbreviation(): void { $service = new LocationService; $this->assertSame('California', $service->getState('CA')); } } Warning: Laravel TestCase methods that rely on the container (e.g. facades, $this->app) will not work inside #[UnitTest] methods.",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseModel",
+        "description": "Define model for factory",
+        "url": "/attributes/factories/UseModel",
+        "content": "Description: Defines the Eloquent model class that the factory creates, overriding the default model resolution. Namespace: Illuminate\\Database\\Eloquent\\Factories\\Attributes\\UseModel Usage use Illuminate\\Database\\Eloquent\\Factories\\Factory; use Illuminate\\Database\\Eloquent\\Factories\\Attributes\\UseModel; use App\\Models\\User; #[UseModel(User::class)] class UserFactory extends Factory { public function definition(): array { return [ 'name' => $this->faker->name(), 'email' => $this->faker->unique()->safeEmail(), ]; } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Collects",
+        "description": "Define resource collection mapping",
+        "url": "/attributes/api-resources/Collects",
+        "content": "Description: Defines the resource class that a resource collection wraps, used for automatic collection mapping. Namespace: Illuminate\\Http\\Resources\\Attributes\\Collects Usage use Illuminate\\Http\\Resources\\Attributes\\Collects; use Illuminate\\Http\\Resources\\Json\\ResourceCollection; use App\\Http\\Resources\\UserResource; #[Collects(UserResource::class)] class UserCollection extends ResourceCollection { public function toArray($request): array { return parent::toArray($request); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "PreserveKeys",
+        "description": "Preserve keys in resource output",
+        "url": "/attributes/api-resources/PreserveKeys",
+        "content": "Description: Preserves the original array keys when serializing a JSON resource collection. Namespace: Illuminate\\Http\\Resources\\Attributes\\PreserveKeys Usage use Illuminate\\Http\\Resources\\Json\\JsonResource; use Illuminate\\Http\\Resources\\Attributes\\PreserveKeys; #[PreserveKeys] class UserResource extends JsonResource { public function toArray($request): array { return [ 'id' => $this->id, 'name' => $this->name, 'email' => $this->email, ]; } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Auth",
+        "description": "Inject an auth guard instance",
+        "url": "/attributes/di/Auth",
+        "content": "Description: Injects an auth guard instance into the constructor or method. Namespace: Illuminate\\Container\\Attributes\\Auth Usage use Illuminate\\Container\\Attributes\\Auth; use Illuminate\\Contracts\\Auth\\Guard; class UserService { public function __construct( #[Auth('web')] private readonly Guard $guard ) {} public function currentUser() { return $this->guard->user(); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Authenticated",
+        "description": "Inject the currently authenticated user",
+        "url": "/attributes/di/Authenticated",
+        "content": "Description: Injects the currently authenticated user from the default guard. Namespace: Illuminate\\Container\\Attributes\\Authenticated Usage use Illuminate\\Container\\Attributes\\Authenticated; use App\\Models\\User; class ProfileController { public function show( #[Authenticated] User $user ) { return view('profile', compact('user')); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Bind",
+        "description": "Contextually bind to a specific implementation",
+        "url": "/attributes/di/Bind",
+        "content": "Description: Binds an interface or abstract class to a concrete implementation. Namespace: Illuminate\\Container\\Attributes\\Bind Usage use Illuminate\\Container\\Attributes\\Bind; #[Bind(StripeGateway::class)] interface PaymentGateway { } class StripeGateway implements PaymentGateway { } class CheckoutController { public function __construct( private PaymentGateway $gateway ) {} } Laravel automatically injects StripeGateway when resolving PaymentGateway.",
+        "headings": "Usage"
+    },
+    {
+        "title": "Cache",
+        "description": "Inject a cache store instance",
+        "url": "/attributes/di/Cache",
+        "content": "Description: Injects a specific cache store instance by name. Namespace: Illuminate\\Container\\Attributes\\Cache Usage use Illuminate\\Container\\Attributes\\Cache; use Illuminate\\Contracts\\Cache\\Repository; class ProductService { public function __construct( #[Cache('redis')] private readonly Repository $cache ) {} public function find(int $id): mixed { return $this->cache->remember(\"product:{$id}\", 3600, fn () => Product::find($id)); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Config",
+        "description": "Inject a configuration value",
+        "url": "/attributes/di/Config",
+        "content": "Description: Injects a configuration value directly into a constructor or method parameter. Namespace: Illuminate\\Container\\Attributes\\Config Usage use Illuminate\\Container\\Attributes\\Config; class MailService { public function __construct( #[Config('mail.from.address')] private readonly string $fromAddress, #[Config('mail.from.name')] private readonly string $fromName ) {} }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Context",
+        "description": "Inject a value from the application context",
+        "url": "/attributes/di/Context",
+        "content": "Description: Injects a value from the application's shared context. Namespace: Illuminate\\Container\\Attributes\\Context Usage use Illuminate\\Container\\Attributes\\Context; class RequestLogger { public function __construct( #[Context('trace_id')] private readonly ?string $traceId ) {} public function log(string $message): void { logger()->info($message, ['trace_id' => $this->traceId]); } } Also supports hidden context: #[Context('secret_key', hidden: true)] private readonly ?string $secret",
+        "headings": "Usage"
+    },
+    {
+        "title": "CurrentUser",
+        "description": "Inject the currently authenticated user model",
+        "url": "/attributes/di/CurrentUser",
+        "content": "Description: Injects the currently authenticated user model instance, resolved via the auth user resolver. Namespace: Illuminate\\Container\\Attributes\\CurrentUser Usage use Illuminate\\Container\\Attributes\\CurrentUser; use App\\Models\\User; class OrderService { public function __construct( #[CurrentUser] private readonly ?User $user ) {} public function placeOrder(array $data): Order { return $this->user->orders()->create($data); } } [!NOTE] The #[CurrentUser] currently just alias of #[Authenticated].",
+        "headings": "Usage"
+    },
+    {
+        "title": "DB",
+        "description": "Inject a database connection instance",
+        "url": "/attributes/di/DB",
+        "content": "Description: Injects a database connection instance by name. Namespace: Illuminate\\Container\\Attributes\\DB Usage use Illuminate\\Container\\Attributes\\DB; use Illuminate\\Database\\Connection; class ReportService { public function __construct( #[DB('pgsql')] private readonly Connection $db ) {} public function generateReport(): array { return $this->db->select('SELECT * FROM reports'); } } [!NOTE] The #[DB] currently just alias of #[Database].",
+        "headings": "Usage"
+    },
+    {
+        "title": "Database",
+        "description": "Inject a named database connection",
+        "url": "/attributes/di/Database",
+        "content": "Description: Injects a named database connection instance. Similar to #[DB] but also accepts enum values. Namespace: Illuminate\\Container\\Attributes\\Database Usage use Illuminate\\Container\\Attributes\\Database; use Illuminate\\Database\\Connection; class ReportService { public function __construct( #[Database('pgsql')] private readonly Connection $connection ) {} } Enum values are also supported: use App\\Enums\\DatabaseConnection; class ReportService { public function __construct( #[Database(DatabaseConnection::Pgsql)] private readonly Connection $connection ) {} }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Give",
+        "description": "Give a specific binding contextually",
+        "url": "/attributes/di/Give",
+        "content": "Description: Contextually gives a specific value or binding for the annotated parameter, similar to $this->app->when(...)->needs(...)->give(...). Namespace: Illuminate\\Container\\Attributes\\Give Usage use Illuminate\\Container\\Attributes\\Give; class NotificationService { public function __construct( #[Give('notifications@example.com')] private readonly string $fromEmail ) {} } Also accepts class names (string bindings): use App\\Services\\SmsDriver; class NotificationService { public function __construct( #[Give(SmsDriver::class)] private readonly DriverInterface $driver ) {} }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Log",
+        "description": "Inject a logger with a named channel",
+        "url": "/attributes/di/Log",
+        "content": "Description: Injects a logger instance with an optional named channel for better log organization. Namespace: Illuminate\\Container\\Attributes\\Log Usage use Illuminate\\Container\\Attributes\\Log; use Psr\\Log\\LoggerInterface; class PaymentService { public function __construct( #[Log(channel: 'payments', name: 'custom_logger')] private readonly LoggerInterface $logger ) {} public function charge(int $amount): void { $this->logger->info('Charging customer', ['amount' => $amount]); // Logged under the 'payments' channel } } Without a channel name, it injects the default logger: #[Log] private readonly LoggerInterface $logger",
+        "headings": "Usage"
+    },
+    {
+        "title": "RouteParameter",
+        "description": "Inject a route parameter value",
+        "url": "/attributes/di/RouteParameter",
+        "content": "Description: Injects a route parameter value directly into a service constructor or method, resolved from the current request. Namespace: Illuminate\\Container\\Attributes\\RouteParameter Usage use Illuminate\\Container\\Attributes\\RouteParameter; use App\\Models\\Post; class PostService { public function __construct( #[RouteParameter('post')] private readonly Post $post ) {} public function getComments() { return $this->post->comments; } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Scoped",
+        "description": "Register a class as a scoped singleton in the container",
+        "url": "/attributes/di/Scoped",
+        "content": "Description: Registers the class as a scoped singleton in the container — shared within a single request/lifecycle, but fresh for each new request. Namespace: Illuminate\\Container\\Attributes\\Scoped Usage use Illuminate\\Container\\Attributes\\Scoped; #[Scoped] class RequestContext { private array $data = []; public function set(string $key, mixed $value): void { $this->data[$key] = $value; } public function get(string $key): mixed { return $this->data[$key] ?? null; } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Singleton",
+        "description": "Register a class as a singleton in the container",
+        "url": "/attributes/di/Singleton",
+        "content": "Description: Registers the class as a singleton in the container — shared across the entire application lifecycle. Namespace: Illuminate\\Container\\Attributes\\Singleton Usage use Illuminate\\Container\\Attributes\\Singleton; #[Singleton] class ConfigCache { private array $cache = []; public function remember(string $key, callable $callback): mixed { return $this->cache[$key] ??= $callback(); } }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Storage",
+        "description": "Inject a storage disk instance",
+        "url": "/attributes/di/Storage",
+        "content": "Description: Injects a specific storage disk instance by name. Namespace: Illuminate\\Container\\Attributes\\Storage Usage use Illuminate\\Container\\Attributes\\Storage; use Illuminate\\Contracts\\Filesystem\\Filesystem; class AvatarService { public function __construct( #[Storage('s3')] private readonly Filesystem $disk ) {} public function upload(string $path, mixed $contents): void { $this->disk->put($path, $contents); } } Enum values are also supported: use App\\Enums\\StorageDisk; #[Storage(StorageDisk::S3)] private readonly Filesystem $disk",
+        "headings": "Usage"
+    },
+    {
+        "title": "Tag",
+        "description": "Inject all bindings tagged with a given tag",
+        "url": "/attributes/di/Tag",
+        "content": "Description: Injects all container bindings registered under a specific tag. Namespace: Illuminate\\Container\\Attributes\\Tag Usage use Illuminate\\Container\\Attributes\\Tag; class ReportAggregator { public function __construct( #[Tag('reports')] private readonly iterable $reporters ) {} public function generate(): array { return collect($this->reporters) ->flatMap(fn ($reporter) => $reporter->data()) ->all(); } } In a service provider, register the tagged bindings: $this->app->tag([SalesReport::class, TrafficReport::class], 'reports');",
+        "headings": "Usage"
+    },
+    {
+        "title": "MaxSteps",
+        "description": "Maximum number of steps the agent may take when using tools",
+        "url": "/attributes/ai/MaxSteps",
+        "content": "Description: Defines the maximum number of steps the agent may take when using tools. Namespace: Laravel\\Ai\\Attributes\\MaxSteps Usage use Laravel\\Ai\\Attributes\\MaxSteps; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[MaxSteps(10)] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "MaxTokens",
+        "description": "Maximum number of tokens the model may generate",
+        "url": "/attributes/ai/MaxTokens",
+        "content": "Description: Defines the maximum number of tokens the model may generate in a response. Namespace: Laravel\\Ai\\Attributes\\MaxTokens Usage use Laravel\\Ai\\Attributes\\MaxTokens; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[MaxTokens(4096)] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Model",
+        "description": "Define the model the agent should use",
+        "url": "/attributes/ai/Model",
+        "content": "Description: Defines the model the agent should use when prompting the AI provider. Namespace: Laravel\\Ai\\Attributes\\Model Usage use Laravel\\Ai\\Attributes\\Model; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[Model('claude-haiku-4-5-20251001')] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Provider",
+        "description": "Define the AI provider (or providers for failover)",
+        "url": "/attributes/ai/Provider",
+        "content": "Description: Defines the AI provider (or providers for failover) the agent should use. Namespace: Laravel\\Ai\\Attributes\\Provider Usage use Laravel\\Ai\\Attributes\\Provider; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Enums\\Lab; use Laravel\\Ai\\Promptable; #[Provider(Lab::Anthropic)] class SalesCoach implements Agent { use Promptable; // ... } You may also pass an array of providers to enable automatic failover: #[Provider([Lab::OpenAI, Lab::Anthropic])] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Temperature",
+        "description": "Define the sampling temperature for generation",
+        "url": "/attributes/ai/Temperature",
+        "content": "Description: Defines the sampling temperature for generation, controlling randomness. Accepts a float between 0.0 (deterministic) and 1.0 (more creative). Namespace: Laravel\\Ai\\Attributes\\Temperature Usage use Laravel\\Ai\\Attributes\\Temperature; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[Temperature(0.7)] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Timeout",
+        "description": "Define the HTTP timeout in seconds for agent requests",
+        "url": "/attributes/ai/Timeout",
+        "content": "Description: Defines the HTTP timeout in seconds for agent requests. Defaults to 60 seconds. Namespace: Laravel\\Ai\\Attributes\\Timeout Usage use Laravel\\Ai\\Attributes\\Timeout; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[Timeout(120)] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "TopP",
+        "description": "Define the top-p sampling threshold for generation",
+        "url": "/attributes/ai/TopP",
+        "content": "Description: Defines the top-p (nucleus) sampling threshold for generation, controlling token selection by cumulative probability. Accepts a float between 0.0 and 1.0. Namespace: Laravel\\Ai\\Attributes\\TopP Usage use Laravel\\Ai\\Attributes\\TopP; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[TopP(0.9)] class SalesCoach implements Agent { use Promptable; // ... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseCheapestModel",
+        "description": "Use the provider's cheapest text model",
+        "url": "/attributes/ai/UseCheapestModel",
+        "content": "Description: Instructs the agent to automatically use the provider's cheapest text model for cost optimization, without specifying a model name explicitly. Namespace: Laravel\\Ai\\Attributes\\UseCheapestModel Usage use Laravel\\Ai\\Attributes\\UseCheapestModel; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[UseCheapestModel] class SimpleSummarizer implements Agent { use Promptable; // Will use the cheapest model (e.g., Haiku)... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "UseSmartestModel",
+        "description": "Use the provider's most capable text model",
+        "url": "/attributes/ai/UseSmartestModel",
+        "content": "Description: Instructs the agent to automatically use the provider's most capable text model for complex tasks, without specifying a model name explicitly. Namespace: Laravel\\Ai\\Attributes\\UseSmartestModel Usage use Laravel\\Ai\\Attributes\\UseSmartestModel; use Laravel\\Ai\\Contracts\\Agent; use Laravel\\Ai\\Promptable; #[UseSmartestModel] class ComplexReasoner implements Agent { use Promptable; // Will use the most capable model (e.g., Opus)... }",
+        "headings": "Usage"
+    },
+    {
+        "title": "Attribute",
+        "description": "Mark a class as a reusable custom attribute",
+        "url": "/attributes/php/Attribute",
+        "content": "Description: Marks a class as a custom reusable attribute that can be applied to other declarations. Namespace: Built-in PHP (no import required) Since: PHP 8.0 Usage #[Attribute] class MyCustomAttribute { public function __construct(public string $value) {} } #[MyCustomAttribute('example')] class SomeClass {} You can restrict where the attribute is allowed to be used: use Attribute; #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)] class OnlyForClassesAndMethods { public function __construct(public string $label) {} } Target Constants Constant Description Attribute::TARGET_CLASS Can be applied to classes Attribute::TARGET_FUNCTION Can be applied to functions Attribute::TARGET_METHOD Can be applied to methods Attribute::TARGET_PROPERTY Can be applied to properties Attribute::TARGET_CLASS_CONSTANT Can be applied to class constants Attribute::TARGET_PARAMETER Can be applied to parameters Attribute::TARGET_ALL Can be applied to all declarations (default) Attribute::IS_REPEATABLE The attribute may be applied more than once to the same declaration",
+        "headings": "Usage Target Constants"
+    },
+    {
+        "title": "AllowDynamicProperties",
+        "description": "Allow dynamic properties on a class without deprecation notice",
+        "url": "/attributes/php/AllowDynamicProperties",
+        "content": "Description: Marks a class to allow dynamic (undeclared) properties without emitting a deprecation notice. Namespace: Built-in PHP (no import required) Since: PHP 8.2 Usage Dynamic properties are deprecated as of PHP 8.2. Without this attribute, assigning to an undeclared property emits a deprecation notice. #[\\AllowDynamicProperties] class UserSession { public string $id; } $session = new UserSession(); $session->id = 'abc123'; $session->extraData = 'some value'; // No deprecation notice Note: The effect is inherited. Child classes of a class marked with this attribute will also allow dynamic properties, even without explicitly declaring it. #[\\AllowDynamicProperties] class Base {} class Child extends Base {} $child = new Child(); $child->dynamic = true; // Also allowed",
+        "headings": "Usage"
+    },
+    {
+        "title": "Deprecated",
+        "description": "Mark a function, method, class, or constant as deprecated",
+        "url": "/attributes/php/Deprecated",
+        "content": "Description: Marks a function, method, class, or class constant as deprecated. Using deprecated functionality emits an E_USER_DEPRECATED notice. Namespace: Built-in PHP (no import required) Since: PHP 8.4 Usage #[\\Deprecated(message: 'use newMethod() instead', since: '2.0')] function oldMethod(): void { // ... } oldMethod(); // Deprecated: Function oldMethod() is deprecated since 2.0, use newMethod() instead Parameters Parameter Type Description $message ?string Optional explanation of the deprecation and/or replacement $since ?string Optional string indicating when the deprecation was introduced On a class #[\\Deprecated(message: 'use NewService instead', since: '3.0')] class OldService { // ... } On a class constant class Config { #[\\Deprecated(message: 'use Config::NEW_LIMIT instead', since: '1.5')] const OLD_LIMIT = 100; const NEW_LIMIT = 200; }",
+        "headings": "Usage Parameters On a class On a class constant"
+    },
+    {
+        "title": "NoDiscard",
+        "description": "Warn when a function's return value is discarded",
+        "url": "/attributes/php/NoDiscard",
+        "content": "Description: Indicates that the return value of a function or method should not be discarded. Emits a warning if the return value is unused. Namespace: Built-in PHP (no import required) Since: PHP 8.5 Usage #[\\NoDiscard('as processing might fail for individual items')] function processItems(array $items): array { // Returns an array of results/errors per item return []; } processItems($items); // Warning: return value should be used or cast as (void) $results = processItems($items); // OK Parameters Parameter Type Description $message ?string Optional message explaining why the return value should not be discarded Intentionally discarding the return value Use a (void) cast to suppress the warning explicitly: (void) processItems($items); // Suppresses the warning — PHP 8.5+ For cross-version compatibility (below PHP 8.5), use a $_ variable: $_ = processItems($items); // No warning on any PHP version Note: #[\\NoDiscard] can be added even when targeting PHP 8.4 or below — it simply has no effect on older versions.",
+        "headings": "Usage Parameters Intentionally discarding the return value"
+    },
+    {
+        "title": "Override",
+        "description": "Assert that a method or property overrides a parent declaration",
+        "url": "/attributes/php/Override",
+        "content": "Description: Indicates that a method or property is intended to override a declaration in a parent class or interface. A compile-time error is emitted if no matching parent declaration exists. Namespace: Built-in PHP (no import required) Since: PHP 8.3 (methods), PHP 8.5 (properties) Usage class Base { protected function handle(): void {} } class Child extends Base { #[\\Override] protected function handle(): void { // Guaranteed to override Base::handle() } } If the parent method doesn't exist, PHP emits a fatal error: class Child extends Base { #[\\Override] protected function typoInName(): void {} // Fatal error: no matching parent method } With properties (PHP 8.5+) class Base { protected string $name; } class Child extends Base { #[\\Override] protected string $name = 'default'; } Note: Cannot be used on __construct().",
+        "headings": "Usage With properties (PHP 8.5+)"
+    },
+    {
+        "title": "ReturnTypeWillChange",
+        "description": "Silence return type deprecation notice for cross-version compatibility",
+        "url": "/attributes/php/ReturnTypeWillChange",
+        "content": "Description: Silences the deprecation notice emitted when overriding an internal PHP method without declaring a compatible return type, for cross-version PHP compatibility. Namespace: Built-in PHP (no import required) Since: PHP 8.1 Usage Use this when overriding a PHP internal method but you cannot yet declare the return type due to cross-version compatibility constraints. class CustomCollection implements Countable { #[\\ReturnTypeWillChange] public function count() { // Can't declare ': int' here due to PHP version constraints return 0; } } Note: This attribute is primarily a migration tool. Once you can target PHP 8.1+ exclusively, add the proper return type declaration and remove this attribute.",
+        "headings": "Usage"
+    },
+    {
+        "title": "SensitiveParameter",
+        "description": "Redact a parameter value from stack traces",
+        "url": "/attributes/php/SensitiveParameter",
+        "content": "Description: Marks a function or method parameter as sensitive so its value is redacted (replaced with a SensitiveParameterValue object) in stack traces and error output. Namespace: Built-in PHP (no import required) Since: PHP 8.2 Usage function authenticate( string $username, #[\\SensitiveParameter] string $password, ): bool { // If an exception is thrown here, $password will NOT appear in the stack trace throw new RuntimeException('Auth failed'); } Without #[\\SensitiveParameter], the password would be visible in error logs: // Without attribute: #0 file.php(10): authenticate('alice', 'hunter2') // With attribute: #0 file.php(10): authenticate('alice', Object(SensitiveParameterValue)) Warning: The attribute must be applied at the concrete implementation, not just on an interface method. Applying it only to an interface declaration does not protect the implementing class.",
+        "headings": "Usage"
+    }
+]

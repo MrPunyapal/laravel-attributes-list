@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "32b785dd9109c9490c5e0fc84340530f",
+    "content-hash": "514ab7118a4010edd5e7da03b49589da",
     "packages": [],
     "packages-dev": [
         {
@@ -273,16 +273,16 @@
         },
         {
             "name": "mrpunyapal/docsmith",
-            "version": "0.0.3",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MrPunyapal/docsmith.git",
-                "reference": "c032b6bd0944c9c773c9a4a0e09495bcea1dd731"
+                "reference": "b6f02c939368576bc791bd000bfd1808981a9c25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MrPunyapal/docsmith/zipball/c032b6bd0944c9c773c9a4a0e09495bcea1dd731",
-                "reference": "c032b6bd0944c9c773c9a4a0e09495bcea1dd731",
+                "url": "https://api.github.com/repos/MrPunyapal/docsmith/zipball/b6f02c939368576bc791bd000bfd1808981a9c25",
+                "reference": "b6f02c939368576bc791bd000bfd1808981a9c25",
                 "shasum": ""
             },
             "require": {
@@ -309,9 +309,9 @@
             "description": "Craft static documentation sites from Markdown with minimal setup.",
             "support": {
                 "issues": "https://github.com/MrPunyapal/docsmith/issues",
-                "source": "https://github.com/MrPunyapal/docsmith/tree/0.0.3"
+                "source": "https://github.com/MrPunyapal/docsmith/tree/0.1.2"
             },
-            "time": "2026-05-29T13:35:26+00:00"
+            "time": "2026-05-29T16:29:11+00:00"
         },
         {
             "name": "nette/schema",
