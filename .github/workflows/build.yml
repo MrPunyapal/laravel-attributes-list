@@ -1,14 +1,13 @@
-name: Build index.html
+name: Build docs
 
 on:
   push:
     branches: [main]
     paths:
       - README.md
-      - 'attributes/**'
-      - build.php
+      - 'features/**'
+      - build-docs.php
       - composer.json
-      - composer.lock
   workflow_dispatch:
 
 permissions:
@@ -23,24 +22,24 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.5'
+          php-version: '8.3'
           tools: composer:v2
           coverage: none
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
 
-      - name: Generate index.html
+      - name: Generate docs
         run: composer docs:build
 
-      - name: Commit generated index.html
+      - name: Commit generated docs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git add docs
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: regenerate index.html [skip ci]"
+            git commit -m "chore: regenerate docs [skip ci]"
             git push
           fi
