@@ -6,7 +6,7 @@
         "sort-packages": true
     },
     "require-dev": {
-        "mrpunyapal/docsmith": "^0.0.2"
+        "mrpunyapal/docsmith": "^0.0.3"
     },
     "scripts": {
         "docs:build": "@php build-docs.php"
