@@ -1,9 +1,14 @@
 {
     "require": {
-        "php": ">=8.3",
-        "league/commonmark": "^2.6"
+        "php": ">=8.3"
     },
     "config": {
         "sort-packages": true
+    },
+    "require-dev": {
+        "mrpunyapal/docsmith": "^0.0.3"
+    },
+    "scripts": {
+        "docs:build": "@php build-docs.php"
     }
 }

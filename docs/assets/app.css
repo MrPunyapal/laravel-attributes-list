@@ -1,0 +1,443 @@
+:root {
+    color-scheme: light;
+    --bg: #eef4fb;
+    --bg-shade: #e2edf9;
+    --panel: #ffffff;
+    --panel-soft: #f7fbff;
+    --border: #c9d8ea;
+    --text: #132235;
+    --muted: #4d6178;
+    --accent: #0e7a66;
+    --accent-strong: #0a6554;
+    --accent-soft: #dbf4ee;
+    --code-bg: #0f2136;
+    --code-text: #e9f1fb;
+    --ring: rgba(14, 122, 102, 0.22);
+    --shadow: 0 16px 40px rgba(17, 37, 63, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", "Segoe UI", sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: radial-gradient(circle at 0% 0%, #ffffff 0%, var(--bg) 42%, var(--bg-shade) 100%);
+}
+
+a {
+    color: var(--accent);
+}
+
+.shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+}
+
+.sidebar {
+    border-right: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
+    padding: 1.2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.brand {
+    margin: 0;
+    font-size: 1.22rem;
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.65rem 0 1.1rem;
+}
+
+.search {
+    margin-bottom: 0.85rem;
+}
+
+.search input {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text);
+    border-radius: 0.65rem;
+    padding: 0.62rem 0.74rem;
+    font: inherit;
+    font-size: 0.95rem;
+}
+
+.search input:focus {
+    outline: 2px solid var(--ring);
+    border-color: var(--accent);
+}
+
+.search-empty {
+    display: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+}
+
+.nav {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.nav-group {
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    background: #ffffff;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-group.has-active {
+    border-color: #9ecdbf;
+    box-shadow: 0 0 0 1px rgba(14, 122, 102, 0.15);
+}
+
+.nav-group-toggle {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.58rem 0.72rem;
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    font-size: 0.79rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.nav-group-toggle:hover {
+    background: #f3f9ff;
+}
+
+.nav-group-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.nav-group-label span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-group-icon {
+    font-size: 0.95rem;
+}
+
+.nav-group-caret {
+    color: var(--muted);
+    font-size: 0.72rem;
+    transition: transform 0.18s ease;
+}
+
+.nav-group:not(.is-open) .nav-group-caret {
+    transform: rotate(-90deg);
+}
+
+.nav-group-items {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.3rem;
+}
+
+.nav-group:not(.is-open) .nav-group-items {
+    display: none;
+}
+
+.nav a {
+    display: block;
+    text-decoration: none;
+    padding: 0.42rem 0.64rem;
+    border-radius: 0.55rem;
+    color: var(--text);
+    font-size: 0.93rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav a.active,
+.nav a:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.content {
+    padding: 1rem;
+}
+
+.content article {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.1rem 1.3rem 1.35rem;
+    box-shadow: var(--shadow);
+}
+
+.doc-head {
+    margin-bottom: 0.95rem;
+    padding-bottom: 0.72rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.doc-head h1 {
+    margin: 0;
+}
+
+.doc-description {
+    margin: 0.55rem 0 0;
+    color: var(--muted);
+    max-width: 72ch;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    line-height: 1.15;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 1.98rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.85rem;
+}
+
+h2 {
+    font-size: 1.35rem;
+    margin: 1.6rem 0 0.65rem;
+}
+
+h3 {
+    font-size: 1.08rem;
+    margin: 1.15rem 0 0.45rem;
+}
+
+p,
+li {
+    line-height: 1.62;
+    color: var(--text);
+}
+
+ul,
+ol {
+    padding-left: 1.35rem;
+}
+
+li + li {
+    margin-top: 0.35rem;
+}
+
+pre {
+    position: relative;
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: 0.75rem;
+    padding: 2.6rem 1rem 1rem;
+    overflow-x: auto;
+    font-size: 0.92rem;
+}
+
+code {
+    font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+}
+
+pre code.hljs {
+    display: block;
+    padding: 0;
+    background: transparent;
+    color: var(--code-text);
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    border: 1px solid rgba(157, 200, 255, 0.35);
+    background: rgba(7, 20, 34, 0.72);
+    color: #d9e8ff;
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-radius: 0.45rem;
+    padding: 0.24rem 0.52rem;
+    cursor: pointer;
+    transition: border-color 0.14s ease, background-color 0.14s ease, color 0.14s ease;
+}
+
+.code-copy-btn:hover {
+    border-color: rgba(120, 214, 192, 0.65);
+    color: #eafff9;
+}
+
+.code-copy-btn.copied {
+    background: rgba(10, 101, 84, 0.82);
+    border-color: rgba(120, 214, 192, 0.75);
+    color: #ebfff9;
+}
+
+.hljs-comment,
+.hljs-quote {
+    color: #8ca0b8;
+    font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+    color: #78d6c0;
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-template-variable,
+.hljs-addition {
+    color: #ffdca8;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-type,
+.hljs-class .hljs-title {
+    color: #9dc8ff;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-meta,
+.hljs-variable,
+.hljs-attr,
+.hljs-attribute,
+.hljs-params {
+    color: #ffb7a4;
+}
+
+:not(pre) > code {
+    background: rgba(14, 122, 102, 0.12);
+    color: var(--accent);
+    border-radius: 0.35rem;
+    padding: 0.15rem 0.4rem;
+}
+
+.hero {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.1rem 1.3rem 1.35rem;
+    box-shadow: var(--shadow);
+}
+
+.hero h1 {
+    font-size: 1.98rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 62ch;
+}
+
+.page-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.15rem 0 0;
+    border-top: 1px solid var(--border);
+}
+
+.page-list li {
+    border-bottom: 1px solid var(--border);
+}
+
+.page-list a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    text-decoration: none;
+    padding: 0.7rem 0;
+    color: var(--text);
+}
+
+.page-list a:hover strong {
+    color: var(--accent);
+}
+
+.page-list strong {
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    font-size: 0.98rem;
+}
+
+.page-list span {
+    color: var(--muted);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .shell {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        max-height: 48vh;
+        padding-bottom: 0.8rem;
+    }
+
+    .content {
+        padding: 0.7rem;
+    }
+
+    .content article,
+    .hero {
+        padding: 0.95rem;
+    }
+
+    .page-list a {
+        display: block;
+    }
+
+    .page-list span {
+        display: block;
+        margin-top: 0.2rem;
+    }
+}
