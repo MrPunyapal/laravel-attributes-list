@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    document.documentElement.classList.add('docsmith-js');
+
     var applyTheme = function (theme) {
         if (theme !== 'dark' && theme !== 'light') {
             return;
@@ -116,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var nav = document.querySelector('[data-docsmith-nav]');
     var empty = document.querySelector('[data-docsmith-empty]');
     var results = document.querySelector('[data-docsmith-search-results]');
+    var sidebar = document.querySelector('[data-docsmith-sidebar]');
+    var menuToggle = document.querySelector('[data-docsmith-menu-toggle]');
+    var sidebarBackdrop = document.querySelector('[data-docsmith-sidebar-backdrop]');
     var tocLinks = Array.prototype.slice.call(document.querySelectorAll('[data-docsmith-toc-link], .toc-links a[href^="#"]'));
     var tocHeadings = tocLinks.map(function (link) {
         var targetId = String(link.getAttribute('data-docsmith-toc-link') || link.getAttribute('href') || '').replace(/^#/, '');
@@ -124,6 +129,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }).filter(function (heading) {
         return heading !== null;
     });
+
+    if (sidebar && menuToggle) {
+        var setMenuOpen = function (open) {
+            sidebar.classList.toggle('is-open', open);
+            document.body.classList.toggle('has-open-sidebar', open);
+            menuToggle.classList.toggle('is-open', open);
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        };
+
+        menuToggle.addEventListener('click', function () {
+            setMenuOpen(!sidebar.classList.contains('is-open'));
+        });
+
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', function () {
+                setMenuOpen(false);
+            });
+        }
+
+        Array.prototype.slice.call(sidebar.querySelectorAll('a')).forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (window.matchMedia('(max-width: 900px)').matches) {
+                    setMenuOpen(false);
+                }
+            });
+        });
+
+        window.addEventListener('resize', function () {
+            if (!window.matchMedia('(max-width: 900px)').matches) {
+                setMenuOpen(false);
+            }
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                setMenuOpen(false);
+            }
+        });
+    }
 
     if (!search || !nav || !empty) {
         return;
