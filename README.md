@@ -78,6 +78,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 ## 🎛️ Controllers
 
 * [`#[Middleware]`](attributes/controllers/Middleware.md) — Assign middleware to a controller class or action method
+* [`#[WithoutMiddleware]`](attributes/controllers/WithoutMiddleware.md) — Exclude middleware from a controller class or action method
 * [`#[Authorize]`](attributes/controllers/Authorize.md) — Authorize a controller action via the gate
 
 ---
