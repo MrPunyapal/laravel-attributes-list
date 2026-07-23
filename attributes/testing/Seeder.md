@@ -25,11 +25,11 @@ use Tests\TestCase;
 use Database\Seeders\OrderSeeder;
 
 // After:
+#[Seeder(OrderSeeder::class)]
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[Seeder(OrderSeeder::class)]
     public function test_orders_are_listed(): void
     {
         $response = $this->get('/orders');

@@ -9,7 +9,7 @@
 ## Usage
 
 ```php
-use Illuminate\Container\Attributes\Log;
+use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
 
 // Before (service provider):

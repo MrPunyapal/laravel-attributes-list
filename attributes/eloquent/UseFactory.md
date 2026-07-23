@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\UseFactory`
 
-**Added in:** Laravel 12.x
+**Added in:** Laravel 11.x
 
 ## Usage
 
@@ -22,6 +22,7 @@ use Database\Factories\PostFactory;
 
 ```php
 use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\PostFactory;
 
@@ -29,6 +30,7 @@ use Database\Factories\PostFactory;
 #[UseFactory(PostFactory::class)]
 class Post extends Model
 {
+    use HasFactory;
 }
 ```
 

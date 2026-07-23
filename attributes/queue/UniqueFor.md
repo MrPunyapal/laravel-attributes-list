@@ -17,12 +17,13 @@ use Illuminate\Queue\Attributes\UniqueFor;
 ```
 
 ```php
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\UniqueFor;
 
 // After:
 #[UniqueFor(3600)]
-class ProcessPodcast implements ShouldQueue
+class ProcessPodcast implements ShouldQueue, ShouldBeUnique
 {
     public function handle(): void
     {

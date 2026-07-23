@@ -18,6 +18,7 @@ use Tests\TestCase;
 
 ```php
 use Illuminate\Foundation\Testing\Attributes\UnitTest;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 // After:

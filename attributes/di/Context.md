@@ -12,9 +12,9 @@
 use Illuminate\Container\Attributes\Context;
 
 // Before:
-// $traceId = app(\Illuminate\Contracts\Foundation\Application::class)
-//     ->make(\Illuminate\Container\Context::class)
-//     ->get('trace_id');
+// use Illuminate\Support\Facades\Context;
+// Context::add('trace_id', 'abc-123');
+// $traceId = Context::get('trace_id');
 ```
 
 ```php

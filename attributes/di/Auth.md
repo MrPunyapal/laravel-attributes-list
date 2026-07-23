@@ -9,7 +9,7 @@
 ## Usage
 
 ```php
-use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Guard;
 
 // Before (service provider):

@@ -35,7 +35,7 @@ class SendWelcomeEmail implements ShouldQueue
 
     public function handle(): void
     {
-        // $user->roles will not be pre-loaded
+        // $this->user->roles will not be pre-loaded
     }
 }
 ```

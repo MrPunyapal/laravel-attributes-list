@@ -9,7 +9,7 @@
 ## Usage
 
 ```php
-use Illuminate\Container\Attributes\Cache;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Contracts\Cache\Repository;
 
 // Before (service provider):

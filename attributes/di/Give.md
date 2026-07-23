@@ -32,6 +32,7 @@ class NotificationService
 Also accepts class names (string bindings):
 
 ```php
+use App\Services\DriverInterface;
 use App\Services\SmsDriver;
 
 class NotificationService

@@ -9,7 +9,7 @@
 ## Usage
 
 ```php
-use Illuminate\Container\Attributes\Database;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Connection;
 
 // Before (service provider):
@@ -35,6 +35,7 @@ Enum values are also supported:
 
 ```php
 use App\Enums\DatabaseConnection;
+use Illuminate\Database\Connection;
 
 class ReportService
 {

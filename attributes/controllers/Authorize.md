@@ -18,6 +18,7 @@ use Illuminate\Routing\Attributes\Controllers\Authorize;
 ```php
 use App\Models\Comment;
 use App\Models\Post;
+use App\Http\Requests\StoreCommentRequest;
 use Illuminate\Routing\Attributes\Controllers\Authorize;
 
 // After:

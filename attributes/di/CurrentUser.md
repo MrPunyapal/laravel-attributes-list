@@ -29,7 +29,7 @@ class OrderService
 
     public function placeOrder(array $data): Order
     {
-        return $this->user->orders()->create($data);
+        return $this->user?->orders()->create($data);
     }
 }
 ```

@@ -23,11 +23,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 // After:
+#[Seed]
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[Seed]
     public function test_orders_are_listed(): void
     {
         // The default DatabaseSeeder runs before this test

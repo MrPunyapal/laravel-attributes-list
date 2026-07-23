@@ -16,7 +16,9 @@ use Illuminate\Foundation\Testing\Attributes\SetUp;
 ```
 
 ```php
+use App\Models\User;
 use Illuminate\Foundation\Testing\Attributes\SetUp;
+use Tests\TestCase;
 
 // After:
 trait CreatesUser

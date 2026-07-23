@@ -50,6 +50,21 @@ class ActiveScope implements Scope
 }
 ```
 
+```php
+// App\Models\Scopes\PublishedScope
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+
+class PublishedScope implements Scope
+{
+    public function apply(Builder $builder, Model $model): void
+    {
+        $builder->whereNotNull('published_at');
+    }
+}
+```
+
 ---
 
 [← Back to README](../../README.md)

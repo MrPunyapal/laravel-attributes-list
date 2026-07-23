@@ -17,6 +17,8 @@ use Illuminate\Foundation\Testing\Attributes\TearDown;
 
 ```php
 use Illuminate\Foundation\Testing\Attributes\TearDown;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 // After:
 trait CleansUpFiles

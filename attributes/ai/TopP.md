@@ -4,7 +4,7 @@
 
 **Namespace:** `Laravel\Ai\Attributes\TopP`
 
-**Added in:** `laravel/ai` v0.5+
+**Added in:** `laravel/ai` v0.6.6+
 
 ## Usage
 
