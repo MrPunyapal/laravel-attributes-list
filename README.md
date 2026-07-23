@@ -36,6 +36,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[ScopedBy]`](attributes/eloquent/ScopedBy.md) — Apply global scope(s) to the model
 * [`#[ObservedBy]`](attributes/eloquent/ObservedBy.md) — Register model observer(s)
 * [`#[DateFormat]`](attributes/eloquent/DateFormat.md) — Define the date format for model timestamps
+* [`#[RouteKey]`](attributes/eloquent/RouteKey.md) — Define the route key name for route model binding
 * [`#[Scope]`](attributes/eloquent/Scope.md) — Mark a method as a local query scope
 * [`#[Boot]`](attributes/eloquent/Boot.md) — Mark a trait method as a model boot hook
 * [`#[Initialize]`](attributes/eloquent/Initialize.md) — Mark a trait method as a model initialize hook
@@ -129,6 +130,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[Database]`](attributes/di/Database.md) — Inject a named database connection
 * [`#[Give]`](attributes/di/Give.md) — Give a specific binding contextually
 * [`#[Log]`](attributes/di/Log.md) — Inject a logger with a named channel
+* [`#[RequestAttribute]`](attributes/di/RequestAttribute.md) — Inject a value from the request's attributes collection
 * [`#[RouteParameter]`](attributes/di/RouteParameter.md) — Inject a route parameter value
 * [`#[Scoped]`](attributes/di/Scoped.md) — Register a class as a scoped singleton in the container
 * [`#[Singleton]`](attributes/di/Singleton.md) — Register a class as a singleton in the container
