@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\ScopedBy`
 
+**Added in:** Laravel 11.x
+
 ## Usage
 
 ```php
@@ -12,6 +14,21 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Scopes\ActiveScope;
 use App\Models\Scopes\PublishedScope;
 
+// Before:
+// protected static function booted(): void
+// {
+//     static::addGlobalScope(new ActiveScope());
+//     static::addGlobalScope(new PublishedScope());
+// }
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Scopes\ActiveScope;
+use App\Models\Scopes\PublishedScope;
+
+// After:
 #[ScopedBy([ActiveScope::class, PublishedScope::class])]
 class Post extends Model
 {

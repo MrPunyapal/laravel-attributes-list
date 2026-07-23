@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Boot`
 
+**Added in:** Laravel 12.x
+
 ## Usage
 
 ```php
 use Illuminate\Database\Eloquent\Attributes\Boot;
 use Illuminate\Database\Eloquent\Model;
 
+// Before:
+// trait naming convention bootTraitName() was auto-called
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Boot;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
 trait HasSlug
 {
     #[Boot]

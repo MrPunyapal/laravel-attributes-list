@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\FailOnTimeout`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
@@ -11,6 +13,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\FailOnTimeout;
 use Illuminate\Queue\Attributes\Timeout;
 
+// Before:
+// public $failOnTimeout = true;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\FailOnTimeout;
+use Illuminate\Queue\Attributes\Timeout;
+
+// After:
 #[FailOnTimeout]
 #[Timeout(30)]
 class ProcessPodcast implements ShouldQueue

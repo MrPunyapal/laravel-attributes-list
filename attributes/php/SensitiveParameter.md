@@ -9,11 +9,14 @@
 ## Usage
 
 ```php
+// Before PHP 8.2: sensitive parameter values were fully visible in stack traces
+```
+
+```php
 function authenticate(
     string $username,
     #[\SensitiveParameter] string $password,
 ): bool {
-    // If an exception is thrown here, $password will NOT appear in the stack trace
     throw new RuntimeException('Auth failed');
 }
 ```

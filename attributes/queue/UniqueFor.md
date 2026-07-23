@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\UniqueFor`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\UniqueFor;
 
+// Before:
+// public $uniqueFor = 3600;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\UniqueFor;
+
+// After:
 #[UniqueFor(3600)]
 class ProcessPodcast implements ShouldQueue
 {

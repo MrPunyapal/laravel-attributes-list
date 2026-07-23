@@ -4,13 +4,23 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\Backoff`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Backoff;
 
-// Fixed delay of 10 seconds between retries
+// Before:
+// public $backoff = 10;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Backoff;
+
+// After (fixed delay of 10 seconds between retries):
 #[Backoff(10)]
 class ProcessPodcast implements ShouldQueue
 {

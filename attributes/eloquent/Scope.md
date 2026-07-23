@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Scope`
 
+**Added in:** Laravel 12.4
+
 ## Usage
 
 ```php
@@ -11,6 +13,19 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+// Before:
+// public function scopePublished(Builder $query): void
+// {
+//     $query->where('is_published', true);
+// }
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
 class Post extends Model
 {
     #[Scope]

@@ -4,11 +4,21 @@
 
 **Namespace:** `Illuminate\Foundation\Testing\Attributes\SetUp`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Foundation\Testing\Attributes\SetUp;
 
+// Before (naming convention):
+// public function setUpCreatesUser(): void
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\SetUp;
+
+// After:
 trait CreatesUser
 {
     #[SetUp]

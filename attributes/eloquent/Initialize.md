@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Initialize`
 
+**Added in:** Laravel 12.x
+
 ## Usage
 
 ```php
 use Illuminate\Database\Eloquent\Attributes\Initialize;
 use Illuminate\Database\Eloquent\Model;
 
+// Before:
+// trait naming convention initializeTraitName() was auto-called
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Initialize;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
 trait HasDefaultStatus
 {
     #[Initialize]

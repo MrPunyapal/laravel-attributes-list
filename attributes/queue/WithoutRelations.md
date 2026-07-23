@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\WithoutRelations`
 
+**Added in:** Laravel 10.16
+
 ## Usage
 
 ```php
@@ -11,6 +13,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\WithoutRelations;
 use App\Models\User;
 
+// Before:
+// public function __construct(User $user)
+// {
+//     $this->user = $user->withoutRelations();
+// }
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\WithoutRelations;
+use App\Models\User;
+
+// After:
 #[WithoutRelations]
 class SendWelcomeEmail implements ShouldQueue
 {

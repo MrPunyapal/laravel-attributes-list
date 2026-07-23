@@ -4,11 +4,23 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Give`
 
+**Added in:** Laravel 12.16
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\Give;
 
+// Before (service provider):
+// $this->app->when(NotificationService::class)
+//     ->needs('$fromEmail')
+//     ->give('notifications@example.com');
+```
+
+```php
+use Illuminate\Container\Attributes\Give;
+
+// After:
 class NotificationService
 {
     public function __construct(

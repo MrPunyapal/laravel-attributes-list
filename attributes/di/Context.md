@@ -4,11 +4,23 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Context`
 
+**Added in:** Laravel 12.15
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\Context;
 
+// Before:
+// $traceId = app(\Illuminate\Contracts\Foundation\Application::class)
+//     ->make(\Illuminate\Container\Context::class)
+//     ->get('trace_id');
+```
+
+```php
+use Illuminate\Container\Attributes\Context;
+
+// After:
 class RequestLogger
 {
     public function __construct(

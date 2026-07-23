@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\Delay`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Delay;
 
+// Before:
+// public $delay = 60;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Delay;
+
+// After:
 #[Delay(60)]
 class SendWelcomeEmail implements ShouldQueue
 {

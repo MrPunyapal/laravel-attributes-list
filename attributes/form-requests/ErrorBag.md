@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Foundation\Http\Attributes\ErrorBag`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Foundation\Http\Attributes\ErrorBag;
 use Illuminate\Foundation\Http\FormRequest;
 
+// Before:
+// protected $errorBag = 'login';
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\ErrorBag;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
 #[ErrorBag('login')]
 class LoginRequest extends FormRequest
 {

@@ -11,6 +11,11 @@
 Use this when overriding a PHP internal method but you cannot yet declare the return type due to cross-version compatibility constraints.
 
 ```php
+// Before PHP 8.1: overriding internal methods without compatible return types
+// emitted deprecation notices with no clean way to silence them
+```
+
+```php
 class CustomCollection implements Countable
 {
     #[\ReturnTypeWillChange]

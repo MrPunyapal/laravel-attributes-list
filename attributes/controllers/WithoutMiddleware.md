@@ -4,13 +4,24 @@
 
 **Namespace:** `Illuminate\Routing\Attributes\Controllers\WithoutMiddleware`
 
-## Usage
+**Added in:** Laravel 13.20
 
-Applied to the entire controller:
+## Usage
 
 ```php
 use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
 
+// Before (controller constructor):
+// public function __construct()
+// {
+//     $this->withoutMiddleware('auth');
+// }
+```
+
+```php
+use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
+
+// After:
 #[WithoutMiddleware('auth')]
 class UserController
 {

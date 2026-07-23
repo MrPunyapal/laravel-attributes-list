@@ -4,13 +4,25 @@
 
 **Namespace:** `Illuminate\Routing\Attributes\Controllers\Middleware`
 
-## Usage
+**Added in:** Laravel 13.0
 
-Applied to the entire controller:
+## Usage
 
 ```php
 use Illuminate\Routing\Attributes\Controllers\Middleware;
 
+// Before (controller constructor):
+// public function __construct()
+// {
+//     $this->middleware('auth');
+//     $this->middleware('throttle:60,1')->only('store');
+// }
+```
+
+```php
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+
+// After:
 #[Middleware('auth')]
 class UserController
 {

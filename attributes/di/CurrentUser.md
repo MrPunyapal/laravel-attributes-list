@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Container\Attributes\CurrentUser`
 
+**Added in:** Laravel 11.20
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\CurrentUser;
 use App\Models\User;
 
+// Before:
+// $user = Auth::user();
+```
+
+```php
+use Illuminate\Container\Attributes\CurrentUser;
+use App\Models\User;
+
+// After:
 class OrderService
 {
     public function __construct(

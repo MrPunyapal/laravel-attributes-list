@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\DeleteWhenMissingModels`
 
+**Added in:** Laravel 11.x
+
 ## Usage
 
 ```php
@@ -11,6 +13,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DeleteWhenMissingModels;
 use App\Models\Podcast;
 
+// Before:
+// public $deleteWhenMissingModels = true;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DeleteWhenMissingModels;
+use App\Models\Podcast;
+
+// After:
 #[DeleteWhenMissingModels]
 class ProcessPodcast implements ShouldQueue
 {
