@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\DebounceFor`
 
+**Added in:** Laravel 13.6
+
 ## Usage
 
 ```php
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DebounceFor;
 
+// Before:
+// No built-in equivalent — required custom cache-based debouncing logic
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DebounceFor;
+
+// After:
 #[DebounceFor(seconds: 30, maxWait: 60)]
 class SyncUserToMailchimp implements ShouldQueue
 {

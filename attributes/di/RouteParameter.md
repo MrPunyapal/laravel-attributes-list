@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Container\Attributes\RouteParameter`
 
+**Added in:** Laravel 11.0
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\RouteParameter;
 use App\Models\Post;
 
+// Before:
+// $post = request()->route('post');
+```
+
+```php
+use Illuminate\Container\Attributes\RouteParameter;
+use App\Models\Post;
+
+// After:
 class PostService
 {
     public function __construct(

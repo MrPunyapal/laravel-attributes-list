@@ -4,11 +4,21 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Tag`
 
+**Added in:** Laravel 11.0
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\Tag;
 
+// Before (service provider):
+// $reporters = app()->tagged('reports');
+```
+
+```php
+use Illuminate\Container\Attributes\Tag;
+
+// After:
 class ReportAggregator
 {
     public function __construct(

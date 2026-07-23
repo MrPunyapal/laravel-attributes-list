@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\WithoutIncrementing`
 
+**Added in:** Laravel 13.2
+
 ## Usage
 
 ```php
 use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
 use Illuminate\Database\Eloquent\Model;
 
+// Before:
+// public $incrementing = false;
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
 #[WithoutIncrementing]
 class ApiToken extends Model
 {

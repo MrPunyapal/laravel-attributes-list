@@ -4,11 +4,22 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Config`
 
+**Added in:** Laravel 11.0
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\Config;
 
+// Before:
+// $fromAddress = config('mail.from.address');
+// $fromName = config('mail.from.name');
+```
+
+```php
+use Illuminate\Container\Attributes\Config;
+
+// After:
 class MailService
 {
     public function __construct(

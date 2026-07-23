@@ -4,12 +4,25 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Database`
 
+**Added in:** Laravel 11.0
+
 ## Usage
+
+```php
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Connection;
+
+// Before (service provider):
+// $this->app->when(ReportService::class)
+//     ->needs(Connection::class)
+//     ->give(fn () => DB::connection('pgsql'));
+```
 
 ```php
 use Illuminate\Container\Attributes\Database;
 use Illuminate\Database\Connection;
 
+// After:
 class ReportService
 {
     public function __construct(
@@ -22,6 +35,7 @@ Enum values are also supported:
 
 ```php
 use App\Enums\DatabaseConnection;
+use Illuminate\Database\Connection;
 
 class ReportService
 {

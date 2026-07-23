@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\CollectedBy`
 
+**Added in:** Laravel 12.x
+
 ## Usage
 
 ```php
@@ -11,6 +13,19 @@ use Illuminate\Database\Eloquent\Attributes\CollectedBy;
 use Illuminate\Database\Eloquent\Model;
 use App\Collections\PostCollection;
 
+// Before:
+// public function newCollection(array $models = [])
+// {
+//     return new PostCollection($models);
+// }
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Collections\PostCollection;
+
+// After:
 #[CollectedBy(PostCollection::class)]
 class Post extends Model
 {

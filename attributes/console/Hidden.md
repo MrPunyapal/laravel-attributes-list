@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Console\Attributes\Hidden`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
@@ -11,6 +13,16 @@ use Illuminate\Console\Attributes\Hidden;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
+// Before:
+// protected $hidden = true;
+```
+
+```php
+use Illuminate\Console\Attributes\Hidden;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
 #[Signature('internal:sync')]
 #[Hidden]
 class SyncInternalDataCommand extends Command

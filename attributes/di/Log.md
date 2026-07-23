@@ -4,12 +4,25 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Log`
 
+**Added in:** Laravel 11.0
+
 ## Usage
+
+```php
+use Illuminate\Support\Facades\Log;
+use Psr\Log\LoggerInterface;
+
+// Before (service provider):
+// $this->app->when(PaymentService::class)
+//     ->needs(LoggerInterface::class)
+//     ->give(fn () => Log::channel('payments'));
+```
 
 ```php
 use Illuminate\Container\Attributes\Log;
 use Psr\Log\LoggerInterface;
 
+// After:
 class PaymentService
 {
     public function __construct(

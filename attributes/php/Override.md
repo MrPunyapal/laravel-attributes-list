@@ -9,6 +9,11 @@
 ## Usage
 
 ```php
+// Before PHP 8.3: no way to assert that a method overrides a parent —
+// typos silently created new methods instead
+```
+
+```php
 class Base
 {
     protected function handle(): void {}

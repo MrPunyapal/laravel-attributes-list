@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\ObservedBy`
 
+**Added in:** Laravel 11.x
+
 ## Usage
 
 ```php
@@ -11,6 +13,19 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\UserObserver;
 
+// Before:
+// protected static function booted(): void
+// {
+//     static::observe(UserObserver::class);
+// }
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\UserObserver;
+
+// After:
 #[ObservedBy([UserObserver::class])]
 class User extends Model
 {

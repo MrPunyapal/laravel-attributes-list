@@ -4,11 +4,23 @@
 
 **Namespace:** `Illuminate\Foundation\Testing\Attributes\TearDown`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Foundation\Testing\Attributes\TearDown;
 
+// Before (naming convention):
+// public function tearDownCleansUpFiles(): void
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\TearDown;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
+
+// After:
 trait CleansUpFiles
 {
     #[TearDown]
