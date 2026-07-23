@@ -112,6 +112,13 @@
         "headings": "Usage"
     },
     {
+        "title": "RouteKey",
+        "description": "Define the route key name for route model binding",
+        "url": "/attributes/eloquent/RouteKey",
+        "content": "Description: Defines the route key name for an Eloquent model, replacing the default id column. Namespace: Illuminate\\Database\\Eloquent\\Attributes\\RouteKey Usage use Illuminate\\Database\\Eloquent\\Attributes\\RouteKey; use Illuminate\\Database\\Eloquent\\Model; #[RouteKey('slug')] class Post extends Model { // }",
+        "headings": "Usage"
+    },
+    {
         "title": "Scope",
         "description": "Mark a method as a local query scope",
         "url": "/attributes/eloquent/Scope",
@@ -480,6 +487,13 @@
         "description": "Inject a logger with a named channel",
         "url": "/attributes/di/Log",
         "content": "Description: Injects a logger instance with an optional named channel for better log organization. Namespace: Illuminate\\Container\\Attributes\\Log Usage use Illuminate\\Container\\Attributes\\Log; use Psr\\Log\\LoggerInterface; class PaymentService { public function __construct( #[Log(channel: 'payments', name: 'custom_logger')] private readonly LoggerInterface $logger ) {} public function charge(int $amount): void { $this->logger->info('Charging customer', ['amount' => $amount]); // Logged under the 'payments' channel } } Without a channel name, it injects the default logger: #[Log] private readonly LoggerInterface $logger",
+        "headings": "Usage"
+    },
+    {
+        "title": "RequestAttribute",
+        "description": "Inject a value from the request's attributes collection",
+        "url": "/attributes/di/RequestAttribute",
+        "content": "Description: Injects a value from the current request's attributes collection into a controller method or service constructor. Namespace: Illuminate\\Container\\Attributes\\RequestAttribute Usage use Illuminate\\Container\\Attributes\\RequestAttribute; use Illuminate\\Http\\Request; use App\\Models\\Tenant; // Before — manual extraction from the request's attributes collection: // $tenant = $request->attributes->get('tenant'); class TenantController { public function __invoke( Request $request, #[RequestAttribute('tenant')] Tenant $tenant ) { // } }",
         "headings": "Usage"
     },
     {
