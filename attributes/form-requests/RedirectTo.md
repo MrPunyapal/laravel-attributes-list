@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Foundation\Http\Attributes\RedirectTo`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Foundation\Http\Attributes\RedirectTo;
 use Illuminate\Foundation\Http\FormRequest;
 
+// Before:
+// protected $redirect = '/posts/create';
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\RedirectTo;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
 #[RedirectTo('/posts/create')]
 class StorePostRequest extends FormRequest
 {

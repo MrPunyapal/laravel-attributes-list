@@ -9,6 +9,10 @@
 ## Usage
 
 ```php
+// PHP 8.0 introduced attributes — no equivalent before this version
+```
+
+```php
 #[Attribute]
 class MyCustomAttribute
 {

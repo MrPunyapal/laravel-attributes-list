@@ -4,12 +4,24 @@
 
 **Namespace:** `Illuminate\Foundation\Testing\Attributes\UnitTest`
 
+**Added in:** Laravel 13.3
+
 ## Usage
 
 ```php
 use Illuminate\Foundation\Testing\Attributes\UnitTest;
 use Tests\TestCase;
 
+// Before:
+// No equivalent — unit tests mixed in feature test classes always booted the framework
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\UnitTest;
+use Illuminate\Support\Facades\Http;
+use Tests\TestCase;
+
+// After:
 class LocationServiceTest extends TestCase
 {
     // This test boots the framework (uses Http facade)

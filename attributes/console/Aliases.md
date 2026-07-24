@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Console\Attributes\Aliases`
 
+**Added in:** Laravel 13.2
+
 ## Usage
 
 ```php
@@ -11,6 +13,16 @@ use Illuminate\Console\Attributes\Aliases;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
+// Before:
+// protected $aliases = ['ms', 'send-mail'];
+```
+
+```php
+use Illuminate\Console\Attributes\Aliases;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
 #[Signature('mail:send {user}')]
 #[Aliases(['ms', 'send-mail'])]
 class SendMailCommand extends Command

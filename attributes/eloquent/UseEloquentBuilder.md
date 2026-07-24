@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder`
 
+**Added in:** Laravel 12.19
+
 ## Usage
 
 ```php
@@ -11,6 +13,19 @@ use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use App\Builders\PostBuilder;
 
+// Before:
+// public function newEloquentBuilder($query)
+// {
+//     return new PostBuilder($query);
+// }
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+use App\Builders\PostBuilder;
+
+// After:
 #[UseEloquentBuilder(PostBuilder::class)]
 class Post extends Model
 {

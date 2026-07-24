@@ -11,6 +11,10 @@
 Dynamic properties are deprecated as of PHP 8.2. Without this attribute, assigning to an undeclared property emits a deprecation notice.
 
 ```php
+// Before PHP 8.2: dynamic properties were always allowed without restriction
+```
+
+```php
 #[\AllowDynamicProperties]
 class UserSession
 {

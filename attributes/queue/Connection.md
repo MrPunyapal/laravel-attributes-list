@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\Connection`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Connection;
 
+// Before:
+// public $connection = 'redis';
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Connection;
+
+// After:
 #[Connection('redis')]
 class ProcessPodcast implements ShouldQueue
 {

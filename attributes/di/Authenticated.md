@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Authenticated`
 
+**Added in:** Laravel 11.20
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\Authenticated;
 use App\Models\User;
 
+// Before:
+// $user = Auth::user();
+```
+
+```php
+use Illuminate\Container\Attributes\Authenticated;
+use App\Models\User;
+
+// After:
 class ProfileController
 {
     public function show(

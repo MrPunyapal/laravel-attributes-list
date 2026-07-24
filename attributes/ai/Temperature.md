@@ -4,6 +4,8 @@
 
 **Namespace:** `Laravel\Ai\Attributes\Temperature`
 
+**Added in:** `laravel/ai` v0.1+
+
 ## Usage
 
 ```php
@@ -11,12 +13,23 @@ use Laravel\Ai\Attributes\Temperature;
 use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Promptable;
 
+// Before:
+// public function temperature(): float
+// {
+//     return 0.7;
+// }
+```
+
+```php
+use Laravel\Ai\Attributes\Temperature;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
 #[Temperature(0.7)]
 class SalesCoach implements Agent
 {
     use Promptable;
-
-    // ...
 }
 ```
 

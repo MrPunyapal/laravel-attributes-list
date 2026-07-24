@@ -9,6 +9,11 @@
 ## Usage
 
 ```php
+// Before PHP 8.4:
+// /** @deprecated use newMethod() instead */
+```
+
+```php
 #[\Deprecated(message: 'use newMethod() instead', since: '2.0')]
 function oldMethod(): void
 {

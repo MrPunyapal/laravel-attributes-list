@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Http\Resources\Attributes\PreserveKeys`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Attributes\PreserveKeys;
 
+// Before:
+// public $preserveKeys = true;
+```
+
+```php
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Attributes\PreserveKeys;
+
+// After:
 #[PreserveKeys]
 class UserResource extends JsonResource
 {

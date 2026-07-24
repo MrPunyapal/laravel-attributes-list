@@ -4,12 +4,23 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Appends`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
 use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Model;
 
+// Before:
+// protected $appends = ['full_name', 'is_admin'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
 #[Appends(['full_name', 'is_admin'])]
 class User extends Model
 {

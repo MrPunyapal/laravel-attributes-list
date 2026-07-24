@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Foundation\Testing\Attributes\Seed`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
@@ -11,11 +13,21 @@ use Illuminate\Foundation\Testing\Attributes\Seed;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+// Before:
+// $this->seed();
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\Seed;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+// After:
+#[Seed]
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[Seed]
     public function test_orders_are_listed(): void
     {
         // The default DatabaseSeeder runs before this test

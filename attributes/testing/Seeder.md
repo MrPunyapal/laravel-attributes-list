@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Foundation\Testing\Attributes\Seeder`
 
+**Added in:** Laravel 13.0
+
 ## Usage
 
 ```php
@@ -12,15 +14,25 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Database\Seeders\OrderSeeder;
 
+// Before:
+// $this->seed(OrderSeeder::class);
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\Seeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+use Database\Seeders\OrderSeeder;
+
+// After:
+#[Seeder(OrderSeeder::class)]
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[Seeder(OrderSeeder::class)]
     public function test_orders_are_listed(): void
     {
         $response = $this->get('/orders');
-
         $response->assertOk();
     }
 }

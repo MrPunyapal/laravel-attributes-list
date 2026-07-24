@@ -4,11 +4,21 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Scoped`
 
+**Added in:** Laravel 12.21
+
 ## Usage
 
 ```php
 use Illuminate\Container\Attributes\Scoped;
 
+// Before (service provider):
+// $this->app->scoped(RequestContext::class);
+```
+
+```php
+use Illuminate\Container\Attributes\Scoped;
+
+// After:
 #[Scoped]
 class RequestContext
 {

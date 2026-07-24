@@ -9,6 +9,10 @@
 ## Usage
 
 ```php
+// Before PHP 8.5: no way to enforce that a return value must be used
+```
+
+```php
 #[\NoDiscard('as processing might fail for individual items')]
 function processItems(array $items): array
 {

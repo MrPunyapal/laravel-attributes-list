@@ -4,6 +4,8 @@
 
 **Namespace:** `Illuminate\Container\Attributes\RequestAttribute`
 
+**Added in:** Laravel 13.21
+
 ## Usage
 
 ```php
@@ -11,9 +13,16 @@ use Illuminate\Container\Attributes\RequestAttribute;
 use Illuminate\Http\Request;
 use App\Models\Tenant;
 
-// Before — manual extraction from the request's attributes collection:
+// Before:
 // $tenant = $request->attributes->get('tenant');
+```
 
+```php
+use Illuminate\Container\Attributes\RequestAttribute;
+use Illuminate\Http\Request;
+use App\Models\Tenant;
+
+// After:
 class TenantController
 {
     public function __invoke(
