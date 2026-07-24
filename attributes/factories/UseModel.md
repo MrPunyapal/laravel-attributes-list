@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
 use App\Models\User;
 
 // Before:
-// protected $model = User::class;
+protected $model = User::class;
 ```
 
 ```php

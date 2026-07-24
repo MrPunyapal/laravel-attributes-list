@@ -12,7 +12,7 @@
 use Illuminate\Container\Attributes\Bind;
 
 // Before (service provider):
-// $this->app->bind(PaymentGateway::class, StripeGateway::class);
+$this->app->bind(PaymentGateway::class, StripeGateway::class);
 ```
 
 ```php

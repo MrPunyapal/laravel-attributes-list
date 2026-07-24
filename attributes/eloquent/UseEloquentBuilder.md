@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Builders\PostBuilder;
 
 // Before:
-// public function newEloquentBuilder($query)
-// {
-//     return new PostBuilder($query);
-// }
+public function newEloquentBuilder($query)
+{
+    return new PostBuilder($query);
+}
 ```
 
 ```php

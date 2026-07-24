@@ -14,7 +14,7 @@ use Illuminate\Queue\Attributes\DeleteWhenMissingModels;
 use App\Models\Podcast;
 
 // Before:
-// public $deleteWhenMissingModels = true;
+public $deleteWhenMissingModels = true;
 ```
 
 ```php

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
 
 // Before (service provider):
-// $this->app->when(PaymentService::class)
-//     ->needs(LoggerInterface::class)
-//     ->give(fn () => Log::channel('payments'));
+$this->app->when(PaymentService::class)
+    ->needs(LoggerInterface::class)
+    ->give(fn () => Log::channel('payments'));
 ```
 
 ```php

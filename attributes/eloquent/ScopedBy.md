@@ -15,11 +15,11 @@ use App\Models\Scopes\ActiveScope;
 use App\Models\Scopes\PublishedScope;
 
 // Before:
-// protected static function booted(): void
-// {
-//     static::addGlobalScope(new ActiveScope());
-//     static::addGlobalScope(new PublishedScope());
-// }
+protected static function booted(): void
+{
+    static::addGlobalScope(new ActiveScope());
+    static::addGlobalScope(new PublishedScope());
+}
 ```
 
 ```php

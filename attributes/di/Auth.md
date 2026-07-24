@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Guard;
 
 // Before (service provider):
-// $this->app->when(UserService::class)
-//     ->needs(Guard::class)
-//     ->give(fn () => Auth::guard('web'));
+$this->app->when(UserService::class)
+    ->needs(Guard::class)
+    ->give(fn () => Auth::guard('web'));
 ```
 
 ```php

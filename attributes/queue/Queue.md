@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Queue;
 
 // Before:
-// public $queue = 'podcasts';
+public $queue = 'podcasts';
 ```
 
 ```php

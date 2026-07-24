@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Connection;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $connection = 'pgsql';
+protected $connection = 'pgsql';
 ```
 
 ```php

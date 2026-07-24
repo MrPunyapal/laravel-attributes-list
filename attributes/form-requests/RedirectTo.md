@@ -13,7 +13,7 @@ use Illuminate\Foundation\Http\Attributes\RedirectTo;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Before:
-// protected $redirect = '/posts/create';
+protected $redirect = '/posts/create';
 ```
 
 ```php

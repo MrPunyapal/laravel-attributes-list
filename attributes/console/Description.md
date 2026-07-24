@@ -14,7 +14,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 // Before:
-// protected $description = 'Send a marketing email to a user';
+protected $description = 'Send a marketing email to a user';
 ```
 
 ```php

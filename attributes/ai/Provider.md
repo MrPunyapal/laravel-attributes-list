@@ -15,10 +15,10 @@ use Laravel\Ai\Enums\Lab;
 use Laravel\Ai\Promptable;
 
 // Before:
-// public function provider(): Lab
-// {
-//     return Lab::Anthropic;
-// }
+public function provider(): Lab
+{
+    return Lab::Anthropic;
+}
 ```
 
 ```php

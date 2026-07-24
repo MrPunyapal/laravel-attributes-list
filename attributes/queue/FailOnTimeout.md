@@ -14,7 +14,7 @@ use Illuminate\Queue\Attributes\FailOnTimeout;
 use Illuminate\Queue\Attributes\Timeout;
 
 // Before:
-// public $failOnTimeout = true;
+public $failOnTimeout = true;
 ```
 
 ```php

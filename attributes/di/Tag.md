@@ -12,7 +12,7 @@
 use Illuminate\Container\Attributes\Tag;
 
 // Before (service provider):
-// $reporters = app()->tagged('reports');
+$reporters = app()->tagged('reports');
 ```
 
 ```php

@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// public function scopePublished(Builder $query): void
-// {
-//     $query->where('is_published', true);
-// }
+public function scopePublished(Builder $query): void
+{
+    $query->where('is_published', true);
+}
 ```
 
 ```php

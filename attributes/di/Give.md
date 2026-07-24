@@ -12,9 +12,9 @@
 use Illuminate\Container\Attributes\Give;
 
 // Before (service provider):
-// $this->app->when(NotificationService::class)
-//     ->needs('$fromEmail')
-//     ->give('notifications@example.com');
+$this->app->when(NotificationService::class)
+    ->needs('$fromEmail')
+    ->give('notifications@example.com');
 ```
 
 ```php

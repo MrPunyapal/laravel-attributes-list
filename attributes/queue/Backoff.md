@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Backoff;
 
 // Before:
-// public $backoff = 10;
+public $backoff = 10;
 ```
 
 ```php

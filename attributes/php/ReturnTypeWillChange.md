@@ -12,7 +12,7 @@ Use this when overriding a PHP internal method but you cannot yet declare the re
 
 ```php
 // Before PHP 8.1: overriding internal methods without compatible return types
-// emitted deprecation notices with no clean way to silence them
+emitted deprecation notices with no clean way to silence them
 ```
 
 ```php

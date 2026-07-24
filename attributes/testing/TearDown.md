@@ -12,7 +12,7 @@
 use Illuminate\Foundation\Testing\Attributes\TearDown;
 
 // Before (naming convention):
-// public function tearDownCleansUpFiles(): void
+public function tearDownCleansUpFiles(): void
 ```
 
 ```php

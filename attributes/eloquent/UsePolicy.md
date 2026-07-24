@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Policies\PostPolicy;
 
 // Before (AuthServiceProvider):
-// protected $policies = [
-//     Post::class => PostPolicy::class,
-// ];
+protected $policies = [
+    Post::class => PostPolicy::class,
+];
 ```
 
 ```php

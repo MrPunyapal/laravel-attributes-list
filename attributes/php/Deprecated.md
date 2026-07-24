@@ -10,7 +10,7 @@
 
 ```php
 // Before PHP 8.4:
-// /** @deprecated use newMethod() instead */
+/** @deprecated use newMethod() instead */
 ```
 
 ```php

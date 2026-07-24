@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Tries;
 
 // Before:
-// public $tries = 3;
+public $tries = 3;
 ```
 
 ```php

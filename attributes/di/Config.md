@@ -12,8 +12,8 @@
 use Illuminate\Container\Attributes\Config;
 
 // Before:
-// $fromAddress = config('mail.from.address');
-// $fromName = config('mail.from.name');
+$fromAddress = config('mail.from.address');
+$fromName = config('mail.from.name');
 ```
 
 ```php

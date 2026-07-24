@@ -14,10 +14,10 @@ use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Promptable;
 
 // Before:
-// public function timeout(): int
-// {
-//     return 120;
-// }
+public function timeout(): int
+{
+    return 120;
+}
 ```
 
 ```php

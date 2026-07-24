@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\UniqueFor;
 
 // Before:
-// public $uniqueFor = 3600;
+public $uniqueFor = 3600;
 ```
 
 ```php

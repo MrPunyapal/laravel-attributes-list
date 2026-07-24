@@ -12,7 +12,7 @@
 use Illuminate\Container\Attributes\Scoped;
 
 // Before (service provider):
-// $this->app->scoped(RequestContext::class);
+$this->app->scoped(RequestContext::class);
 ```
 
 ```php

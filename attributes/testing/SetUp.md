@@ -12,7 +12,7 @@
 use Illuminate\Foundation\Testing\Attributes\SetUp;
 
 // Before (naming convention):
-// public function setUpCreatesUser(): void
+public function setUpCreatesUser(): void
 ```
 
 ```php

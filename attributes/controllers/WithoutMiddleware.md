@@ -12,10 +12,10 @@
 use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
 
 // Before (controller constructor):
-// public function __construct()
-// {
-//     $this->withoutMiddleware('auth');
-// }
+public function __construct()
+{
+    $this->withoutMiddleware('auth');
+}
 ```
 
 ```php

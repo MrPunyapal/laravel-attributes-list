@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Timeout;
 
 // Before:
-// public $timeout = 120;
+public $timeout = 120;
 ```
 
 ```php

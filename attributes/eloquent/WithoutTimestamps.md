@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// public $timestamps = false;
+public $timestamps = false;
 ```
 
 ```php

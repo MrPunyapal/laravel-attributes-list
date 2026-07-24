@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Initialize;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// trait naming convention initializeTraitName() was auto-called
+trait naming convention initializeTraitName() was auto-called
 ```
 
 ```php

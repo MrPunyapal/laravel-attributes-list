@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Contracts\Cache\Repository;
 
 // Before (service provider):
-// $this->app->when(ProductService::class)
-//     ->needs(Repository::class)
-//     ->give(fn () => Cache::store('redis'));
+$this->app->when(ProductService::class)
+    ->needs(Repository::class)
+    ->give(fn () => Cache::store('redis'));
 ```
 
 ```php

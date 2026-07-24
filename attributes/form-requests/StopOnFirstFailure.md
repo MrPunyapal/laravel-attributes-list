@@ -13,7 +13,7 @@ use Illuminate\Foundation\Http\Attributes\StopOnFirstFailure;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Before:
-// protected $stopOnFirstFailure = true;
+protected $stopOnFirstFailure = true;
 ```
 
 ```php

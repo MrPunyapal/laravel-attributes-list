@@ -14,10 +14,10 @@ use Illuminate\Queue\Attributes\WithoutRelations;
 use App\Models\User;
 
 // Before:
-// public function __construct(User $user)
-// {
-//     $this->user = $user->withoutRelations();
-// }
+public function __construct(User $user)
+{
+    $this->user = $user->withoutRelations();
+}
 ```
 
 ```php

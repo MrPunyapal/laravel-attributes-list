@@ -13,9 +13,9 @@ use Illuminate\Container\Attributes\Storage;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
 // Before (service provider):
-// $this->app->when(AvatarService::class)
-//     ->needs(Filesystem::class)
-//     ->give(fn () => Storage::disk('s3'));
+$this->app->when(AvatarService::class)
+    ->needs(Filesystem::class)
+    ->give(fn () => Storage::disk('s3'));
 ```
 
 ```php

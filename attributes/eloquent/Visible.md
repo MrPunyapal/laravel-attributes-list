@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Visible;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $visible = ['id', 'name', 'email'];
+protected $visible = ['id', 'name', 'email'];
 ```
 
 ```php

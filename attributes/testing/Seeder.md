@@ -15,7 +15,7 @@ use Tests\TestCase;
 use Database\Seeders\OrderSeeder;
 
 // Before:
-// $this->seed(OrderSeeder::class);
+$this->seed(OrderSeeder::class);
 ```
 
 ```php

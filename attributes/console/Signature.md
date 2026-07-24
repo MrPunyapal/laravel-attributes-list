@@ -13,7 +13,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 // Before:
-// protected $signature = 'mail:send {user} {--queue}';
+protected $signature = 'mail:send {user} {--queue}';
 ```
 
 ```php

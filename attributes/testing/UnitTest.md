@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\Attributes\UnitTest;
 use Tests\TestCase;
 
 // Before:
-// No equivalent — unit tests mixed in feature test classes always booted the framework
+No equivalent — unit tests mixed in feature test classes always booted the framework
 ```
 
 ```php

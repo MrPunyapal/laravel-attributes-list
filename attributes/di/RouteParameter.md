@@ -13,7 +13,7 @@ use Illuminate\Container\Attributes\RouteParameter;
 use App\Models\Post;
 
 // Before:
-// $post = request()->route('post');
+$post = request()->route('post');
 ```
 
 ```php

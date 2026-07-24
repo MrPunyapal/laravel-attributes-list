@@ -13,7 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Attributes\PreserveKeys;
 
 // Before:
-// public $preserveKeys = true;
+public $preserveKeys = true;
 ```
 
 ```php

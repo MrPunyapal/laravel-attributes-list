@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $appends = ['full_name', 'is_admin'];
+protected $appends = ['full_name', 'is_admin'];
 ```
 
 ```php

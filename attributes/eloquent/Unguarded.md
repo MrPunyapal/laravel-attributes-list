@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $guarded = [];
+protected $guarded = [];
 ```
 
 ```php

@@ -14,7 +14,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 // Before:
-// protected $aliases = ['ms', 'send-mail'];
+protected $aliases = ['ms', 'send-mail'];
 ```
 
 ```php

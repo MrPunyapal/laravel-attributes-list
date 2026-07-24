@@ -13,7 +13,7 @@ use Illuminate\Container\Attributes\Authenticated;
 use App\Models\User;
 
 // Before:
-// $user = Auth::user();
+$user = Auth::user();
 ```
 
 ```php

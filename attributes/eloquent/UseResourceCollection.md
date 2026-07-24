@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\PostCollection;
 
 // Before:
-// public function toResourceCollection($resource): PostCollection
-// {
-//     return new PostCollection($resource);
-// }
+public function toResourceCollection($resource): PostCollection
+{
+    return new PostCollection($resource);
+}
 ```
 
 ```php

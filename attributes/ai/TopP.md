@@ -14,10 +14,10 @@ use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Promptable;
 
 // Before:
-// public function topP(): float
-// {
-//     return 0.9;
-// }
+public function topP(): float
+{
+    return 0.9;
+}
 ```
 
 ```php

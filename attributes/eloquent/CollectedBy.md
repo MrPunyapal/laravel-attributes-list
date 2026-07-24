@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Collections\PostCollection;
 
 // Before:
-// public function newCollection(array $models = [])
-// {
-//     return new PostCollection($models);
-// }
+public function newCollection(array $models = [])
+{
+    return new PostCollection($models);
+}
 ```
 
 ```php

@@ -14,7 +14,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 // Before:
-// protected $help = 'Dispatches a marketing email to the given user ID.';
+protected $help = 'Dispatches a marketing email to the given user ID.';
 ```
 
 ```php

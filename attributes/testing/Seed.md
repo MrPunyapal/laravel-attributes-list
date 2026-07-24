@@ -14,7 +14,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 // Before:
-// $this->seed();
+$this->seed();
 ```
 
 ```php

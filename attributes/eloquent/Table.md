@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $table = 'posts';
-// protected $primaryKey = 'post_id';
-// protected $keyType = 'string';
-// public $incrementing = false;
+protected $table = 'posts';
+protected $primaryKey = 'post_id';
+protected $keyType = 'string';
+public $incrementing = false;
 ```
 
 ```php

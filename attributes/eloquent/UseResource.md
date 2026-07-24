@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\PostResource;
 
 // Before:
-// public function toResource(): PostResource
-// {
-//     return new PostResource($this);
-// }
+public function toResource(): PostResource
+{
+    return new PostResource($this);
+}
 ```
 
 ```php

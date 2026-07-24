@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Delay;
 
 // Before:
-// public $delay = 60;
+public $delay = 60;
 ```
 
 ```php

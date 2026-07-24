@@ -14,7 +14,7 @@ use Illuminate\Queue\Attributes\MaxExceptions;
 use Illuminate\Queue\Attributes\Tries;
 
 // Before:
-// public $maxExceptions = 3;
+public $maxExceptions = 3;
 ```
 
 ```php

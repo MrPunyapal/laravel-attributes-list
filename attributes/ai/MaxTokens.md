@@ -14,10 +14,10 @@ use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Promptable;
 
 // Before:
-// public function maxTokens(): int
-// {
-//     return 4096;
-// }
+public function maxTokens(): int
+{
+    return 4096;
+}
 ```
 
 ```php

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\Tenant;
 
 // Before:
-// $tenant = $request->attributes->get('tenant');
+$tenant = $request->attributes->get('tenant');
 ```
 
 ```php

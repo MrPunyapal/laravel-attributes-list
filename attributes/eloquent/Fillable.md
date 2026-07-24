@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $fillable = ['name', 'email', 'password'];
+protected $fillable = ['name', 'email', 'password'];
 ```
 
 ```php

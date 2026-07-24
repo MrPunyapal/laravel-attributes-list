@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Connection;
 
 // Before (service provider):
-// $this->app->when(ReportService::class)
-//     ->needs(Connection::class)
-//     ->give(fn () => DB::connection('pgsql'));
+$this->app->when(ReportService::class)
+    ->needs(Connection::class)
+    ->give(fn () => DB::connection('pgsql'));
 ```
 
 ```php

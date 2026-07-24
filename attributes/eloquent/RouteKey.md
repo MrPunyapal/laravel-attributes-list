@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\Attributes\RouteKey;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// public function getRouteKeyName(): string
-// {
-//     return 'slug';
-// }
+public function getRouteKeyName(): string
+{
+    return 'slug';
+}
 ```
 
 ```php

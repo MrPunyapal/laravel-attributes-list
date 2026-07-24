@@ -14,7 +14,7 @@ use Illuminate\Console\Attributes\Usage;
 use Illuminate\Console\Command;
 
 // Before:
-// protected $usages = ['mail:send 1', 'mail:send 1 --queue'];
+protected $usages = ['mail:send 1', 'mail:send 1 --queue'];
 ```
 
 ```php

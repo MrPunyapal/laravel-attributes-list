@@ -14,7 +14,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
 // Before:
-// protected $hidden = true;
+protected $hidden = true;
 ```
 
 ```php

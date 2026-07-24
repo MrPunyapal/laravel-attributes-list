@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 use Database\Factories\PostFactory;
 
 // Before:
-// protected static function newFactory(): Factory
-// {
-//     return PostFactory::new();
-// }
+protected static function newFactory(): Factory
+{
+    return PostFactory::new();
+}
 ```
 
 ```php

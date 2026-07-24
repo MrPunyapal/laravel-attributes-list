@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DebounceFor;
 
 // Before:
-// No built-in equivalent — required custom cache-based debouncing logic
+No built-in equivalent — required custom cache-based debouncing logic
 ```
 
 ```php

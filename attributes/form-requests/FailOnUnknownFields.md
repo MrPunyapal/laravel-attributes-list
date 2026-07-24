@@ -13,7 +13,7 @@ use Illuminate\Foundation\Http\Attributes\FailOnUnknownFields;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Before:
-// No direct property equivalent — required custom validation logic
+No direct property equivalent — required custom validation logic
 ```
 
 ```php

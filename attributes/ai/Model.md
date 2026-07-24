@@ -14,10 +14,10 @@ use Laravel\Ai\Contracts\Agent;
 use Laravel\Ai\Promptable;
 
 // Before:
-// public function model(): string
-// {
-//     return 'claude-haiku-4-5-20251001';
-// }
+public function model(): string
+{
+    return 'claude-haiku-4-5-20251001';
+}
 ```
 
 ```php

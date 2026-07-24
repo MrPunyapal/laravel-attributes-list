@@ -12,11 +12,11 @@
 use Illuminate\Routing\Attributes\Controllers\Middleware;
 
 // Before (controller constructor):
-// public function __construct()
-// {
-//     $this->middleware('auth');
-//     $this->middleware('throttle:60,1')->only('store');
-// }
+public function __construct()
+{
+    $this->middleware('auth');
+    $this->middleware('throttle:60,1')->only('store');
+}
 ```
 
 ```php

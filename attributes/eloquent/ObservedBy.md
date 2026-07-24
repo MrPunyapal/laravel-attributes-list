@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Observers\UserObserver;
 
 // Before:
-// protected static function booted(): void
-// {
-//     static::observe(UserObserver::class);
-// }
+protected static function booted(): void
+{
+    static::observe(UserObserver::class);
+}
 ```
 
 ```php

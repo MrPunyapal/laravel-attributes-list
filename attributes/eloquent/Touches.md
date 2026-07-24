@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Touches;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $touches = ['post'];
+protected $touches = ['post'];
 ```
 
 ```php

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// public $incrementing = false;
+public $incrementing = false;
 ```
 
 ```php

@@ -12,7 +12,7 @@
 use Illuminate\Container\Attributes\Singleton;
 
 // Before (service provider):
-// $this->app->singleton(ConfigCache::class);
+$this->app->singleton(ConfigCache::class);
 ```
 
 ```php

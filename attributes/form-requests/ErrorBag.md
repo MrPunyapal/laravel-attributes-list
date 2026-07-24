@@ -13,7 +13,7 @@ use Illuminate\Foundation\Http\Attributes\ErrorBag;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Before:
-// protected $errorBag = 'login';
+protected $errorBag = 'login';
 ```
 
 ```php

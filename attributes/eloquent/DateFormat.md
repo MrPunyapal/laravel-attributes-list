@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\DateFormat;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $dateFormat = 'U';
+protected $dateFormat = 'U';
 ```
 
 ```php

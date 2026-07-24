@@ -12,7 +12,7 @@
 use Illuminate\Routing\Attributes\Controllers\Authorize;
 
 // Before:
-// $this->authorize('create', Comment::class);
+$this->authorize('create', Comment::class);
 ```
 
 ```php

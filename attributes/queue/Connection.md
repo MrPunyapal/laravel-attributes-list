@@ -13,7 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\Connection;
 
 // Before:
-// public $connection = 'redis';
+public $connection = 'redis';
 ```
 
 ```php

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Model;
 
 // Before:
-// protected $hidden = ['password', 'remember_token'];
+protected $hidden = ['password', 'remember_token'];
 ```
 
 ```php
