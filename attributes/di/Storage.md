@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Storage`
 
-**Added in:** Laravel 11.0
+**Added in:** Laravel 11.20
 
 ## Usage
 

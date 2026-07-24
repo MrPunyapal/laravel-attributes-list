@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Cache`
 
-**Added in:** Laravel 11.0
+**Added in:** Laravel 11.20
 
 ## Usage
 

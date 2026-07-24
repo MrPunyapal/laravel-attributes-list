@@ -4,7 +4,7 @@
 
 **Namespace:** `Laravel\Ai\Attributes\Model`
 
-**Added in:** `laravel/ai` v0.1+
+**Added in:** `laravel/ai` v0.1.3
 
 ## Usage
 

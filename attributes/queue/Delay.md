@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\Delay`
 
-**Added in:** Laravel 13.0
+**Added in:** Laravel 13.4
 
 ## Usage
 

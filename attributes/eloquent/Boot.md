@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Boot`
 
-**Added in:** Laravel 12.x
+**Added in:** Laravel 12.22
 
 ## Usage
 

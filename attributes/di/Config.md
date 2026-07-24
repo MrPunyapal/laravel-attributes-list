@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Config`
 
-**Added in:** Laravel 11.0
+**Added in:** Laravel 11.14
 
 ## Usage
 

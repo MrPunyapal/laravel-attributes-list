@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\CollectedBy`
 
-**Added in:** Laravel 12.x
+**Added in:** Laravel 11.28
 
 ## Usage
 

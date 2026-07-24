@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\UseResource`
 
-**Added in:** Laravel 12.x
+**Added in:** Laravel 12.29
 
 ## Usage
 

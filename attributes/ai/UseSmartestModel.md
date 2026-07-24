@@ -4,7 +4,7 @@
 
 **Namespace:** `Laravel\Ai\Attributes\UseSmartestModel`
 
-**Added in:** `laravel/ai` v0.7+
+**Added in:** `laravel/ai` v0.1+
 
 ## Usage
 

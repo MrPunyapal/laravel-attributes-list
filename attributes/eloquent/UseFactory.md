@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\UseFactory`
 
-**Added in:** Laravel 11.x
+**Added in:** Laravel 11.39
 
 ## Usage
 

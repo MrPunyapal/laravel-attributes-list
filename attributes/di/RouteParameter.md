@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Container\Attributes\RouteParameter`
 
-**Added in:** Laravel 11.0
+**Added in:** Laravel 11.28
 
 ## Usage
 

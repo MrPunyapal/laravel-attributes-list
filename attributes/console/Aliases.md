@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Console\Attributes\Aliases`
 
-**Added in:** Laravel 13.0
+**Added in:** Laravel 13.2
 
 ## Usage
 

@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\UsePolicy`
 
-**Added in:** Laravel 12.x
+**Added in:** Laravel 12.18
 
 ## Usage
 

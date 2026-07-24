@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Tag`
 
-**Added in:** Laravel 11.0
+**Added in:** Laravel 11.23
 
 ## Usage
 

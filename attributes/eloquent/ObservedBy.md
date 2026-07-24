@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\ObservedBy`
 
-**Added in:** Laravel 11.x
+**Added in:** Laravel 10.44
 
 ## Usage
 

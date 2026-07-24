@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Container\Attributes\Give`
 
-**Added in:** Laravel 12.16
+**Added in:** Laravel 12.17
 
 ## Usage
 

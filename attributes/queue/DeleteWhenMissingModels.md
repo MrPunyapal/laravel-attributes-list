@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\DeleteWhenMissingModels`
 
-**Added in:** Laravel 11.x
+**Added in:** Laravel 11.3
 
 ## Usage
 

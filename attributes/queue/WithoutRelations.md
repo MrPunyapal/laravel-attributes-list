@@ -4,7 +4,7 @@
 
 **Namespace:** `Illuminate\Queue\Attributes\WithoutRelations`
 
-**Added in:** Laravel 10.16
+**Added in:** Laravel 10.19
 
 ## Usage
 
