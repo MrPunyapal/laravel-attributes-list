@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - README.md
-      - 'features/**'
+      - 'attributes/**'
       - build-docs.php
       - composer.json
   workflow_dispatch:
