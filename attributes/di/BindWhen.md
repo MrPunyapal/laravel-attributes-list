@@ -4,7 +4,8 @@
 
 **Namespace:** `Illuminate\Container\Attributes\BindWhen`
 
-**Added in:** Laravel 13.22
+**Added in:** Laravel 13.22  
+**Note:** Closures in attribute arguments require PHP 8.5.
 
 ## Usage
 
@@ -46,8 +47,6 @@ class StripePaymentGateway implements PaymentGateway
 ```
 
 The callback receives the container so the condition can depend on configuration, feature flags, or any value resolvable at runtime. `#[BindWhen]` is repeatable; conditional bindings are evaluated in declaration order and can be placed before a default `#[Bind]` fallback.
-
-> **Note:** Closures in attribute arguments require PHP 8.5.
 
 ---
 
