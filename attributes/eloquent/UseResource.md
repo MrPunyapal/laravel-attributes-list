@@ -29,6 +29,7 @@ use App\Http\Resources\PostResource;
 #[UseResource(PostResource::class)]
 class Post extends Model
 {
+    //
 }
 ```
 

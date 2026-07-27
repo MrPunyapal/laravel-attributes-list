@@ -38,6 +38,7 @@ Exponential backoff using an array:
 #[Backoff([10, 30, 60])]
 class ProcessPodcast implements ShouldQueue
 {
+    //
 }
 ```
 

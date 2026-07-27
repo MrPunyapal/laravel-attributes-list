@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Connection('pgsql')]
 class Order extends Model
 {
+    //
 }
 ```
 
@@ -35,6 +36,7 @@ use App\Enums\DatabaseConnection;
 #[Connection(DatabaseConnection::Pgsql)]
 class Order extends Model
 {
+    //
 }
 ```
 

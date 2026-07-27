@@ -40,6 +40,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 #[Delay(30)]
 class WelcomeEmail extends Mailable implements ShouldQueue
 {
+    //
 }
 ```
 

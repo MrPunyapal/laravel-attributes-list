@@ -28,6 +28,7 @@ use App\Policies\PostPolicy;
 #[UsePolicy(PostPolicy::class)]
 class Post extends Model
 {
+    //
 }
 ```
 

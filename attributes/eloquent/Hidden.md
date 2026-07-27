@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Hidden(['password', 'remember_token'])]
 class User extends Model
 {
+    //
 }
 ```
 
@@ -33,6 +34,7 @@ Variadic form is also supported:
 #[Hidden('password', 'remember_token')]
 class User extends Model
 {
+    //
 }
 ```
 

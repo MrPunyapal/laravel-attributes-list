@@ -20,7 +20,10 @@ class MyCustomAttribute
 }
 
 #[MyCustomAttribute('example')]
-class SomeClass {}
+class SomeClass
+{
+    //
+}
 ```
 
 You can restrict where the attribute is allowed to be used:

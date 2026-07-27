@@ -29,6 +29,7 @@ use App\Builders\PostBuilder;
 #[UseEloquentBuilder(PostBuilder::class)]
 class Post extends Model
 {
+    //
 }
 ```
 

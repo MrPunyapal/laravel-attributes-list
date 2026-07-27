@@ -29,6 +29,7 @@ use App\Collections\PostCollection;
 #[CollectedBy(PostCollection::class)]
 class Post extends Model
 {
+    //
 }
 ```
 

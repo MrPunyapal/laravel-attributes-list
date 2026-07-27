@@ -29,6 +29,7 @@ use App\Http\Resources\PostCollection;
 #[UseResourceCollection(PostCollection::class)]
 class Post extends Model
 {
+    //
 }
 ```
 

@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Unguarded]
 class Post extends Model
 {
+    //
 }
 ```
 

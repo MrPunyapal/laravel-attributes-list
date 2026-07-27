@@ -29,6 +29,7 @@ use App\Observers\UserObserver;
 #[ObservedBy([UserObserver::class])]
 class User extends Model
 {
+    //
 }
 ```
 

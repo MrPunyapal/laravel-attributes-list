@@ -42,6 +42,7 @@ Variadic form is also supported:
 #[Touches('post', 'user')]
 class Comment extends Model
 {
+    //
 }
 ```
 

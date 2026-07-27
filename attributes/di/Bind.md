@@ -26,6 +26,7 @@ interface PaymentGateway
 
 class StripeGateway implements PaymentGateway
 {
+    //
 }
 ```
 

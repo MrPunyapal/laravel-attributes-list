@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[WithoutTimestamps]
 class EventLog extends Model
 {
+    //
 }
 ```
 

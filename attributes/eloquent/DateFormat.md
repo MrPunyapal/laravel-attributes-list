@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[DateFormat('U')]
 class Event extends Model
 {
+    //
 }
 ```
 
@@ -32,6 +33,7 @@ class Event extends Model
 #[DateFormat('Y-m-d')]
 class Appointment extends Model
 {
+    //
 }
 ```
 

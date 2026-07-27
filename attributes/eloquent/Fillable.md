@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['name', 'email', 'password'])]
 class User extends Model
 {
+    //
 }
 ```
 
@@ -33,6 +34,7 @@ Variadic form is also supported:
 #[Fillable('name', 'email', 'password')]
 class User extends Model
 {
+    //
 }
 ```
 

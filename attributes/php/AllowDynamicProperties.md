@@ -30,9 +30,15 @@ $session->extraData = 'some value'; // No deprecation notice
 
 ```php
 #[\AllowDynamicProperties]
-class Base {}
+class Base
+{
+    //
+}
 
-class Child extends Base {}
+class Child extends Base
+{
+    //
+}
 
 $child = new Child();
 $child->dynamic = true; // Also allowed

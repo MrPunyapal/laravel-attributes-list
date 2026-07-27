@@ -40,6 +40,7 @@ With route parameters:
 #[RedirectToRoute('posts.edit', ['post' => 1])]
 class UpdatePostRequest extends FormRequest
 {
+    //
 }
 ```
 

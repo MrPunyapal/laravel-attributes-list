@@ -39,6 +39,7 @@ use App\Enums\QueueConnection;
 #[Connection(QueueConnection::Redis)]
 class ProcessPodcast implements ShouldQueue
 {
+    //
 }
 ```
 

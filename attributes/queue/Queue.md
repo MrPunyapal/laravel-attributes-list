@@ -39,6 +39,7 @@ use App\Enums\QueueName;
 #[Queue(QueueName::Podcasts)]
 class ProcessPodcast implements ShouldQueue
 {
+    //
 }
 ```
 

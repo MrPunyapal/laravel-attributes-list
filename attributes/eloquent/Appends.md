@@ -37,6 +37,7 @@ Variadic form is also supported:
 #[Appends('full_name', 'is_admin')]
 class User extends Model
 {
+    //
 }
 ```
 

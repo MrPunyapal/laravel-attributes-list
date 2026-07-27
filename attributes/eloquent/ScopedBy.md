@@ -32,6 +32,7 @@ use App\Models\Scopes\PublishedScope;
 #[ScopedBy([ActiveScope::class, PublishedScope::class])]
 class Post extends Model
 {
+    //
 }
 ```
 

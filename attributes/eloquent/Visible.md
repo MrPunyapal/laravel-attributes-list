@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Visible(['id', 'name', 'email'])]
 class User extends Model
 {
+    //
 }
 ```
 
@@ -33,6 +34,7 @@ Variadic form is also supported:
 #[Visible('id', 'name', 'email')]
 class User extends Model
 {
+    //
 }
 ```
 
