@@ -122,6 +122,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[Auth]`](attributes/di/Auth.md) — Inject an auth guard instance
 * [`#[Authenticated]`](attributes/di/Authenticated.md) — Inject the currently authenticated user
 * [`#[Bind]`](attributes/di/Bind.md) — Contextually bind to a specific implementation
+* [`#[BindWhen]`](attributes/di/BindWhen.md) — Conditionally bind to a specific implementation
 * [`#[Cache]`](attributes/di/Cache.md) — Inject a cache store instance
 * [`#[Config]`](attributes/di/Config.md) — Inject a configuration value
 * [`#[Context]`](attributes/di/Context.md) — Inject a value from the application context
