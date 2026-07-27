@@ -9,11 +9,23 @@
 ## Usage
 
 ```php
+// Before (service provider):
+$this->app->bind(PaymentGateway::class, function ($container) {
+    return $container->make('config')->get('features.payments.beta')
+        ? $container->make(BetaPaymentGateway::class)
+        : $container->make(StripePaymentGateway::class);
+});
+```
+
+```php
+use Illuminate\Container\Attributes\Bind;
 use Illuminate\Container\Attributes\BindWhen;
 
+// After:
 #[BindWhen(BetaPaymentGateway::class, static function ($container) {
     return $container->make('config')->get('features.payments.beta');
 })]
+#[Bind(StripePaymentGateway::class)]
 interface PaymentGateway
 {
 }
