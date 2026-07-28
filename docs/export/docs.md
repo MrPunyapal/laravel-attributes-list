@@ -1,0 +1,4471 @@
+# Laravel PHP Attributes List
+
+> A curated list of PHP Attributes available in Laravel Framework.
+
+# Laravel PHP Attributes List
+
+A curated list of PHP Attributes available in Laravel Framework.
+
+---
+
+# Table
+
+> Define database table
+
+# `#[Table]`
+
+**Description:** Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Table`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $table = 'posts';
+protected $primaryKey = 'post_id';
+protected $keyType = 'string';
+public $incrementing = false;
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Table;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Table('posts', key: 'post_id', keyType: 'string', incrementing: false, timestamps: false, dateFormat: 'Y-m-d H:i:s')]
+class Post extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Fillable
+
+> Define mass assignable attributes
+
+# `#[Fillable]`
+
+**Description:** Defines the mass assignable attributes for an Eloquent model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Fillable`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $fillable = ['name', 'email', 'password'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Fillable(['name', 'email', 'password'])]
+class User extends Model
+{
+    //
+}
+```
+
+Variadic form is also supported:
+
+```php
+#[Fillable('name', 'email', 'password')]
+class User extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Guarded
+
+> Define guarded attributes
+
+# `#[Guarded]`
+
+**Description:** Defines the attributes that are not mass assignable for an Eloquent model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Guarded`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Guarded;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $guarded = ['id', 'is_admin'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Guarded;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Guarded(['id', 'is_admin'])]
+class User extends Model
+{
+    //
+}
+```
+
+Variadic form is also supported:
+
+```php
+#[Guarded('id', 'is_admin')]
+class User extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Hidden
+
+> Hide attributes from serialization
+
+# `#[Hidden]`
+
+**Description:** Hides the specified attributes from model serialization (toArray / toJson).
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Hidden`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $hidden = ['password', 'remember_token'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Hidden(['password', 'remember_token'])]
+class User extends Model
+{
+    //
+}
+```
+
+Variadic form is also supported:
+
+```php
+#[Hidden('password', 'remember_token')]
+class User extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Visible
+
+> Define visible attributes
+
+# `#[Visible]`
+
+**Description:** Defines the attributes that should be visible in model serialization (toArray / toJson).
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Visible`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Visible;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $visible = ['id', 'name', 'email'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Visible;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Visible(['id', 'name', 'email'])]
+class User extends Model
+{
+    //
+}
+```
+
+Variadic form is also supported:
+
+```php
+#[Visible('id', 'name', 'email')]
+class User extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Appends
+
+> Append accessors to arrays
+
+# `#[Appends]`
+
+**Description:** Appends accessor attributes to the model's array and JSON representation.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Appends`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $appends = ['full_name', 'is_admin'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Appends(['full_name', 'is_admin'])]
+class User extends Model
+{
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+}
+```
+
+Variadic form is also supported:
+
+```php
+#[Appends('full_name', 'is_admin')]
+class User extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Touches
+
+> Touch related models
+
+# `#[Touches]`
+
+**Description:** Defines the relationships whose parent model's `updated_at` timestamp should be updated when the model is saved.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Touches`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Touches;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $touches = ['post'];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Touches;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Touches(['post', 'user'])]
+class Comment extends Model
+{
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+Variadic form is also supported:
+
+```php
+#[Touches('post', 'user')]
+class Comment extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Connection
+
+> Specify database connection
+
+# `#[Connection]`
+
+**Description:** Specifies the database connection to use for the Eloquent model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Connection`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Connection;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $connection = 'pgsql';
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Connection;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Connection('pgsql')]
+class Order extends Model
+{
+    //
+}
+```
+
+Enum values are also supported:
+
+```php
+use App\Enums\DatabaseConnection;
+
+#[Connection(DatabaseConnection::Pgsql)]
+class Order extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Unguarded
+
+> Disable mass assignment protection
+
+# `#[Unguarded]`
+
+**Description:** Disables mass assignment protection for the model, allowing all attributes to be mass assigned.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Unguarded`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $guarded = [];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[Unguarded]
+class Post extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# CollectedBy
+
+> Custom collection class
+
+# `#[CollectedBy]`
+
+**Description:** Specifies a custom Eloquent collection class to use when retrieving multiple models.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\CollectedBy`
+
+**Added in:** Laravel 11.28
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Collections\PostCollection;
+
+// Before:
+public function newCollection(array $models = [])
+{
+    return new PostCollection($models);
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\CollectedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Collections\PostCollection;
+
+// After:
+#[CollectedBy(PostCollection::class)]
+class Post extends Model
+{
+    //
+}
+```
+
+```php
+// App\Collections\PostCollection
+use Illuminate\Database\Eloquent\Collection;
+
+class PostCollection extends Collection
+{
+    public function published(): static
+    {
+        return $this->filter(fn ($post) => $post->is_published);
+    }
+}
+```
+
+---
+
+---
+
+# WithoutTimestamps
+
+> Disable timestamps
+
+# `#[WithoutTimestamps]`
+
+**Description:** Disables automatic `created_at` and `updated_at` timestamp management for the model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\WithoutTimestamps`
+
+**Added in:** Laravel 13.2
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+public $timestamps = false;
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[WithoutTimestamps]
+class EventLog extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# WithoutIncrementing
+
+> Disable auto-incrementing IDs
+
+# `#[WithoutIncrementing]`
+
+**Description:** Disables auto-incrementing primary keys for the model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\WithoutIncrementing`
+
+**Added in:** Laravel 13.2
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+public $incrementing = false;
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[WithoutIncrementing]
+class ApiToken extends Model
+{
+    protected $keyType = 'string';
+}
+```
+
+---
+
+---
+
+# ScopedBy
+
+> Apply global scope(s) to the model
+
+# `#[ScopedBy]`
+
+**Description:** Applies one or more global scopes to the model automatically.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\ScopedBy`
+
+**Added in:** Laravel 10.44
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Scopes\ActiveScope;
+use App\Models\Scopes\PublishedScope;
+
+// Before:
+protected static function booted(): void
+{
+    static::addGlobalScope(new ActiveScope());
+    static::addGlobalScope(new PublishedScope());
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Scopes\ActiveScope;
+use App\Models\Scopes\PublishedScope;
+
+// After:
+#[ScopedBy([ActiveScope::class, PublishedScope::class])]
+class Post extends Model
+{
+    //
+}
+```
+
+```php
+// App\Models\Scopes\ActiveScope
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+
+class ActiveScope implements Scope
+{
+    public function apply(Builder $builder, Model $model): void
+    {
+        $builder->where('is_active', true);
+    }
+}
+```
+
+```php
+// App\Models\Scopes\PublishedScope
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+
+class PublishedScope implements Scope
+{
+    public function apply(Builder $builder, Model $model): void
+    {
+        $builder->whereNotNull('published_at');
+    }
+}
+```
+
+---
+
+---
+
+# ObservedBy
+
+> Register model observer(s)
+
+# `#[ObservedBy]`
+
+**Description:** Registers one or more observer classes for the Eloquent model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\ObservedBy`
+
+**Added in:** Laravel 10.44
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\UserObserver;
+
+// Before:
+protected static function booted(): void
+{
+    static::observe(UserObserver::class);
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Model;
+use App\Observers\UserObserver;
+
+// After:
+#[ObservedBy([UserObserver::class])]
+class User extends Model
+{
+    //
+}
+```
+
+```php
+// App\Observers\UserObserver
+class UserObserver
+{
+    public function created(User $user): void
+    {
+        // Send welcome email...
+    }
+
+    public function deleted(User $user): void
+    {
+        // Clean up related data...
+    }
+}
+```
+
+---
+
+---
+
+# DateFormat
+
+> Define the date format for model timestamps
+
+# `#[DateFormat]`
+
+**Description:** Defines the format used when storing and retrieving date/timestamp columns.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\DateFormat`
+
+**Added in:** Laravel 13.2
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\DateFormat;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+protected $dateFormat = 'U';
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\DateFormat;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[DateFormat('U')]
+class Event extends Model
+{
+    //
+}
+```
+
+```php
+// Using a custom date format string
+#[DateFormat('Y-m-d')]
+class Appointment extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# RouteKey
+
+> Define the route key name for route model binding
+
+# `#[RouteKey]`
+
+**Description:** Defines the route key name for an Eloquent model, replacing the default `id` column.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\RouteKey`
+
+**Added in:** Laravel 13.21
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\RouteKey;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+public function getRouteKeyName(): string
+{
+    return 'slug';
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\RouteKey;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+#[RouteKey('slug')]
+class Post extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Scope
+
+> Mark a method as a local query scope
+
+# `#[Scope]`
+
+**Description:** Marks a model method as a local query scope, allowing it to be called without the `scope` prefix.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Scope`
+
+**Added in:** Laravel 12.4
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+public function scopePublished(Builder $query): void
+{
+    $query->where('is_published', true);
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+class Post extends Model
+{
+    #[Scope]
+    public function published(Builder $query): void
+    {
+        $query->where('is_published', true);
+    }
+
+    #[Scope]
+    public function ofType(Builder $query, string $type): void
+    {
+        $query->where('type', $type);
+    }
+}
+
+// Usage:
+Post::query()->published()->ofType('article')->get();
+```
+
+---
+
+---
+
+# Boot
+
+> Mark a trait method as a model boot hook
+
+# `#[Boot]`
+
+**Description:** Marks a trait method as a model boot hook. The method is automatically called when the model class is booted.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Boot`
+
+**Added in:** Laravel 12.22
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Boot;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+trait naming convention bootTraitName() was auto-called
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Boot;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+trait HasSlug
+{
+    #[Boot]
+    public static function bootHasSlug(): void
+    {
+        static::creating(function (Model $model) {
+            $model->slug = str($model->title)->slug();
+        });
+    }
+}
+
+class Post extends Model
+{
+    use HasSlug;
+}
+```
+
+---
+
+---
+
+# Initialize
+
+> Mark a trait method as a model initialize hook
+
+# `#[Initialize]`
+
+**Description:** Marks a trait method as a model initialize hook. The method is automatically called when a new model instance is created.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\Initialize`
+
+**Added in:** Laravel 12.22
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Initialize;
+use Illuminate\Database\Eloquent\Model;
+
+// Before:
+trait naming convention initializeTraitName() was auto-called
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\Initialize;
+use Illuminate\Database\Eloquent\Model;
+
+// After:
+trait HasDefaultStatus
+{
+    #[Initialize]
+    public function initializeHasDefaultStatus(): void
+    {
+        $this->attributes['status'] ??= 'draft';
+    }
+}
+
+class Post extends Model
+{
+    use HasDefaultStatus;
+}
+```
+
+---
+
+---
+
+# UseEloquentBuilder
+
+> Specify a custom Eloquent builder class
+
+# `#[UseEloquentBuilder]`
+
+**Description:** Specifies a custom Eloquent builder class to use for the model, replacing the default builder.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder`
+
+**Added in:** Laravel 12.19
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+use App\Builders\PostBuilder;
+
+// Before:
+public function newEloquentBuilder($query)
+{
+    return new PostBuilder($query);
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+use App\Builders\PostBuilder;
+
+// After:
+#[UseEloquentBuilder(PostBuilder::class)]
+class Post extends Model
+{
+    //
+}
+```
+
+```php
+// App\Builders\PostBuilder
+use Illuminate\Database\Eloquent\Builder;
+
+class PostBuilder extends Builder
+{
+    public function published(): static
+    {
+        return $this->where('is_published', true);
+    }
+
+    public function featured(): static
+    {
+        return $this->where('is_featured', true);
+    }
+}
+
+// Usage:
+Post::query()->published()->featured()->get();
+```
+
+---
+
+---
+
+# UseFactory
+
+> Specify the factory class for the model
+
+# `#[UseFactory]`
+
+**Description:** Specifies the factory class to use for the model, overriding the default factory resolution.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\UseFactory`
+
+**Added in:** Laravel 11.39
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Model;
+use Database\Factories\PostFactory;
+
+// Before:
+protected static function newFactory(): Factory
+{
+    return PostFactory::new();
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Database\Factories\PostFactory;
+
+// After:
+#[UseFactory(PostFactory::class)]
+class Post extends Model
+{
+    use HasFactory;
+}
+```
+
+---
+
+---
+
+# UsePolicy
+
+> Specify the policy class for the model
+
+# `#[UsePolicy]`
+
+**Description:** Specifies the policy class to use for the model, overriding automatic policy discovery.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\UsePolicy`
+
+**Added in:** Laravel 12.18
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+use Illuminate\Database\Eloquent\Model;
+use App\Policies\PostPolicy;
+
+// Before (AuthServiceProvider):
+protected $policies = [
+    Post::class => PostPolicy::class,
+];
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+use Illuminate\Database\Eloquent\Model;
+use App\Policies\PostPolicy;
+
+// After:
+#[UsePolicy(PostPolicy::class)]
+class Post extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# UseResource
+
+> Specify the API resource for the model
+
+# `#[UseResource]`
+
+**Description:** Specifies the API resource class to use when transforming the model.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\UseResource`
+
+**Added in:** Laravel 12.29
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseResource;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\PostResource;
+
+// Before:
+public function toResource(): PostResource
+{
+    return new PostResource($this);
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseResource;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\PostResource;
+
+// After:
+#[UseResource(PostResource::class)]
+class Post extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# UseResourceCollection
+
+> Specify the resource collection for the model
+
+# `#[UseResourceCollection]`
+
+**Description:** Specifies the API resource collection class to use when transforming a collection of models.
+
+**Namespace:** `Illuminate\Database\Eloquent\Attributes\UseResourceCollection`
+
+**Added in:** Laravel 12.29
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseResourceCollection;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\PostCollection;
+
+// Before:
+public function toResourceCollection($resource): PostCollection
+{
+    return new PostCollection($resource);
+}
+```
+
+```php
+use Illuminate\Database\Eloquent\Attributes\UseResourceCollection;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\PostCollection;
+
+// After:
+#[UseResourceCollection(PostCollection::class)]
+class Post extends Model
+{
+    //
+}
+```
+
+---
+
+---
+
+# Connection
+
+> Define queue connection
+
+# `#[Connection]`
+
+**Description:** Defines the queue connection to dispatch the job, listener, or notification on.
+
+**Namespace:** `Illuminate\Queue\Attributes\Connection`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Connection;
+
+// Before:
+public $connection = 'redis';
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Connection;
+
+// After:
+#[Connection('redis')]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+Enum values are also supported:
+
+```php
+use App\Enums\QueueConnection;
+
+#[Connection(QueueConnection::Redis)]
+class ProcessPodcast implements ShouldQueue
+{
+    //
+}
+```
+
+---
+
+---
+
+# Queue
+
+> Define queue name
+
+# `#[Queue]`
+
+**Description:** Defines the queue name to dispatch the job, listener, or notification onto.
+
+**Namespace:** `Illuminate\Queue\Attributes\Queue`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Queue;
+
+// Before:
+public $queue = 'podcasts';
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Queue;
+
+// After:
+#[Queue('podcasts')]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+Enum values are also supported:
+
+```php
+use App\Enums\QueueName;
+
+#[Queue(QueueName::Podcasts)]
+class ProcessPodcast implements ShouldQueue
+{
+    //
+}
+```
+
+---
+
+---
+
+# Delay
+
+> Delay execution
+
+# `#[Delay]`
+
+**Description:** Delays the job execution by the given number of seconds. Supported on jobs, listeners, notifications, and mailables.
+
+**Namespace:** `Illuminate\Queue\Attributes\Delay`
+
+**Added in:** Laravel 13.4
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Delay;
+
+// Before:
+public $delay = 60;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Delay;
+
+// After:
+#[Delay(60)]
+class SendWelcomeEmail implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // Runs 60 seconds after dispatch
+    }
+}
+```
+
+Also works on mailables:
+
+```php
+use Illuminate\Mail\Mailable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+#[Delay(30)]
+class WelcomeEmail extends Mailable implements ShouldQueue
+{
+    //
+}
+```
+
+---
+
+---
+
+# Backoff
+
+> Configure retry delay
+
+# `#[Backoff]`
+
+**Description:** Configures the delay in seconds between job retry attempts.
+
+**Namespace:** `Illuminate\Queue\Attributes\Backoff`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Backoff;
+
+// Before:
+public $backoff = 10;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Backoff;
+
+// After (fixed delay of 10 seconds between retries):
+#[Backoff(10)]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+Exponential backoff using an array:
+
+```php
+// 10s, then 30s, then 60s between retries
+#[Backoff([10, 30, 60])]
+class ProcessPodcast implements ShouldQueue
+{
+    //
+}
+```
+
+---
+
+---
+
+# Tries
+
+> Maximum retry attempts
+
+# `#[Tries]`
+
+**Description:** Defines the maximum number of times the job should be attempted before failing.
+
+**Namespace:** `Illuminate\Queue\Attributes\Tries`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Tries;
+
+// Before:
+public $tries = 3;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Tries;
+
+// After:
+#[Tries(3)]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# Timeout
+
+> Job timeout duration
+
+# `#[Timeout]`
+
+**Description:** Defines the number of seconds the job is allowed to run before it is killed.
+
+**Namespace:** `Illuminate\Queue\Attributes\Timeout`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Timeout;
+
+// Before:
+public $timeout = 120;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\Timeout;
+
+// After:
+#[Timeout(120)]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# UniqueFor
+
+> Unique job duration
+
+# `#[UniqueFor]`
+
+**Description:** Ensures only one instance of the job is queued at a time for the given duration (in seconds).
+
+**Namespace:** `Illuminate\Queue\Attributes\UniqueFor`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\UniqueFor;
+
+// Before:
+public $uniqueFor = 3600;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\UniqueFor;
+
+// After:
+#[UniqueFor(3600)]
+class ProcessPodcast implements ShouldQueue, ShouldBeUnique
+{
+    public function handle(): void
+    {
+        // Only one instance can be queued per hour
+    }
+}
+```
+
+---
+
+---
+
+# DeleteWhenMissingModels
+
+> Delete if models are missing
+
+# `#[DeleteWhenMissingModels]`
+
+**Description:** Automatically deletes the job if any of its injected Eloquent models are missing (soft-deleted or not found).
+
+**Namespace:** `Illuminate\Queue\Attributes\DeleteWhenMissingModels`
+
+**Added in:** Laravel 11.3
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DeleteWhenMissingModels;
+use App\Models\Podcast;
+
+// Before:
+public $deleteWhenMissingModels = true;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DeleteWhenMissingModels;
+use App\Models\Podcast;
+
+// After:
+#[DeleteWhenMissingModels]
+class ProcessPodcast implements ShouldQueue
+{
+    public function __construct(
+        public readonly Podcast $podcast
+    ) {}
+
+    public function handle(): void
+    {
+        // Job is silently deleted if $podcast no longer exists
+    }
+}
+```
+
+---
+
+---
+
+# FailOnTimeout
+
+> Mark job as failed on timeout
+
+# `#[FailOnTimeout]`
+
+**Description:** Marks the job as failed when it exceeds its timeout limit, instead of being released back onto the queue.
+
+**Namespace:** `Illuminate\Queue\Attributes\FailOnTimeout`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\FailOnTimeout;
+use Illuminate\Queue\Attributes\Timeout;
+
+// Before:
+public $failOnTimeout = true;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\FailOnTimeout;
+use Illuminate\Queue\Attributes\Timeout;
+
+// After:
+#[FailOnTimeout]
+#[Timeout(30)]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // If this runs longer than 30s, the job is marked as failed
+    }
+}
+```
+
+---
+
+---
+
+# MaxExceptions
+
+> Maximum exception attempts
+
+# `#[MaxExceptions]`
+
+**Description:** Defines the maximum number of unhandled exceptions allowed before the job is marked as failed.
+
+**Namespace:** `Illuminate\Queue\Attributes\MaxExceptions`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\MaxExceptions;
+use Illuminate\Queue\Attributes\Tries;
+
+// Before:
+public $maxExceptions = 3;
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\MaxExceptions;
+use Illuminate\Queue\Attributes\Tries;
+
+// After:
+#[Tries(10)]
+#[MaxExceptions(3)]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // Job can retry up to 10 times, but fails after 3 unhandled exceptions
+    }
+}
+```
+
+---
+
+---
+
+# WithoutRelations
+
+> Ignore relations during serialization
+
+# `#[WithoutRelations]`
+
+**Description:** Prevents Eloquent model relations from being serialized when the job is queued. Relations will not be restored when the job is executed.
+
+**Namespace:** `Illuminate\Queue\Attributes\WithoutRelations`
+
+**Added in:** Laravel 10.19
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\WithoutRelations;
+use App\Models\User;
+
+// Before:
+public function __construct(User $user)
+{
+    $this->user = $user->withoutRelations();
+}
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\WithoutRelations;
+use App\Models\User;
+
+// After:
+#[WithoutRelations]
+class SendWelcomeEmail implements ShouldQueue
+{
+    public function __construct(
+        public readonly User $user
+    ) {}
+
+    public function handle(): void
+    {
+        // $this->user->roles will not be pre-loaded
+    }
+}
+```
+
+Can also be applied to individual constructor parameters:
+
+```php
+class SendWelcomeEmail implements ShouldQueue
+{
+    public function __construct(
+        #[WithoutRelations] public readonly User $user
+    ) {}
+}
+```
+
+---
+
+---
+
+# DebounceFor
+
+> Debounce job execution for a given duration
+
+# `#[DebounceFor]`
+
+**Description:** Debounces job execution — if the same job is dispatched multiple times within the given duration, only the last dispatch runs.
+
+**Namespace:** `Illuminate\Queue\Attributes\DebounceFor`
+
+**Added in:** Laravel 13.6
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DebounceFor;
+
+// Before:
+No built-in equivalent — required custom cache-based debouncing logic
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DebounceFor;
+
+// After:
+#[DebounceFor(seconds: 30, maxWait: 60)]
+class SyncUserToMailchimp implements ShouldQueue
+{
+    public function __construct(
+        public readonly int $userId
+    ) {}
+
+    public function handle(): void
+    {
+        // If dispatched multiple times in 30s, only the last dispatch runs
+    }
+}
+```
+
+---
+
+---
+
+# Signature
+
+> Define command signature
+
+# `#[Signature]`
+
+**Description:** Defines the Artisan command signature, including the command name and its arguments and options.
+
+**Namespace:** `Illuminate\Console\Attributes\Signature`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// Before:
+protected $signature = 'mail:send {user} {--queue}';
+```
+
+```php
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
+#[Signature('mail:send {user} {--queue}')]
+class SendMailCommand extends Command
+{
+    public function handle(): void
+    {
+        $user = $this->argument('user');
+    }
+}
+```
+
+---
+
+---
+
+# Description
+
+> Define command description
+
+# `#[Description]`
+
+**Description:** Sets the description for the Artisan command, shown in `php artisan list`.
+
+**Namespace:** `Illuminate\Console\Attributes\Description`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// Before:
+protected $description = 'Send a marketing email to a user';
+```
+
+```php
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
+#[Signature('mail:send {user}')]
+#[Description('Send a marketing email to a user')]
+class SendMailCommand extends Command
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# Aliases
+
+> Define command aliases
+
+# `#[Aliases]`
+
+**Description:** Defines one or more aliases for the Artisan command.
+
+**Namespace:** `Illuminate\Console\Attributes\Aliases`
+
+**Added in:** Laravel 13.2
+
+## Usage
+
+```php
+use Illuminate\Console\Attributes\Aliases;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// Before:
+protected $aliases = ['ms', 'send-mail'];
+```
+
+```php
+use Illuminate\Console\Attributes\Aliases;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
+#[Signature('mail:send {user}')]
+#[Aliases(['ms', 'send-mail'])]
+class SendMailCommand extends Command
+{
+    public function handle(): void
+    {
+        // Can now run as: php artisan ms {user}
+    }
+}
+```
+
+---
+
+---
+
+# Usage
+
+> Define additional command usage examples
+
+# `#[Usage]`
+
+**Description:** Adds additional usage examples shown in the command's help output.
+
+**Namespace:** `Illuminate\Console\Attributes\Usage`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Attributes\Usage;
+use Illuminate\Console\Command;
+
+// Before:
+protected $usages = ['mail:send 1', 'mail:send 1 --queue'];
+```
+
+```php
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Attributes\Usage;
+use Illuminate\Console\Command;
+
+// After:
+#[Signature('mail:send {user}')]
+#[Usage('mail:send 1')]
+#[Usage('mail:send 1 --queue')]
+class SendMailCommand extends Command
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# Help
+
+> Define command help text
+
+# `#[Help]`
+
+**Description:** Sets the help text for the Artisan command, shown when running `php artisan help {command}`.
+
+**Namespace:** `Illuminate\Console\Attributes\Help`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Console\Attributes\Help;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// Before:
+protected $help = 'Dispatches a marketing email to the given user ID.';
+```
+
+```php
+use Illuminate\Console\Attributes\Help;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
+#[Signature('mail:send {user}')]
+#[Help('Dispatches a marketing email to the given user ID. Pass --queue to run in background.')]
+class SendMailCommand extends Command
+{
+    public function handle(): void
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# Hidden
+
+> Hide command from the Artisan list
+
+# `#[Hidden]`
+
+**Description:** Hides the command from the `php artisan list` output. The command can still be run directly.
+
+**Namespace:** `Illuminate\Console\Attributes\Hidden`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Console\Attributes\Hidden;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// Before:
+protected $hidden = true;
+```
+
+```php
+use Illuminate\Console\Attributes\Hidden;
+use Illuminate\Console\Attributes\Signature;
+use Illuminate\Console\Command;
+
+// After:
+#[Signature('internal:sync')]
+#[Hidden]
+class SyncInternalDataCommand extends Command
+{
+    public function handle(): void
+    {
+        // This command won't appear in `php artisan list`
+        // but can still be run via: php artisan internal:sync
+    }
+}
+```
+
+---
+
+---
+
+# Middleware
+
+> Assign middleware to a controller class or action method
+
+# `#[Middleware]`
+
+**Description:** Assigns middleware to a controller class or individual action methods. Can be combined with `only` and `except` options.
+
+**Namespace:** `Illuminate\Routing\Attributes\Controllers\Middleware`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+
+// Before (controller constructor):
+public function __construct()
+{
+    $this->middleware('auth');
+    $this->middleware('throttle:60,1')->only('store');
+}
+```
+
+```php
+use Illuminate\Routing\Attributes\Controllers\Middleware;
+
+// After:
+#[Middleware('auth')]
+class UserController
+{
+    public function index() { /* ... */ }
+    public function store() { /* ... */ }
+}
+```
+
+Applied with `only` / `except` restrictions:
+
+```php
+#[Middleware('auth')]
+#[Middleware('throttle:60,1', only: ['store'])]
+#[Middleware('subscribed', except: ['index'])]
+class UserController
+{
+    public function index() { /* ... */ }
+    public function store() { /* ... */ }
+}
+```
+
+Applied to individual methods:
+
+```php
+#[Middleware('auth')]
+class UserController
+{
+    #[Middleware('verified')]
+    public function store() { /* ... */ }
+
+    public function index() { /* ... */ }
+}
+```
+
+---
+
+---
+
+# WithoutMiddleware
+
+> Exclude middleware from a controller class or action method
+
+# `#[WithoutMiddleware]`
+
+**Description:** Excludes middleware from a controller class or individual action methods. Can be combined with `only` and `except` options.
+
+**Namespace:** `Illuminate\Routing\Attributes\Controllers\WithoutMiddleware`
+
+**Added in:** Laravel 13.20
+
+## Usage
+
+```php
+use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
+
+// Before (controller constructor):
+public function __construct()
+{
+    $this->withoutMiddleware('auth');
+}
+```
+
+```php
+use Illuminate\Routing\Attributes\Controllers\WithoutMiddleware;
+
+// After:
+#[WithoutMiddleware('auth')]
+class UserController
+{
+    public function index() { /* ... */ }
+    public function store() { /* ... */ }
+}
+```
+
+Applied with `only` / `except` restrictions:
+
+```php
+#[WithoutMiddleware('auth')]
+#[WithoutMiddleware('throttle:60,1', only: ['store'])]
+#[WithoutMiddleware('subscribed', except: ['index'])]
+class UserController
+{
+    public function index() { /* ... */ }
+    public function store() { /* ... */ }
+}
+```
+
+Applied to individual methods:
+
+```php
+#[WithoutMiddleware('auth')]
+class UserController
+{
+    #[WithoutMiddleware('verified')]
+    public function store() { /* ... */ }
+
+    public function index() { /* ... */ }
+}
+```
+
+---
+
+---
+
+# Authorize
+
+> Authorize a controller action via the gate
+
+# `#[Authorize]`
+
+**Description:** Authorizes a controller action using the Gate, providing a clean alternative to `Gate::authorize()` or form request `authorize()`.
+
+**Namespace:** `Illuminate\Routing\Attributes\Controllers\Authorize`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Routing\Attributes\Controllers\Authorize;
+
+// Before:
+$this->authorize('create', Comment::class);
+```
+
+```php
+use App\Models\Comment;
+use App\Models\Post;
+use App\Http\Requests\StoreCommentRequest;
+use Illuminate\Routing\Attributes\Controllers\Authorize;
+
+// After:
+class CommentController
+{
+    #[Authorize('create', [Comment::class, 'post'])]
+    public function store(StoreCommentRequest $request, Post $post)
+    {
+        // ...
+    }
+
+    #[Authorize('delete', 'comment')]
+    public function destroy(Comment $comment)
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# RedirectTo
+
+> Define redirect path on validation failure
+
+# `#[RedirectTo]`
+
+**Description:** Defines the URL to redirect to when form request validation fails.
+
+**Namespace:** `Illuminate\Foundation\Http\Attributes\RedirectTo`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Http\Attributes\RedirectTo;
+use Illuminate\Foundation\Http\FormRequest;
+
+// Before:
+protected $redirect = '/posts/create';
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\RedirectTo;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
+#[RedirectTo('/posts/create')]
+class StorePostRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'title' => ['required', 'string', 'max:255'],
+            'body'  => ['required', 'string'],
+        ];
+    }
+}
+```
+
+---
+
+---
+
+# RedirectToRoute
+
+> Define redirect route on validation failure
+
+# `#[RedirectToRoute]`
+
+**Description:** Defines the named route to redirect to when form request validation fails.
+
+**Namespace:** `Illuminate\Foundation\Http\Attributes\RedirectToRoute`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Http\Attributes\RedirectToRoute;
+use Illuminate\Foundation\Http\FormRequest;
+
+// Before:
+protected $redirectRoute = 'posts.create';
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\RedirectToRoute;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
+#[RedirectToRoute('posts.create')]
+class StorePostRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'title' => ['required', 'string', 'max:255'],
+            'body'  => ['required', 'string'],
+        ];
+    }
+}
+```
+
+With route parameters:
+
+```php
+#[RedirectToRoute('posts.edit', ['post' => 1])]
+class UpdatePostRequest extends FormRequest
+{
+    //
+}
+```
+
+---
+
+---
+
+# StopOnFirstFailure
+
+> Stop validation on first failure
+
+# `#[StopOnFirstFailure]`
+
+**Description:** Stops validation after the first validation failure instead of collecting all errors.
+
+**Namespace:** `Illuminate\Foundation\Http\Attributes\StopOnFirstFailure`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Http\Attributes\StopOnFirstFailure;
+use Illuminate\Foundation\Http\FormRequest;
+
+// Before:
+protected $stopOnFirstFailure = true;
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\StopOnFirstFailure;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
+#[StopOnFirstFailure]
+class StorePostRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'title' => ['required', 'string', 'max:255'],
+            'body'  => ['required', 'string'],
+        ];
+    }
+}
+```
+
+---
+
+---
+
+# ErrorBag
+
+> Define the error bag name
+
+# `#[ErrorBag]`
+
+**Description:** Defines the named error bag to use when storing validation errors for this form request.
+
+**Namespace:** `Illuminate\Foundation\Http\Attributes\ErrorBag`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Http\Attributes\ErrorBag;
+use Illuminate\Foundation\Http\FormRequest;
+
+// Before:
+protected $errorBag = 'login';
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\ErrorBag;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
+#[ErrorBag('login')]
+class LoginRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'email'    => ['required', 'email'],
+            'password' => ['required', 'string'],
+        ];
+    }
+}
+```
+
+In the view you can then access errors via the named bag:
+
+```blade
+@if ($errors->login->any())
+    <ul>
+        @foreach ($errors->login->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+```
+
+---
+
+---
+
+# FailOnUnknownFields
+
+> Fail if the request contains unknown fields
+
+# `#[FailOnUnknownFields]`
+
+**Description:** Fails the form request validation if the request contains any fields not defined in the `rules()` method.
+
+**Namespace:** `Illuminate\Foundation\Http\Attributes\FailOnUnknownFields`
+
+**Added in:** Laravel 13.4
+
+## Usage
+
+```php
+use Illuminate\Foundation\Http\Attributes\FailOnUnknownFields;
+use Illuminate\Foundation\Http\FormRequest;
+
+// Before:
+No direct property equivalent — required custom validation logic
+```
+
+```php
+use Illuminate\Foundation\Http\Attributes\FailOnUnknownFields;
+use Illuminate\Foundation\Http\FormRequest;
+
+// After:
+#[FailOnUnknownFields]
+class StorePostRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            'title' => ['required', 'string', 'max:255'],
+            'body'  => ['required', 'string'],
+        ];
+    }
+}
+```
+
+If the request contains an unexpected field like `is_admin`, validation will fail automatically.
+
+---
+
+---
+
+# Seeder
+
+> Run a specific seeder class during tests
+
+# `#[Seeder]`
+
+**Description:** Runs a specific seeder class before a test. Requires the `RefreshDatabase` or `LazilyRefreshDatabase` trait.
+
+**Namespace:** `Illuminate\Foundation\Testing\Attributes\Seeder`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Testing\Attributes\Seeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+use Database\Seeders\OrderSeeder;
+
+// Before:
+$this->seed(OrderSeeder::class);
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\Seeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+use Database\Seeders\OrderSeeder;
+
+// After:
+#[Seeder(OrderSeeder::class)]
+class OrderTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_orders_are_listed(): void
+    {
+        $response = $this->get('/orders');
+        $response->assertOk();
+    }
+}
+```
+
+---
+
+---
+
+# Seed
+
+> Run the database seeder during tests
+
+# `#[Seed]`
+
+**Description:** Runs the default database seeder before a test. Requires the `RefreshDatabase` or `LazilyRefreshDatabase` trait.
+
+**Namespace:** `Illuminate\Foundation\Testing\Attributes\Seed`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Testing\Attributes\Seed;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+// Before:
+$this->seed();
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\Seed;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+// After:
+#[Seed]
+class OrderTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_orders_are_listed(): void
+    {
+        // The default DatabaseSeeder runs before this test
+        $response = $this->get('/orders');
+
+        $response->assertOk();
+    }
+}
+```
+
+---
+
+---
+
+# SetUp
+
+> Mark a trait method as a test setup hook
+
+# `#[SetUp]`
+
+**Description:** Marks a trait method as a test set-up hook. The method is automatically called before each test when the trait is used.
+
+**Namespace:** `Illuminate\Foundation\Testing\Attributes\SetUp`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Testing\Attributes\SetUp;
+
+// Before (naming convention):
+public function setUpCreatesUser(): void
+```
+
+```php
+use App\Models\User;
+use Illuminate\Foundation\Testing\Attributes\SetUp;
+use Tests\TestCase;
+
+// After:
+trait CreatesUser
+{
+    #[SetUp]
+    public function createUser(): void
+    {
+        $this->user = User::factory()->create();
+    }
+}
+
+class UserTest extends TestCase
+{
+    use CreatesUser;
+
+    public function test_user_can_view_profile(): void
+    {
+        $this->actingAs($this->user)
+             ->get('/profile')
+             ->assertOk();
+    }
+}
+```
+
+---
+
+---
+
+# TearDown
+
+> Mark a trait method as a test teardown hook
+
+# `#[TearDown]`
+
+**Description:** Marks a trait method as a test tear-down hook. The method is automatically called after each test when the trait is used.
+
+**Namespace:** `Illuminate\Foundation\Testing\Attributes\TearDown`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Foundation\Testing\Attributes\TearDown;
+
+// Before (naming convention):
+public function tearDownCleansUpFiles(): void
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\TearDown;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
+
+// After:
+trait CleansUpFiles
+{
+    #[TearDown]
+    public function cleanUpFiles(): void
+    {
+        Storage::disk('local')->deleteDirectory('test-uploads');
+    }
+}
+
+class FileUploadTest extends TestCase
+{
+    use CleansUpFiles;
+
+    public function test_file_can_be_uploaded(): void
+    {
+        // ...
+    }
+}
+```
+
+---
+
+---
+
+# UnitTest
+
+> Skip framework boot for individual test methods
+
+# `#[UnitTest]`
+
+**Description:** Marks a test method to run without booting the Laravel framework, making it significantly faster. Useful for pure unit tests mixed into a feature test class.
+
+**Namespace:** `Illuminate\Foundation\Testing\Attributes\UnitTest`
+
+**Added in:** Laravel 13.3
+
+## Usage
+
+```php
+use Illuminate\Foundation\Testing\Attributes\UnitTest;
+use Tests\TestCase;
+
+// Before:
+No equivalent — unit tests mixed in feature test classes always booted the framework
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\UnitTest;
+use Illuminate\Support\Facades\Http;
+use Tests\TestCase;
+
+// After:
+class LocationServiceTest extends TestCase
+{
+    // This test boots the framework (uses Http facade)
+    public function test_get_coordinates_calls_api(): void
+    {
+        Http::fake([...]);
+        // ...
+    }
+
+    // This test skips framework boot entirely — runs much faster
+    #[UnitTest]
+    public function test_get_state_returns_state_from_abbreviation(): void
+    {
+        $service = new LocationService;
+
+        $this->assertSame('California', $service->getState('CA'));
+    }
+}
+```
+
+> **Warning:** Laravel TestCase methods that rely on the container (e.g. facades, `$this->app`) will not work inside `#[UnitTest]` methods.
+
+---
+
+---
+
+# UseModel
+
+> Define model for factory
+
+# `#[UseModel]`
+
+**Description:** Defines the Eloquent model class that the factory creates, overriding the default model resolution.
+
+**Namespace:** `Illuminate\Database\Eloquent\Factories\Attributes\UseModel`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
+use App\Models\User;
+
+// Before:
+protected $model = User::class;
+```
+
+```php
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\Attributes\UseModel;
+use App\Models\User;
+
+// After:
+#[UseModel(User::class)]
+class UserFactory extends Factory
+{
+    public function definition(): array
+    {
+        return [
+            'name'  => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+        ];
+    }
+}
+```
+
+---
+
+---
+
+# Collects
+
+> Define resource collection mapping
+
+# `#[Collects]`
+
+**Description:** Defines the resource class that a resource collection wraps, used for automatic collection mapping.
+
+**Namespace:** `Illuminate\Http\Resources\Attributes\Collects`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Http\Resources\Attributes\Collects;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\UserResource;
+
+// Before:
+public $collects = UserResource::class;
+```
+
+```php
+use Illuminate\Http\Resources\Attributes\Collects;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\UserResource;
+
+// After:
+#[Collects(UserResource::class)]
+class UserCollection extends ResourceCollection
+{
+    public function toArray($request): array
+    {
+        return parent::toArray($request);
+    }
+}
+```
+
+---
+
+---
+
+# PreserveKeys
+
+> Preserve keys in resource output
+
+# `#[PreserveKeys]`
+
+**Description:** Preserves the original array keys when serializing a JSON resource collection.
+
+**Namespace:** `Illuminate\Http\Resources\Attributes\PreserveKeys`
+
+**Added in:** Laravel 13.0
+
+## Usage
+
+```php
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Attributes\PreserveKeys;
+
+// Before:
+public $preserveKeys = true;
+```
+
+```php
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Attributes\PreserveKeys;
+
+// After:
+#[PreserveKeys]
+class UserResource extends JsonResource
+{
+    public function toArray($request): array
+    {
+        return [
+            'id'    => $this->id,
+            'name'  => $this->name,
+            'email' => $this->email,
+        ];
+    }
+}
+```
+
+---
+
+---
+
+# Auth
+
+> Inject an auth guard instance
+
+# `#[Auth]`
+
+**Description:** Injects an auth guard instance into the constructor or method.
+
+**Namespace:** `Illuminate\Container\Attributes\Auth`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Guard;
+
+// Before (service provider):
+$this->app->when(UserService::class)
+    ->needs(Guard::class)
+    ->give(fn () => Auth::guard('web'));
+```
+
+```php
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Contracts\Auth\Guard;
+
+// After:
+class UserService
+{
+    public function __construct(
+        #[Auth('web')] private readonly Guard $guard
+    ) {}
+
+    public function currentUser()
+    {
+        return $this->guard->user();
+    }
+}
+```
+
+---
+
+---
+
+# Authenticated
+
+> Inject the currently authenticated user
+
+# `#[Authenticated]`
+
+**Description:** Injects the currently authenticated user from the default guard.
+
+**Namespace:** `Illuminate\Container\Attributes\Authenticated`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Authenticated;
+use App\Models\User;
+
+// Before:
+$user = Auth::user();
+```
+
+```php
+use Illuminate\Container\Attributes\Authenticated;
+use App\Models\User;
+
+// After:
+class ProfileController
+{
+    public function show(
+        #[Authenticated] User $user
+    ) {
+        return view('profile', compact('user'));
+    }
+}
+```
+
+---
+
+---
+
+# Bind
+
+> Contextually bind to a specific implementation
+
+# `#[Bind]`
+
+**Description:** Binds an interface or abstract class to a concrete implementation.
+
+**Namespace:** `Illuminate\Container\Attributes\Bind`
+
+**Added in:** Laravel 12.22
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Bind;
+
+// Before (service provider):
+$this->app->bind(PaymentGateway::class, StripeGateway::class);
+```
+
+```php
+use Illuminate\Container\Attributes\Bind;
+
+// After:
+#[Bind(StripeGateway::class)]
+interface PaymentGateway
+{
+}
+
+class StripeGateway implements PaymentGateway
+{
+    //
+}
+```
+
+Laravel automatically injects `StripeGateway` when resolving `PaymentGateway`.
+
+---
+
+---
+
+# BindWhen
+
+> Conditionally bind to a specific implementation
+
+# `#[BindWhen]`
+
+**Description:** Conditionally binds an interface or abstract class to a concrete implementation when a callback returns `true`.
+
+**Namespace:** `Illuminate\Container\Attributes\BindWhen`
+
+**Added in:** Laravel 13.22  
+**Note:** Closures in attribute arguments require PHP 8.5.
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Bind;
+use Illuminate\Container\Attributes\BindWhen;
+
+// Before (service provider):
+$this->app->bind(PaymentGateway::class, function ($app) {
+    return $app->make('config')->get('features.payments.beta')
+        ? $app->make(BetaPaymentGateway::class)
+        : $app->make(StripePaymentGateway::class);
+});
+```
+
+```php
+use Illuminate\Container\Attributes\Bind;
+use Illuminate\Container\Attributes\BindWhen;
+
+// After:
+#[BindWhen(BetaPaymentGateway::class, static function ($app) {
+    return $app->make('config')->get('features.payments.beta');
+})]
+#[Bind(StripePaymentGateway::class)]
+interface PaymentGateway
+{
+    //
+}
+
+class BetaPaymentGateway implements PaymentGateway
+{
+    //
+}
+
+class StripePaymentGateway implements PaymentGateway
+{
+    //
+}
+```
+
+The callback receives the container so the condition can depend on configuration, feature flags, or any value resolvable at runtime. `#[BindWhen]` is repeatable; conditional bindings are evaluated in declaration order and can be placed before a default `#[Bind]` fallback.
+
+---
+
+---
+
+# Cache
+
+> Inject a cache store instance
+
+# `#[Cache]`
+
+**Description:** Injects a specific cache store instance by name.
+
+**Namespace:** `Illuminate\Container\Attributes\Cache`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Contracts\Cache\Repository;
+
+// Before (service provider):
+$this->app->when(ProductService::class)
+    ->needs(Repository::class)
+    ->give(fn () => Cache::store('redis'));
+```
+
+```php
+use Illuminate\Container\Attributes\Cache;
+use Illuminate\Contracts\Cache\Repository;
+
+// After:
+class ProductService
+{
+    public function __construct(
+        #[Cache('redis')] private readonly Repository $cache
+    ) {}
+
+    public function find(int $id): mixed
+    {
+        return $this->cache->remember("product:{$id}", 3600, fn () => Product::find($id));
+    }
+}
+```
+
+---
+
+---
+
+# Config
+
+> Inject a configuration value
+
+# `#[Config]`
+
+**Description:** Injects a configuration value directly into a constructor or method parameter.
+
+**Namespace:** `Illuminate\Container\Attributes\Config`
+
+**Added in:** Laravel 11.14
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Config;
+
+// Before:
+$fromAddress = config('mail.from.address');
+$fromName = config('mail.from.name');
+```
+
+```php
+use Illuminate\Container\Attributes\Config;
+
+// After:
+class MailService
+{
+    public function __construct(
+        #[Config('mail.from.address')] private readonly string $fromAddress,
+        #[Config('mail.from.name')] private readonly string $fromName
+    ) {}
+}
+```
+
+---
+
+---
+
+# Context
+
+> Inject a value from the application context
+
+# `#[Context]`
+
+**Description:** Injects a value from the application's shared context.
+
+**Namespace:** `Illuminate\Container\Attributes\Context`
+
+**Added in:** Laravel 12.15
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Context;
+
+// Before:
+use Illuminate\Support\Facades\Context;
+Context::add('trace_id', 'abc-123');
+$traceId = Context::get('trace_id');
+```
+
+```php
+use Illuminate\Container\Attributes\Context;
+
+// After:
+class RequestLogger
+{
+    public function __construct(
+        #[Context('trace_id')] private readonly ?string $traceId
+    ) {}
+
+    public function log(string $message): void
+    {
+        logger()->info($message, ['trace_id' => $this->traceId]);
+    }
+}
+```
+
+Also supports hidden context:
+
+```php
+#[Context('secret_key', hidden: true)] private readonly ?string $secret
+```
+
+---
+
+---
+
+# CurrentUser
+
+> Inject the currently authenticated user model
+
+# `#[CurrentUser]`
+
+**Description:** Injects the currently authenticated user model instance, resolved via the auth user resolver.
+
+**Namespace:** `Illuminate\Container\Attributes\CurrentUser`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\CurrentUser;
+use App\Models\User;
+
+// Before:
+$user = Auth::user();
+```
+
+```php
+use Illuminate\Container\Attributes\CurrentUser;
+use App\Models\User;
+
+// After:
+class OrderService
+{
+    public function __construct(
+        #[CurrentUser] private readonly ?User $user
+    ) {}
+
+    public function placeOrder(array $data): Order
+    {
+        return $this->user?->orders()->create($data);
+    }
+}
+```
+
+---
+
+> [!NOTE]
+> The `#[CurrentUser]` currently just alias of `#[Authenticated]`.
+
+---
+
+# DB
+
+> Inject a database connection instance
+
+# `#[DB]`
+
+**Description:** Injects a database connection instance by name.
+
+**Namespace:** `Illuminate\Container\Attributes\DB`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Connection;
+
+// Before (service provider):
+$this->app->when(ReportService::class)
+    ->needs(Connection::class)
+    ->give(fn () => DB::connection('pgsql'));
+```
+
+```php
+use Illuminate\Container\Attributes\DB;
+use Illuminate\Database\Connection;
+
+// After:
+class ReportService
+{
+    public function __construct(
+        #[DB('pgsql')] private readonly Connection $db
+    ) {}
+
+    public function generateReport(): array
+    {
+        return $this->db->select('SELECT * FROM reports');
+    }
+}
+```
+
+---
+
+> [!NOTE]
+> The `#[DB]` currently just alias of `#[Database]`.
+
+---
+
+# Database
+
+> Inject a named database connection
+
+# `#[Database]`
+
+**Description:** Injects a named database connection instance. Similar to `#[DB]` but also accepts enum values.
+
+**Namespace:** `Illuminate\Container\Attributes\Database`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Connection;
+
+// Before (service provider):
+$this->app->when(ReportService::class)
+    ->needs(Connection::class)
+    ->give(fn () => DB::connection('pgsql'));
+```
+
+```php
+use Illuminate\Container\Attributes\Database;
+use Illuminate\Database\Connection;
+
+// After:
+class ReportService
+{
+    public function __construct(
+        #[Database('pgsql')] private readonly Connection $connection
+    ) {}
+}
+```
+
+Enum values are also supported:
+
+```php
+use App\Enums\DatabaseConnection;
+use Illuminate\Database\Connection;
+
+class ReportService
+{
+    public function __construct(
+        #[Database(DatabaseConnection::Pgsql)] private readonly Connection $connection
+    ) {}
+}
+```
+
+---
+
+---
+
+# Give
+
+> Give a specific binding contextually
+
+# `#[Give]`
+
+**Description:** Contextually gives a specific value or binding for the annotated parameter, similar to `$this->app->when(...)->needs(...)->give(...)`.
+
+**Namespace:** `Illuminate\Container\Attributes\Give`
+
+**Added in:** Laravel 12.17
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Give;
+
+// Before (service provider):
+$this->app->when(NotificationService::class)
+    ->needs('$fromEmail')
+    ->give('notifications@example.com');
+```
+
+```php
+use Illuminate\Container\Attributes\Give;
+
+// After:
+class NotificationService
+{
+    public function __construct(
+        #[Give('notifications@example.com')] private readonly string $fromEmail
+    ) {}
+}
+```
+
+Also accepts class names (string bindings):
+
+```php
+use App\Services\DriverInterface;
+use App\Services\SmsDriver;
+
+class NotificationService
+{
+    public function __construct(
+        #[Give(SmsDriver::class)] private readonly DriverInterface $driver
+    ) {}
+}
+```
+
+---
+
+---
+
+# Log
+
+> Inject a logger with a named channel
+
+# `#[Log]`
+
+**Description:** Injects a logger instance with an optional named channel for better log organization.
+
+**Namespace:** `Illuminate\Container\Attributes\Log`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Support\Facades\Log;
+use Psr\Log\LoggerInterface;
+
+// Before (service provider):
+$this->app->when(PaymentService::class)
+    ->needs(LoggerInterface::class)
+    ->give(fn () => Log::channel('payments'));
+```
+
+```php
+use Illuminate\Container\Attributes\Log;
+use Psr\Log\LoggerInterface;
+
+// After:
+class PaymentService
+{
+    public function __construct(
+        #[Log(channel: 'payments', name: 'custom_logger')] private readonly LoggerInterface $logger
+    ) {}
+
+    public function charge(int $amount): void
+    {
+        $this->logger->info('Charging customer', ['amount' => $amount]);
+        // Logged under the 'payments' channel
+    }
+}
+```
+
+Without a channel name, it injects the default logger:
+
+```php
+#[Log] private readonly LoggerInterface $logger
+```
+
+---
+
+---
+
+# RequestAttribute
+
+> Inject a value from the request's attributes collection
+
+# `#[RequestAttribute]`
+
+**Description:** Injects a value from the current request's attributes collection into a controller method or service constructor.
+
+**Namespace:** `Illuminate\Container\Attributes\RequestAttribute`
+
+**Added in:** Laravel 13.21
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\RequestAttribute;
+use Illuminate\Http\Request;
+use App\Models\Tenant;
+
+// Before:
+$tenant = $request->attributes->get('tenant');
+```
+
+```php
+use Illuminate\Container\Attributes\RequestAttribute;
+use Illuminate\Http\Request;
+use App\Models\Tenant;
+
+// After:
+class TenantController
+{
+    public function __invoke(
+        Request $request,
+        #[RequestAttribute('tenant')] Tenant $tenant
+    ) {
+        //
+    }
+}
+```
+
+---
+
+---
+
+# RouteParameter
+
+> Inject a route parameter value
+
+# `#[RouteParameter]`
+
+**Description:** Injects a route parameter value directly into a service constructor or method, resolved from the current request.
+
+**Namespace:** `Illuminate\Container\Attributes\RouteParameter`
+
+**Added in:** Laravel 11.28
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\RouteParameter;
+use App\Models\Post;
+
+// Before:
+$post = request()->route('post');
+```
+
+```php
+use Illuminate\Container\Attributes\RouteParameter;
+use App\Models\Post;
+
+// After:
+class PostService
+{
+    public function __construct(
+        #[RouteParameter('post')] private readonly Post $post
+    ) {}
+
+    public function getComments()
+    {
+        return $this->post->comments;
+    }
+}
+```
+
+---
+
+---
+
+# Scoped
+
+> Register a class as a scoped singleton in the container
+
+# `#[Scoped]`
+
+**Description:** Registers the class as a scoped singleton in the container — shared within a single request/lifecycle, but fresh for each new request.
+
+**Namespace:** `Illuminate\Container\Attributes\Scoped`
+
+**Added in:** Laravel 12.21
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Scoped;
+
+// Before (service provider):
+$this->app->scoped(RequestContext::class);
+```
+
+```php
+use Illuminate\Container\Attributes\Scoped;
+
+// After:
+#[Scoped]
+class RequestContext
+{
+    private array $data = [];
+
+    public function set(string $key, mixed $value): void
+    {
+        $this->data[$key] = $value;
+    }
+
+    public function get(string $key): mixed
+    {
+        return $this->data[$key] ?? null;
+    }
+}
+```
+
+---
+
+---
+
+# Singleton
+
+> Register a class as a singleton in the container
+
+# `#[Singleton]`
+
+**Description:** Registers the class as a singleton in the container — shared across the entire application lifecycle.
+
+**Namespace:** `Illuminate\Container\Attributes\Singleton`
+
+**Added in:** Laravel 12.21
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Singleton;
+
+// Before (service provider):
+$this->app->singleton(ConfigCache::class);
+```
+
+```php
+use Illuminate\Container\Attributes\Singleton;
+
+// After:
+#[Singleton]
+class ConfigCache
+{
+    private array $cache = [];
+
+    public function remember(string $key, callable $callback): mixed
+    {
+        return $this->cache[$key] ??= $callback();
+    }
+}
+```
+
+---
+
+---
+
+# Storage
+
+> Inject a storage disk instance
+
+# `#[Storage]`
+
+**Description:** Injects a specific storage disk instance by name.
+
+**Namespace:** `Illuminate\Container\Attributes\Storage`
+
+**Added in:** Laravel 11.20
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Storage;
+use Illuminate\Contracts\Filesystem\Filesystem;
+
+// Before (service provider):
+$this->app->when(AvatarService::class)
+    ->needs(Filesystem::class)
+    ->give(fn () => Storage::disk('s3'));
+```
+
+```php
+use Illuminate\Container\Attributes\Storage;
+use Illuminate\Contracts\Filesystem\Filesystem;
+
+// After:
+class AvatarService
+{
+    public function __construct(
+        #[Storage('s3')] private readonly Filesystem $disk
+    ) {}
+
+    public function upload(string $path, mixed $contents): void
+    {
+        $this->disk->put($path, $contents);
+    }
+}
+```
+
+Enum values are also supported:
+
+```php
+use App\Enums\StorageDisk;
+
+#[Storage(StorageDisk::S3)] private readonly Filesystem $disk
+```
+
+---
+
+---
+
+# Tag
+
+> Inject all bindings tagged with a given tag
+
+# `#[Tag]`
+
+**Description:** Injects all container bindings registered under a specific tag.
+
+**Namespace:** `Illuminate\Container\Attributes\Tag`
+
+**Added in:** Laravel 11.23
+
+## Usage
+
+```php
+use Illuminate\Container\Attributes\Tag;
+
+// Before (service provider):
+$reporters = app()->tagged('reports');
+```
+
+```php
+use Illuminate\Container\Attributes\Tag;
+
+// After:
+class ReportAggregator
+{
+    public function __construct(
+        #[Tag('reports')] private readonly iterable $reporters
+    ) {}
+
+    public function generate(): array
+    {
+        return collect($this->reporters)
+            ->flatMap(fn ($reporter) => $reporter->data())
+            ->all();
+    }
+}
+```
+
+In a service provider, register the tagged bindings:
+
+```php
+$this->app->tag([SalesReport::class, TrafficReport::class], 'reports');
+```
+
+---
+
+---
+
+# MaxSteps
+
+> Maximum number of steps the agent may take when using tools
+
+# `#[MaxSteps]`
+
+**Description:** Defines the maximum number of steps the agent may take when using tools.
+
+**Namespace:** `Laravel\Ai\Attributes\MaxSteps`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\MaxSteps;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function maxSteps(): int
+{
+    return 10;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\MaxSteps;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[MaxSteps(10)]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# MaxTokens
+
+> Maximum number of tokens the model may generate
+
+# `#[MaxTokens]`
+
+**Description:** Defines the maximum number of tokens the model may generate in a response.
+
+**Namespace:** `Laravel\Ai\Attributes\MaxTokens`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\MaxTokens;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function maxTokens(): int
+{
+    return 4096;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\MaxTokens;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[MaxTokens(4096)]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# Model
+
+> Define the model the agent should use
+
+# `#[Model]`
+
+**Description:** Defines the model the agent should use when prompting the AI provider.
+
+**Namespace:** `Laravel\Ai\Attributes\Model`
+
+**Added in:** `laravel/ai` v0.1.3
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\Model;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function model(): string
+{
+    return 'claude-haiku-4-5-20251001';
+}
+```
+
+```php
+use Laravel\Ai\Attributes\Model;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[Model('claude-haiku-4-5-20251001')]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# Provider
+
+> Define the AI provider (or providers for failover)
+
+# `#[Provider]`
+
+**Description:** Defines the AI provider (or providers for failover) the agent should use.
+
+**Namespace:** `Laravel\Ai\Attributes\Provider`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\Provider;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Enums\Lab;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function provider(): Lab
+{
+    return Lab::Anthropic;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\Provider;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Enums\Lab;
+use Laravel\Ai\Promptable;
+
+// After:
+#[Provider(Lab::Anthropic)]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+You may also pass an array of providers to enable automatic failover:
+
+```php
+#[Provider([Lab::OpenAI, Lab::Anthropic])]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# Temperature
+
+> Define the sampling temperature for generation
+
+# `#[Temperature]`
+
+**Description:** Defines the sampling temperature for generation, controlling randomness. Accepts a float between `0.0` (deterministic) and `1.0` (more creative).
+
+**Namespace:** `Laravel\Ai\Attributes\Temperature`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\Temperature;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function temperature(): float
+{
+    return 0.7;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\Temperature;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[Temperature(0.7)]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# Timeout
+
+> Define the HTTP timeout in seconds for agent requests
+
+# `#[Timeout]`
+
+**Description:** Defines the HTTP timeout in seconds for agent requests. Defaults to `60` seconds.
+
+**Namespace:** `Laravel\Ai\Attributes\Timeout`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\Timeout;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function timeout(): int
+{
+    return 120;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\Timeout;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[Timeout(120)]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# TopP
+
+> Define the top-p sampling threshold for generation
+
+# `#[TopP]`
+
+**Description:** Defines the top-p (nucleus) sampling threshold for generation, controlling token selection by cumulative probability. Accepts a float between `0.0` and `1.0`.
+
+**Namespace:** `Laravel\Ai\Attributes\TopP`
+
+**Added in:** `laravel/ai` v0.6.6+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\TopP;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function topP(): float
+{
+    return 0.9;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\TopP;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[TopP(0.9)]
+class SalesCoach implements Agent
+{
+    use Promptable;
+}
+```
+
+---
+
+---
+
+# UseCheapestModel
+
+> Use the provider's cheapest text model
+
+# `#[UseCheapestModel]`
+
+**Description:** Instructs the agent to automatically use the provider's cheapest text model for cost optimization, without specifying a model name explicitly.
+
+**Namespace:** `Laravel\Ai\Attributes\UseCheapestModel`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\UseCheapestModel;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function useCheapestModel(): bool
+{
+    return true;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\UseCheapestModel;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[UseCheapestModel]
+class SimpleSummarizer implements Agent
+{
+    use Promptable;
+
+    // Will use the cheapest model (e.g., Haiku)...
+}
+```
+
+---
+
+---
+
+# UseSmartestModel
+
+> Use the provider's most capable text model
+
+# `#[UseSmartestModel]`
+
+**Description:** Instructs the agent to automatically use the provider's most capable text model for complex tasks, without specifying a model name explicitly.
+
+**Namespace:** `Laravel\Ai\Attributes\UseSmartestModel`
+
+**Added in:** `laravel/ai` v0.1+
+
+## Usage
+
+```php
+use Laravel\Ai\Attributes\UseSmartestModel;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+public function useSmartestModel(): bool
+{
+    return true;
+}
+```
+
+```php
+use Laravel\Ai\Attributes\UseSmartestModel;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[UseSmartestModel]
+class ComplexReasoner implements Agent
+{
+    use Promptable;
+
+    // Will use the most capable model (e.g., Opus)...
+}
+```
+
+---
+
+---
+
+# Attribute
+
+> Mark a class as a reusable custom attribute
+
+# `#[Attribute]`
+
+**Description:** Marks a class as a custom reusable attribute that can be applied to other declarations.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.0
+
+## Usage
+
+```php
+// PHP 8.0 introduced attributes — no equivalent before this version
+```
+
+```php
+#[Attribute]
+class MyCustomAttribute
+{
+    public function __construct(public string $value) {}
+}
+
+#[MyCustomAttribute('example')]
+class SomeClass
+{
+    //
+}
+```
+
+You can restrict where the attribute is allowed to be used:
+
+```php
+use Attribute;
+
+#[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
+class OnlyForClassesAndMethods
+{
+    public function __construct(public string $label) {}
+}
+```
+
+### Target Constants
+
+| Constant | Description |
+|---|---|
+| `Attribute::TARGET_CLASS` | Can be applied to classes |
+| `Attribute::TARGET_FUNCTION` | Can be applied to functions |
+| `Attribute::TARGET_METHOD` | Can be applied to methods |
+| `Attribute::TARGET_PROPERTY` | Can be applied to properties |
+| `Attribute::TARGET_CLASS_CONSTANT` | Can be applied to class constants |
+| `Attribute::TARGET_PARAMETER` | Can be applied to parameters |
+| `Attribute::TARGET_ALL` | Can be applied to all declarations (default) |
+| `Attribute::IS_REPEATABLE` | The attribute may be applied more than once to the same declaration |
+
+---
+
+---
+
+# AllowDynamicProperties
+
+> Allow dynamic properties on a class without deprecation notice
+
+# `#[AllowDynamicProperties]`
+
+**Description:** Marks a class to allow dynamic (undeclared) properties without emitting a deprecation notice.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.2
+
+## Usage
+
+Dynamic properties are deprecated as of PHP 8.2. Without this attribute, assigning to an undeclared property emits a deprecation notice.
+
+```php
+// Before PHP 8.2: dynamic properties were always allowed without restriction
+```
+
+```php
+#[\AllowDynamicProperties]
+class UserSession
+{
+    public string $id;
+}
+
+$session = new UserSession();
+$session->id = 'abc123';
+$session->extraData = 'some value'; // No deprecation notice
+```
+
+> **Note:** The effect is inherited. Child classes of a class marked with this attribute will also allow dynamic properties, even without explicitly declaring it.
+
+```php
+#[\AllowDynamicProperties]
+class Base
+{
+    //
+}
+
+class Child extends Base
+{
+    //
+}
+
+$child = new Child();
+$child->dynamic = true; // Also allowed
+```
+
+---
+
+---
+
+# Deprecated
+
+> Mark a function, method, class, or constant as deprecated
+
+# `#[Deprecated]`
+
+**Description:** Marks a function, method, class, or class constant as deprecated. Using deprecated functionality emits an `E_USER_DEPRECATED` notice.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.4
+
+## Usage
+
+```php
+// Before PHP 8.4:
+/** @deprecated use newMethod() instead */
+```
+
+```php
+#[\Deprecated(message: 'use newMethod() instead', since: '2.0')]
+function oldMethod(): void
+{
+    // ...
+}
+
+oldMethod(); // Deprecated: Function oldMethod() is deprecated since 2.0, use newMethod() instead
+```
+
+### Parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| `$message` | `?string` | Optional explanation of the deprecation and/or replacement |
+| `$since` | `?string` | Optional string indicating when the deprecation was introduced |
+
+### On a class
+
+```php
+#[\Deprecated(message: 'use NewService instead', since: '3.0')]
+class OldService
+{
+    // ...
+}
+```
+
+### On a class constant
+
+```php
+class Config
+{
+    #[\Deprecated(message: 'use Config::NEW_LIMIT instead', since: '1.5')]
+    const OLD_LIMIT = 100;
+
+    const NEW_LIMIT = 200;
+}
+```
+
+---
+
+---
+
+# NoDiscard
+
+> Warn when a function's return value is discarded
+
+# `#[NoDiscard]`
+
+**Description:** Indicates that the return value of a function or method should not be discarded. Emits a warning if the return value is unused.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.5
+
+## Usage
+
+```php
+// Before PHP 8.5: no way to enforce that a return value must be used
+```
+
+```php
+#[\NoDiscard('as processing might fail for individual items')]
+function processItems(array $items): array
+{
+    // Returns an array of results/errors per item
+    return [];
+}
+
+processItems($items); // Warning: return value should be used or cast as (void)
+
+$results = processItems($items); // OK
+```
+
+### Parameters
+
+| Parameter | Type | Description |
+|---|---|---|
+| `$message` | `?string` | Optional message explaining why the return value should not be discarded |
+
+### Intentionally discarding the return value
+
+Use a `(void)` cast to suppress the warning explicitly:
+
+```php
+(void) processItems($items); // Suppresses the warning — PHP 8.5+
+```
+
+For cross-version compatibility (below PHP 8.5), use a `$_` variable:
+
+```php
+$_ = processItems($items); // No warning on any PHP version
+```
+
+> **Note:** `#[\NoDiscard]` can be added even when targeting PHP 8.4 or below — it simply has no effect on older versions.
+
+---
+
+---
+
+# Override
+
+> Assert that a method or property overrides a parent declaration
+
+# `#[Override]`
+
+**Description:** Indicates that a method or property is intended to override a declaration in a parent class or interface. A compile-time error is emitted if no matching parent declaration exists.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.3 (methods), PHP 8.5 (properties)
+
+## Usage
+
+```php
+// Before PHP 8.3: no way to assert that a method overrides a parent —
+typos silently created new methods instead
+```
+
+```php
+class Base
+{
+    protected function handle(): void {}
+}
+
+class Child extends Base
+{
+    #[\Override]
+    protected function handle(): void
+    {
+        // Guaranteed to override Base::handle()
+    }
+}
+```
+
+If the parent method doesn't exist, PHP emits a fatal error:
+
+```php
+class Child extends Base
+{
+    #[\Override]
+    protected function typoInName(): void {} // Fatal error: no matching parent method
+}
+```
+
+### With properties (PHP 8.5+)
+
+```php
+class Base
+{
+    protected string $name;
+}
+
+class Child extends Base
+{
+    #[\Override]
+    protected string $name = 'default';
+}
+```
+
+> **Note:** Cannot be used on `__construct()`.
+
+---
+
+---
+
+# ReturnTypeWillChange
+
+> Silence return type deprecation notice for cross-version compatibility
+
+# `#[ReturnTypeWillChange]`
+
+**Description:** Silences the deprecation notice emitted when overriding an internal PHP method without declaring a compatible return type, for cross-version PHP compatibility.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.1
+
+## Usage
+
+Use this when overriding a PHP internal method but you cannot yet declare the return type due to cross-version compatibility constraints.
+
+```php
+// Before PHP 8.1: overriding internal methods without compatible return types
+emitted deprecation notices with no clean way to silence them
+```
+
+```php
+class CustomCollection implements Countable
+{
+    #[\ReturnTypeWillChange]
+    public function count()
+    {
+        // Can't declare ': int' here due to PHP version constraints
+        return 0;
+    }
+}
+```
+
+> **Note:** This attribute is primarily a migration tool. Once you can target PHP 8.1+ exclusively, add the proper return type declaration and remove this attribute.
+
+---
+
+---
+
+# SensitiveParameter
+
+> Redact a parameter value from stack traces
+
+# `#[SensitiveParameter]`
+
+**Description:** Marks a function or method parameter as sensitive so its value is redacted (replaced with a `SensitiveParameterValue` object) in stack traces and error output.
+
+**Namespace:** Built-in PHP (no import required)
+
+**Since:** PHP 8.2
+
+## Usage
+
+```php
+// Before PHP 8.2: sensitive parameter values were fully visible in stack traces
+```
+
+```php
+function authenticate(
+    string $username,
+    #[\SensitiveParameter] string $password,
+): bool {
+    throw new RuntimeException('Auth failed');
+}
+```
+
+Without `#[\SensitiveParameter]`, the password would be visible in error logs:
+
+```
+// Without attribute:
+#0 file.php(10): authenticate('alice', 'hunter2')
+
+// With attribute:
+#0 file.php(10): authenticate('alice', Object(SensitiveParameterValue))
+```
+
+> **Warning:** The attribute must be applied at the concrete implementation, not just on an interface method. Applying it only to an interface declaration does not protect the implementing class.
+
+---

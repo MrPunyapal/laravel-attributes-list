@@ -1,0 +1,98 @@
+# Laravel PHP Attributes List
+> A curated list of PHP Attributes available in Laravel Framework.
+
+## Docs
+
+- /: A curated list of PHP Attributes available in Laravel Framework.
+- /attributes/eloquent/Table: Define database table
+- /attributes/eloquent/Fillable: Define mass assignable attributes
+- /attributes/eloquent/Guarded: Define guarded attributes
+- /attributes/eloquent/Hidden: Hide attributes from serialization
+- /attributes/eloquent/Visible: Define visible attributes
+- /attributes/eloquent/Appends: Append accessors to arrays
+- /attributes/eloquent/Touches: Touch related models
+- /attributes/eloquent/Connection: Specify database connection
+- /attributes/eloquent/Unguarded: Disable mass assignment protection
+- /attributes/eloquent/CollectedBy: Custom collection class
+- /attributes/eloquent/WithoutTimestamps: Disable timestamps
+- /attributes/eloquent/WithoutIncrementing: Disable auto-incrementing IDs
+- /attributes/eloquent/ScopedBy: Apply global scope(s) to the model
+- /attributes/eloquent/ObservedBy: Register model observer(s)
+- /attributes/eloquent/DateFormat: Define the date format for model timestamps
+- /attributes/eloquent/RouteKey: Define the route key name for route model binding
+- /attributes/eloquent/Scope: Mark a method as a local query scope
+- /attributes/eloquent/Boot: Mark a trait method as a model boot hook
+- /attributes/eloquent/Initialize: Mark a trait method as a model initialize hook
+- /attributes/eloquent/UseEloquentBuilder: Specify a custom Eloquent builder class
+- /attributes/eloquent/UseFactory: Specify the factory class for the model
+- /attributes/eloquent/UsePolicy: Specify the policy class for the model
+- /attributes/eloquent/UseResource: Specify the API resource for the model
+- /attributes/eloquent/UseResourceCollection: Specify the resource collection for the model
+- /attributes/queue/Connection: Define queue connection
+- /attributes/queue/Queue: Define queue name
+- /attributes/queue/Delay: Delay execution
+- /attributes/queue/Backoff: Configure retry delay
+- /attributes/queue/Tries: Maximum retry attempts
+- /attributes/queue/Timeout: Job timeout duration
+- /attributes/queue/UniqueFor: Unique job duration
+- /attributes/queue/DeleteWhenMissingModels: Delete if models are missing
+- /attributes/queue/FailOnTimeout: Mark job as failed on timeout
+- /attributes/queue/MaxExceptions: Maximum exception attempts
+- /attributes/queue/WithoutRelations: Ignore relations during serialization
+- /attributes/queue/DebounceFor: Debounce job execution for a given duration
+- /attributes/console/Signature: Define command signature
+- /attributes/console/Description: Define command description
+- /attributes/console/Aliases: Define command aliases
+- /attributes/console/Usage: Define additional command usage examples
+- /attributes/console/Help: Define command help text
+- /attributes/console/Hidden: Hide command from the Artisan list
+- /attributes/controllers/Middleware: Assign middleware to a controller class or action method
+- /attributes/controllers/WithoutMiddleware: Exclude middleware from a controller class or action method
+- /attributes/controllers/Authorize: Authorize a controller action via the gate
+- /attributes/form-requests/RedirectTo: Define redirect path on validation failure
+- /attributes/form-requests/RedirectToRoute: Define redirect route on validation failure
+- /attributes/form-requests/StopOnFirstFailure: Stop validation on first failure
+- /attributes/form-requests/ErrorBag: Define the error bag name
+- /attributes/form-requests/FailOnUnknownFields: Fail if the request contains unknown fields
+- /attributes/testing/Seeder: Run a specific seeder class during tests
+- /attributes/testing/Seed: Run the database seeder during tests
+- /attributes/testing/SetUp: Mark a trait method as a test setup hook
+- /attributes/testing/TearDown: Mark a trait method as a test teardown hook
+- /attributes/testing/UnitTest: Skip framework boot for individual test methods
+- /attributes/factories/UseModel: Define model for factory
+- /attributes/api-resources/Collects: Define resource collection mapping
+- /attributes/api-resources/PreserveKeys: Preserve keys in resource output
+- /attributes/di/Auth: Inject an auth guard instance
+- /attributes/di/Authenticated: Inject the currently authenticated user
+- /attributes/di/Bind: Contextually bind to a specific implementation
+- /attributes/di/BindWhen: Conditionally bind to a specific implementation
+- /attributes/di/Cache: Inject a cache store instance
+- /attributes/di/Config: Inject a configuration value
+- /attributes/di/Context: Inject a value from the application context
+- /attributes/di/CurrentUser: Inject the currently authenticated user model
+- /attributes/di/DB: Inject a database connection instance
+- /attributes/di/Database: Inject a named database connection
+- /attributes/di/Give: Give a specific binding contextually
+- /attributes/di/Log: Inject a logger with a named channel
+- /attributes/di/RequestAttribute: Inject a value from the request's attributes collection
+- /attributes/di/RouteParameter: Inject a route parameter value
+- /attributes/di/Scoped: Register a class as a scoped singleton in the container
+- /attributes/di/Singleton: Register a class as a singleton in the container
+- /attributes/di/Storage: Inject a storage disk instance
+- /attributes/di/Tag: Inject all bindings tagged with a given tag
+- /attributes/ai/MaxSteps: Maximum number of steps the agent may take when using tools
+- /attributes/ai/MaxTokens: Maximum number of tokens the model may generate
+- /attributes/ai/Model: Define the model the agent should use
+- /attributes/ai/Provider: Define the AI provider (or providers for failover)
+- /attributes/ai/Temperature: Define the sampling temperature for generation
+- /attributes/ai/Timeout: Define the HTTP timeout in seconds for agent requests
+- /attributes/ai/TopP: Define the top-p sampling threshold for generation
+- /attributes/ai/UseCheapestModel: Use the provider's cheapest text model
+- /attributes/ai/UseSmartestModel: Use the provider's most capable text model
+- /attributes/php/Attribute: Mark a class as a reusable custom attribute
+- /attributes/php/AllowDynamicProperties: Allow dynamic properties on a class without deprecation notice
+- /attributes/php/Deprecated: Mark a function, method, class, or constant as deprecated
+- /attributes/php/NoDiscard: Warn when a function's return value is discarded
+- /attributes/php/Override: Assert that a method or property overrides a parent declaration
+- /attributes/php/ReturnTypeWillChange: Silence return type deprecation notice for cross-version compatibility
+- /attributes/php/SensitiveParameter: Redact a parameter value from stack traces
