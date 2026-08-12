@@ -12,4 +12,5 @@ Docsmith::make()
     ->output(__DIR__ . '/docs')
     ->title('Laravel PHP Attributes List')
     ->description('A curated list of PHP Attributes available in Laravel Framework.')
+    ->ogGeneratedPerPage()
     ->build();

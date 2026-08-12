@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c16c2f2e37b3c4d67c64849995a9eb96",
+    "content-hash": "94509e958d0954e65737acd96ce1af04",
     "packages": [],
     "packages-dev": [
         {
@@ -84,16 +84,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.8.3",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "1902f60f984235023acbe03db6ad614a37b3c3e7"
+                "reference": "d2d1aa8b35e072966c89bc0c66cf926e56767dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/1902f60f984235023acbe03db6ad614a37b3c3e7",
-                "reference": "1902f60f984235023acbe03db6ad614a37b3c3e7",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d2d1aa8b35e072966c89bc0c66cf926e56767dc4",
+                "reference": "d2d1aa8b35e072966c89bc0c66cf926e56767dc4",
                 "shasum": ""
             },
             "require": {
@@ -130,7 +130,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.9-dev"
+                    "dev-main": "2.11-dev"
                 }
             },
             "autoload": {
@@ -187,7 +187,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-12T15:29:16+00:00"
+            "time": "2026-08-11T16:06:25+00:00"
         },
         {
             "name": "league/config",
@@ -273,16 +273,16 @@
         },
         {
             "name": "mrpunyapal/docsmith",
-            "version": "0.1.4",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MrPunyapal/docsmith.git",
-                "reference": "22b4f341b317c5b24af1694f8e82b6e0d693ed9e"
+                "reference": "2c5233bef8e3cc03332ce18895f7afdc4e5a5baf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MrPunyapal/docsmith/zipball/22b4f341b317c5b24af1694f8e82b6e0d693ed9e",
-                "reference": "22b4f341b317c5b24af1694f8e82b6e0d693ed9e",
+                "url": "https://api.github.com/repos/MrPunyapal/docsmith/zipball/2c5233bef8e3cc03332ce18895f7afdc4e5a5baf",
+                "reference": "2c5233bef8e3cc03332ce18895f7afdc4e5a5baf",
                 "shasum": ""
             },
             "require": {
@@ -291,11 +291,15 @@
                 "php": "^8.3"
             },
             "require-dev": {
+                "laravel/pao": "^1.1",
                 "laravel/pint": "^1.18",
                 "pestphp/pest": "^3.8 || ^4.0",
                 "phpstan/phpstan": "^2.1",
                 "rector/rector": "^2.0"
             },
+            "bin": [
+                "bin/docsmith"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -309,9 +313,9 @@
             "description": "Craft static documentation sites from Markdown with minimal setup.",
             "support": {
                 "issues": "https://github.com/MrPunyapal/docsmith/issues",
-                "source": "https://github.com/MrPunyapal/docsmith/tree/0.1.4"
+                "source": "https://github.com/MrPunyapal/docsmith/tree/0.1.7"
             },
-            "time": "2026-07-28T13:26:03+00:00"
+            "time": "2026-08-12T16:24:16+00:00"
         },
         {
             "name": "nette/schema",

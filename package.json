@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "capturist": "^0.1.3",
+    "playwright": "^1.62.1"
+  }
+}
