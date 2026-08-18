@@ -13,5 +13,7 @@ Docsmith::make()
     ->title('Laravel PHP Attributes List')
     ->description('A curated list of PHP Attributes available in Laravel Framework.')
     ->siteUrl('https://mrpunyapal.github.io/laravel-attributes-list')
+    ->repositoryUrl('https://github.com/mrpunyapal/laravel-attributes-list')
+    ->editBranch('main')
     ->ogGeneratedPerPage()
     ->build();
