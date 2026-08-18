@@ -1,6 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.classList.add('docsmith-js');
 
+    if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+    }
+
+    if (window.location.hash === '') {
+        window.scrollTo(0, 0);
+    }
+
     var applyTheme = function (theme) {
         if (theme !== 'dark' && theme !== 'light') {
             return;
@@ -78,41 +86,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-    Array.prototype.slice.call(document.querySelectorAll('pre > code')).forEach(function (codeBlock) {
-        var pre = codeBlock.parentElement;
+    (function () {
+        var blocks = Array.prototype.slice.call(document.querySelectorAll('pre > code'));
 
-        if (!pre || pre.querySelector('.code-copy-btn')) {
+        if (blocks.length === 0) {
             return;
         }
 
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'code-copy-btn';
-        button.textContent = 'Copy';
-        button.setAttribute('aria-label', 'Copy code block');
+        blocks.forEach(function (block) {
+            var button = document.createElement('button');
+            var copyIcon = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1"></rect><path d="M16 8V5H5v11h3"></path></svg>';
+            var copiedIcon = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>';
+            button.type = 'button';
+            button.className = 'code-copy-float';
+            button.innerHTML = copyIcon;
+            button.setAttribute('aria-label', 'Copy code block');
+            block.parentElement.appendChild(button);
 
-        button.addEventListener('click', function () {
-            var text = codeBlock.textContent || '';
+            button.addEventListener('click', function () {
+                copyCode(block.textContent || '').then(function () {
+                    button.classList.add('copied');
+                    button.innerHTML = copiedIcon;
+                    button.setAttribute('aria-label', 'Code copied');
 
-            copyCode(text).then(function () {
-                button.classList.add('copied');
-                button.textContent = 'Copied';
+                    window.setTimeout(function () {
+                        button.classList.remove('copied');
+                        button.innerHTML = copyIcon;
+                        button.setAttribute('aria-label', 'Copy code block');
+                    }, 1400);
+                }).catch(function () {
+                    button.textContent = '!';
+                    button.setAttribute('aria-label', 'Copy failed');
 
-                window.setTimeout(function () {
-                    button.classList.remove('copied');
-                    button.textContent = 'Copy';
-                }, 1400);
-            }).catch(function () {
-                button.textContent = 'Failed';
-
-                window.setTimeout(function () {
-                    button.textContent = 'Copy';
-                }, 1400);
+                    window.setTimeout(function () {
+                        button.innerHTML = copyIcon;
+                        button.setAttribute('aria-label', 'Copy code block');
+                    }, 1400);
+                });
             });
         });
-
-        pre.appendChild(button);
-    });
+    })();
 
     var search = document.querySelector('[data-docsmith-search]');
     var nav = document.querySelector('[data-docsmith-nav]');
@@ -132,12 +145,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (sidebar && menuToggle) {
         var setMenuOpen = function (open) {
+            if (open) {
+                syncPanelTop();
+            }
+
             sidebar.classList.toggle('is-open', open);
             document.body.classList.toggle('has-open-sidebar', open);
             menuToggle.classList.toggle('is-open', open);
             menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
             menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
         };
+
+        var sidebarPanel = document.querySelector('[data-docsmith-sidebar-panel]');
+
+        var syncPanelTop = function () {
+            if (!sidebarPanel) {
+                return;
+            }
+
+            if (window.matchMedia('(max-width: 900px)').matches) {
+                sidebarPanel.style.top = '0px';
+            } else {
+                sidebarPanel.style.top = '';
+            }
+        };
+
+        syncPanelTop();
+        window.addEventListener('resize', syncPanelTop);
+        window.addEventListener('load', function () {
+            window.setTimeout(syncPanelTop, 60);
+        });
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(syncPanelTop);
+        }
 
         menuToggle.addEventListener('click', function () {
             setMenuOpen(!sidebar.classList.contains('is-open'));
