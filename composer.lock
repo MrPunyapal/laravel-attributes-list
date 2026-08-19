@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94e4242e9e3e89a93acbe267454368d9",
+    "content-hash": "59f4c3619354be9772a4a9937e081c7e",
     "packages": [],
     "packages-dev": [
         {
@@ -273,16 +273,16 @@
         },
         {
             "name": "mrpunyapal/docsmith",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MrPunyapal/docsmith.git",
-                "reference": "759af6b150f78ca386bf1e380c94245bcf4c23d0"
+                "reference": "dadbaab740d2aee905569aa54f9d2d378b2024d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MrPunyapal/docsmith/zipball/759af6b150f78ca386bf1e380c94245bcf4c23d0",
-                "reference": "759af6b150f78ca386bf1e380c94245bcf4c23d0",
+                "url": "https://api.github.com/repos/MrPunyapal/docsmith/zipball/dadbaab740d2aee905569aa54f9d2d378b2024d7",
+                "reference": "dadbaab740d2aee905569aa54f9d2d378b2024d7",
                 "shasum": ""
             },
             "require": {
@@ -313,22 +313,28 @@
             "description": "Craft static documentation sites from Markdown with minimal setup.",
             "support": {
                 "issues": "https://github.com/MrPunyapal/docsmith/issues",
-                "source": "https://github.com/MrPunyapal/docsmith/tree/0.2.0"
+                "source": "https://github.com/MrPunyapal/docsmith/tree/0.2.1"
             },
-            "time": "2026-08-18T20:50:20+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/mrpunyapal",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-08-19T15:35:11+00:00"
         },
         {
             "name": "nette/schema",
-            "version": "v1.3.5",
+            "version": "v1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/schema.git",
-                "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002"
+                "reference": "c54350438cd6914616f790a49cb424605f421562"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/schema/zipball/f0ab1a3cda782dbc5da270d28545236aa80c4002",
-                "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002",
+                "url": "https://api.github.com/repos/nette/schema/zipball/c54350438cd6914616f790a49cb424605f421562",
+                "reference": "c54350438cd6914616f790a49cb424605f421562",
                 "shasum": ""
             },
             "require": {
@@ -380,9 +386,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/schema/issues",
-                "source": "https://github.com/nette/schema/tree/v1.3.5"
+                "source": "https://github.com/nette/schema/tree/v1.3.6"
             },
-            "time": "2026-02-23T03:47:12+00:00"
+            "time": "2026-08-16T21:58:41+00:00"
         },
         {
             "name": "nette/utils",

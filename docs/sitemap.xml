@@ -2,374 +2,374 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/</loc>
-    <lastmod>2026-08-18T21:12:55+00:00</lastmod>
+    <lastmod>2026-08-19T15:43:24+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Table</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:54+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Fillable</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:48+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Guarded</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:49+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Hidden</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Visible</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:58+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Appends</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:45+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Touches</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:55+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Connection</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:47+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Unguarded</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:55+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/CollectedBy</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:46+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/WithoutTimestamps</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:58+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/WithoutIncrementing</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/ScopedBy</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:51+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/ObservedBy</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/DateFormat</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:48+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/RouteKey</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Scope</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Boot</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Initialize</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/UseEloquentBuilder</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:55+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/UseFactory</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/UsePolicy</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:56+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/UseResource</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:56+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/UseResourceCollection</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:57+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/Connection</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:42:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/Queue</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:42:01+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/Delay</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:42:01+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/Backoff</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:42:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/Tries</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/Timeout</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/UniqueFor</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/DeleteWhenMissingModels</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/FailOnTimeout</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/MaxExceptions</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/WithoutRelations</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/DebounceFor</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Signature</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Description</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Aliases</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Usage</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Help</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Hidden</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/controllers/Middleware</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/controllers/WithoutMiddleware</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/controllers/Authorize</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/form-requests/RedirectTo</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/form-requests/RedirectToRoute</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:58+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/form-requests/StopOnFirstFailure</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/form-requests/ErrorBag</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/form-requests/FailOnUnknownFields</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/Seeder</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/Seed</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/SetUp</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/TearDown</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/UnitTest</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/factories/UseModel</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/api-resources/Collects</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/api-resources/PreserveKeys</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Auth</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Authenticated</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Bind</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:45+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/BindWhen</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T18:22:43+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Cache</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Config</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Context</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/CurrentUser</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/DB</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Database</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Give</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Log</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/RequestAttribute</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/RouteParameter</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Scoped</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Singleton</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Storage</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/di/Tag</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/MaxSteps</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/MaxTokens</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Model</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Provider</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Temperature</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Timeout</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/TopP</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/UseCheapestModel</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/UseSmartestModel</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/Attribute</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:59+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/AllowDynamicProperties</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-27T17:41:59+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/Deprecated</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/NoDiscard</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:18:14+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/Override</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/ReturnTypeWillChange</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:21:03+00:00</lastmod>
   </url>
   <url>
     <loc>https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/SensitiveParameter</loc>
-    <lastmod>2026-08-18T21:12:21+00:00</lastmod>
+    <lastmod>2026-07-24T09:18:14+00:00</lastmod>
   </url>
 </urlset>
