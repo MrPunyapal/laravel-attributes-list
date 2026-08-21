@@ -1,6 +1,6 @@
 # `#[DebounceFor]`
 
-**Description:** Debounces job execution — if the same job is dispatched multiple times within the given duration, only the last dispatch runs.
+**Description:** Debounces job execution. If the same job is dispatched multiple times within the given duration, only the last dispatch runs.
 
 **Namespace:** `Illuminate\Queue\Attributes\DebounceFor`
 
@@ -21,7 +21,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DebounceFor;
 
 // After:
-#[DebounceFor(seconds: 30, maxWait: 60)]
+#[DebounceFor(30, maxWait: 60)]
 class SyncUserToMailchimp implements ShouldQueue
 {
     public function __construct(
