@@ -146,6 +146,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[MaxTokens]`](attributes/ai/MaxTokens.md) — Maximum number of tokens the model may generate
 * [`#[Model]`](attributes/ai/Model.md) — Define the model the agent should use
 * [`#[Provider]`](attributes/ai/Provider.md) — Define the AI provider (or providers for failover)
+* [`#[RepairToolCalls]`](attributes/ai/RepairToolCalls.md) — Recover when the model calls an unknown tool
 * [`#[Strict]`](attributes/ai/Strict.md) — Opt in to strict structured output for an agent
 * [`#[Temperature]`](attributes/ai/Temperature.md) — Define the sampling temperature for generation
 * [`#[Timeout]`](attributes/ai/Timeout.md) — Define the HTTP timeout in seconds for agent requests
