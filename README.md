@@ -152,6 +152,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[TopP]`](attributes/ai/TopP.md) — Define the top-p sampling threshold for generation
 * [`#[UseCheapestModel]`](attributes/ai/UseCheapestModel.md) — Use the provider's cheapest text model
 * [`#[UseSmartestModel]`](attributes/ai/UseSmartestModel.md) — Use the provider's most capable text model
+* [`#[WithoutBroadcasting]`](attributes/ai/WithoutBroadcasting.md) — Skip broadcasting of given stream events for an agent
 
 ---
 
