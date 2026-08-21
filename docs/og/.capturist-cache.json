@@ -21,6 +21,16 @@
       "output": "attributes-ai-Provider.png",
       "label": "attributes-ai-Provider"
     },
+    "attributes-ai-RepairToolCalls.png": {
+      "hash": "1bb0db48c9d79b17345a6ed10de8fdc7bd543f54049949a96a0d3a85627fc5d0",
+      "output": "attributes-ai-RepairToolCalls.png",
+      "label": "attributes-ai-RepairToolCalls"
+    },
+    "attributes-ai-Strict.png": {
+      "hash": "019f5491b91e335ba85458e353590277ceefe49ca8aa00f12620cd8e50a8bb98",
+      "output": "attributes-ai-Strict.png",
+      "label": "attributes-ai-Strict"
+    },
     "attributes-ai-Temperature.png": {
       "hash": "d5be506fdf8bde544f1ddc19b2b63cb7ff74bd7da589a20610fe42d2723e0fac",
       "output": "attributes-ai-Temperature.png",
@@ -45,6 +55,11 @@
       "hash": "488fd486d1aa77beba5d6583d890877b1044d08559675cd1dcc9a05e2bb2799d",
       "output": "attributes-ai-UseSmartestModel.png",
       "label": "attributes-ai-UseSmartestModel"
+    },
+    "attributes-ai-WithoutBroadcasting.png": {
+      "hash": "ac747e1896bdcb6839f07e1b4423851e40038bd84310621d482900df0c751b09",
+      "output": "attributes-ai-WithoutBroadcasting.png",
+      "label": "attributes-ai-WithoutBroadcasting"
     },
     "attributes-api-resources-Collects.png": {
       "hash": "f9535cf3c5b9a0f0017741bffb5580e7bc81abff49ed9efea68eacbfc6dafae2",

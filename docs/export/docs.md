@@ -1714,7 +1714,7 @@ class SendWelcomeEmail implements ShouldQueue
 
 # `#[DebounceFor]`
 
-**Description:** Debounces job execution — if the same job is dispatched multiple times within the given duration, only the last dispatch runs.
+**Description:** Debounces queued execution. If the same job or listener is dispatched multiple times within the given duration, only the last dispatch runs.
 
 **Namespace:** `Illuminate\Queue\Attributes\DebounceFor`
 
@@ -1727,7 +1727,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DebounceFor;
 
 // Before:
-No built-in equivalent — required custom cache-based debouncing logic
+No built-in equivalent, required custom cache-based debouncing logic
 ```
 
 ```php
@@ -1735,7 +1735,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\Attributes\DebounceFor;
 
 // After:
-#[DebounceFor(seconds: 30, maxWait: 60)]
+#[DebounceFor(30, maxWait: 60)]
 class SyncUserToMailchimp implements ShouldQueue
 {
     public function __construct(
@@ -1748,6 +1748,24 @@ class SyncUserToMailchimp implements ShouldQueue
     }
 }
 ```
+
+Works on queued event listeners too. The listener must implement `ShouldQueue`, otherwise it runs synchronously and the attribute is ignored:
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\DebounceFor;
+
+#[DebounceFor(30, maxWait: 60)]
+class SendOrderConfirmation implements ShouldQueue
+{
+    public function handle(OrderShipped $event): void
+    {
+        // If the event fires multiple times in 30s, only the last listener run is queued
+    }
+}
+```
+
+You may scope the debounce with a `debounceId()` method or `$debounceId` property, and pick a cache store with `debounceVia()`. A class that implements `ShouldBeUnique` cannot also be debounced.
 
 ---
 
@@ -3022,11 +3040,11 @@ The callback receives the container so the condition can depend on configuration
 
 # `#[Cache]`
 
-**Description:** Injects a specific cache store instance by name.
+**Description:** Injects a specific cache store instance by name. Pass `memo: true` to inject a memoized store that keeps values in memory for the current request or process.
 
 **Namespace:** `Illuminate\Container\Attributes\Cache`
 
-**Added in:** Laravel 11.20
+**Added in:** Laravel 11.20 (memoization since Laravel 13.x)
 
 ## Usage
 
@@ -3055,6 +3073,20 @@ class ProductService
     {
         return $this->cache->remember("product:{$id}", 3600, fn () => Product::find($id));
     }
+}
+```
+
+Inject a memoized store so repeated reads within the same request hit memory:
+
+```php
+use Illuminate\Container\Attributes\Cache;
+use Illuminate\Contracts\Cache\Repository;
+
+class ProductService
+{
+    public function __construct(
+        #[Cache('redis', memo: true)] private readonly Repository $cache
+    ) {}
 }
 ```
 
@@ -3871,6 +3903,117 @@ class SalesCoach implements Agent
 
 ---
 
+# RepairToolCalls
+
+> Recover when the model calls an unknown tool
+
+# `#[RepairToolCalls]`
+
+**Description:** Lets an agent recover when the model calls a tool that does not exist. Instead of throwing, the agent returns a tool result listing the available tools so the model can retry.
+
+**Namespace:** `Laravel\Ai\Attributes\RepairToolCalls`
+
+**Added in:** `laravel/ai` v0.11.0
+
+## Usage
+
+```php
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// Before:
+class SearchAgent implements Agent
+{
+    use Promptable;
+}
+// Calling an unregistered tool throws Laravel\Ai\Exceptions\NoSuchToolException.
+```
+
+```php
+use Laravel\Ai\Attributes\RepairToolCalls;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+
+// After:
+#[RepairToolCalls]
+class SearchAgent implements Agent
+{
+    use Promptable;
+}
+// The unknown tool call is answered with the list of available
+// tools and the model gets another step to correct itself.
+```
+
+---
+
+---
+
+# Strict
+
+> Opt in to strict structured output for an agent
+
+# `#[Strict]`
+
+**Description:** Opts an agent into strict mode for structured output, so the model response must follow the schema exactly.
+
+**Namespace:** `Laravel\Ai\Attributes\Strict`
+
+**Added in:** `laravel/ai` v0.10.0
+
+## Usage
+
+```php
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Contracts\HasStructuredOutput;
+use Laravel\Ai\Promptable;
+
+// Before:
+class ElementAgent implements Agent, HasStructuredOutput
+{
+    use Promptable;
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'symbol' => $schema->string()->required(),
+        ];
+    }
+}
+// Strict mode is off. The provider treats the schema as a hint.
+```
+
+```php
+use Illuminate\Contracts\JsonSchema\JsonSchema;
+use Laravel\Ai\Attributes\Strict;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Contracts\HasStructuredOutput;
+use Laravel\Ai\Promptable;
+
+// After:
+#[Strict]
+class ElementAgent implements Agent, HasStructuredOutput
+{
+    use Promptable;
+
+    public function instructions(): string
+    {
+        return 'You know about periodic table element symbols.';
+    }
+
+    public function schema(JsonSchema $schema): array
+    {
+        return [
+            'symbol' => $schema->string()->required(),
+        ];
+    }
+}
+```
+
+---
+
+---
+
 # Temperature
 
 > Define the sampling temperature for generation
@@ -4083,6 +4226,61 @@ class ComplexReasoner implements Agent
     use Promptable;
 
     // Will use the most capable model (e.g., Opus)...
+}
+```
+
+---
+
+---
+
+# WithoutBroadcasting
+
+> Skip broadcasting of given stream events for an agent
+
+# `#[WithoutBroadcasting]`
+
+**Description:** Skips broadcasting of the given stream event classes while an agent response is streaming.
+
+**Namespace:** `Laravel\Ai\Attributes\WithoutBroadcasting`
+
+**Added in:** `laravel/ai` v0.10.0
+
+## Usage
+
+```php
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+use Laravel\Ai\Streaming\Events\TextDelta;
+
+// Before:
+class ReportAgent implements Agent
+{
+    use Promptable;
+}
+// Every stream event, including each TextDelta, is broadcast.
+```
+
+```php
+use Laravel\Ai\Attributes\WithoutBroadcasting;
+use Laravel\Ai\Contracts\Agent;
+use Laravel\Ai\Promptable;
+use Laravel\Ai\Streaming\Events\TextDelta;
+
+// After:
+#[WithoutBroadcasting(TextDelta::class)]
+class ReportAgent implements Agent
+{
+    use Promptable;
+}
+```
+
+You may pass multiple events:
+
+```php
+#[WithoutBroadcasting(TextDelta::class, ToolCall::class)]
+class ReportAgent implements Agent
+{
+    use Promptable;
 }
 ```
 

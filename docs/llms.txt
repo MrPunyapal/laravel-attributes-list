@@ -84,11 +84,14 @@
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/MaxTokens: Maximum number of tokens the model may generate
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Model: Define the model the agent should use
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Provider: Define the AI provider (or providers for failover)
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/RepairToolCalls: Recover when the model calls an unknown tool
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Strict: Opt in to strict structured output for an agent
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Temperature: Define the sampling temperature for generation
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/Timeout: Define the HTTP timeout in seconds for agent requests
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/TopP: Define the top-p sampling threshold for generation
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/UseCheapestModel: Use the provider's cheapest text model
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/UseSmartestModel: Use the provider's most capable text model
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/ai/WithoutBroadcasting: Skip broadcasting of given stream events for an agent
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/Attribute: Mark a class as a reusable custom attribute
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/AllowDynamicProperties: Allow dynamic properties on a class without deprecation notice
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/php/Deprecated: Mark a function, method, class, or constant as deprecated
