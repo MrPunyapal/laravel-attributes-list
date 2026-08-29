@@ -465,14 +465,14 @@
         "title": "CurrentUser",
         "description": "Inject the currently authenticated user model",
         "url": "/attributes/di/CurrentUser",
-        "content": "Description: Injects the currently authenticated user model instance, resolved via the auth user resolver. Namespace: Illuminate\\Container\\Attributes\\CurrentUser Added in: Laravel 11.20 Usage use Illuminate\\Container\\Attributes\\CurrentUser; use App\\Models\\User; // Before: $user = Auth::user(); use Illuminate\\Container\\Attributes\\CurrentUser; use App\\Models\\User; // After: class OrderService { public function __construct( #[CurrentUser] private readonly ?User $user ) {} public function placeOrder(array $data): Order { return $this->user?->orders()->create($data); } } [!NOTE] The #[CurrentUser] currently just alias of #[Authenticated].",
+        "content": "Description: Injects the currently authenticated user model instance, resolved via the auth user resolver. Namespace: Illuminate\\Container\\Attributes\\CurrentUser Added in: Laravel 11.20 Usage use Illuminate\\Container\\Attributes\\CurrentUser; use App\\Models\\User; // Before: $user = Auth::user(); use Illuminate\\Container\\Attributes\\CurrentUser; use App\\Models\\User; // After: class OrderService { public function __construct( #[CurrentUser] private readonly ?User $user ) {} public function placeOrder(array $data): Order { return $this->user?->orders()->create($data); } } Note The #[CurrentUser] currently just alias of #[Authenticated].",
         "headings": "Usage"
     },
     {
         "title": "DB",
         "description": "Inject a database connection instance",
         "url": "/attributes/di/DB",
-        "content": "Description: Injects a database connection instance by name. Namespace: Illuminate\\Container\\Attributes\\DB Added in: Laravel 11.20 Usage use Illuminate\\Support\\Facades\\DB; use Illuminate\\Database\\Connection; // Before (service provider): $this->app->when(ReportService::class) ->needs(Connection::class) ->give(fn () => DB::connection('pgsql')); use Illuminate\\Container\\Attributes\\DB; use Illuminate\\Database\\Connection; // After: class ReportService { public function __construct( #[DB('pgsql')] private readonly Connection $db ) {} public function generateReport(): array { return $this->db->select('SELECT * FROM reports'); } } [!NOTE] The #[DB] currently just alias of #[Database].",
+        "content": "Description: Injects a database connection instance by name. Namespace: Illuminate\\Container\\Attributes\\DB Added in: Laravel 11.20 Usage use Illuminate\\Support\\Facades\\DB; use Illuminate\\Database\\Connection; // Before (service provider): $this->app->when(ReportService::class) ->needs(Connection::class) ->give(fn () => DB::connection('pgsql')); use Illuminate\\Container\\Attributes\\DB; use Illuminate\\Database\\Connection; // After: class ReportService { public function __construct( #[DB('pgsql')] private readonly Connection $db ) {} public function generateReport(): array { return $this->db->select('SELECT * FROM reports'); } } Note The #[DB] currently just alias of #[Database].",
         "headings": "Usage"
     },
     {
