@@ -256,6 +256,11 @@
       "output": "attributes-eloquent-ObservedBy.png",
       "label": "attributes-eloquent-ObservedBy"
     },
+    "attributes-eloquent-Refreshes.png": {
+      "hash": "3d4a63b7fe42d4b36ee7ad9a72597d7cebe4d7cebb77e6769cff863fbffbc9d3",
+      "output": "attributes-eloquent-Refreshes.png",
+      "label": "attributes-eloquent-Refreshes"
+    },
     "attributes-eloquent-RouteKey.png": {
       "hash": "4926e77f8c1d793a7d70f610a3dba5d9577db3d091f2e37f1aff9f3234a4a242",
       "output": "attributes-eloquent-RouteKey.png",
@@ -400,6 +405,11 @@
       "hash": "3d6f767dd3649be795afd0e05d0f5cdf6e2b2e97535a7e8749fcfdd45a8d3912",
       "output": "attributes-queue-Connection.png",
       "label": "attributes-queue-Connection"
+    },
+    "attributes-queue-CountCrashesAsExceptions.png": {
+      "hash": "5f92bd274569b74c580369826d41c575e50dc8169d02953d8cbfbd5b41c15a39",
+      "output": "attributes-queue-CountCrashesAsExceptions.png",
+      "label": "attributes-queue-CountCrashesAsExceptions"
     },
     "attributes-queue-DebounceFor.png": {
       "hash": "ac57c1fdb91f7faff2e4226e9af6e31cbe88bebf2dd296343c248f264b61243a",

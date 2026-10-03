@@ -11,6 +11,7 @@
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Visible: Define visible attributes
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Appends: Append accessors to arrays
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Touches: Touch related models
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Refreshes: Refresh database-generated columns after writes
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Connection: Specify database connection
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/Unguarded: Disable mass assignment protection
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/eloquent/CollectedBy: Custom collection class
@@ -38,6 +39,7 @@
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/DeleteWhenMissingModels: Delete if models are missing
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/FailOnTimeout: Mark job as failed on timeout
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/MaxExceptions: Maximum exception attempts
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/CountCrashesAsExceptions: Count worker crashes towards max exceptions
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/WithoutRelations: Ignore relations during serialization
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/DebounceFor: Debounce job execution for a given duration
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Signature: Define command signature
