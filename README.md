@@ -28,6 +28,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[Visible]`](attributes/eloquent/Visible.md) — Define visible attributes
 * [`#[Appends]`](attributes/eloquent/Appends.md) — Append accessors to arrays
 * [`#[Touches]`](attributes/eloquent/Touches.md) — Touch related models
+* [`#[Refreshes]`](attributes/eloquent/Refreshes.md) — Refresh database-generated columns after writes
 * [`#[Connection]`](attributes/eloquent/Connection.md) — Specify database connection
 * [`#[Unguarded]`](attributes/eloquent/Unguarded.md) — Disable mass assignment protection
 * [`#[CollectedBy]`](attributes/eloquent/CollectedBy.md) — Custom collection class
@@ -60,6 +61,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[DeleteWhenMissingModels]`](attributes/queue/DeleteWhenMissingModels.md) — Delete if models are missing
 * [`#[FailOnTimeout]`](attributes/queue/FailOnTimeout.md) — Mark job as failed on timeout
 * [`#[MaxExceptions]`](attributes/queue/MaxExceptions.md) — Maximum exception attempts
+* [`#[CountCrashesAsExceptions]`](attributes/queue/CountCrashesAsExceptions.md) — Count worker crashes towards max exceptions
 * [`#[WithoutRelations]`](attributes/queue/WithoutRelations.md) — Ignore relations during serialization
 * [`#[DebounceFor]`](attributes/queue/DebounceFor.md) — Debounce job execution for a given duration
 
