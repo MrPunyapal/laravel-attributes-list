@@ -28,6 +28,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[Visible]`](attributes/eloquent/Visible.md) — Define visible attributes
 * [`#[Appends]`](attributes/eloquent/Appends.md) — Append accessors to arrays
 * [`#[Touches]`](attributes/eloquent/Touches.md) — Touch related models
+* [`#[Refreshes]`](attributes/eloquent/Refreshes.md) — Refresh database-generated columns after writes
 * [`#[Connection]`](attributes/eloquent/Connection.md) — Specify database connection
 * [`#[Unguarded]`](attributes/eloquent/Unguarded.md) — Disable mass assignment protection
 * [`#[CollectedBy]`](attributes/eloquent/CollectedBy.md) — Custom collection class
