@@ -14,7 +14,7 @@ A curated list of PHP Attributes available in Laravel Framework.
 
 # `#[Table]`
 
-**Description:** Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model.
+**Description:** Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model. Pass `key: false` to disable the primary key.
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Table`
 
@@ -42,6 +42,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     //
+}
+```
+
+Disable the primary key with `key: false`:
+
+```php
+#[Table('some_table', key: false)]
+class SomeModel extends Model
+{
+    // No primary key
 }
 ```
 
@@ -1880,6 +1890,63 @@ You may scope the debounce with a `debounceId()` method or `$debounceId` propert
 
 ---
 
+# RetryFor
+
+> Maximum duration to retry a job
+
+# `#[RetryFor]`
+
+**Description:** Specifies the duration in seconds during which a job may be retried before it is considered failed.
+
+**Namespace:** `Illuminate\Queue\Attributes\RetryFor`
+
+**Added in:** Laravel 13.37
+
+## Usage
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+// Before:
+public $retryUntil = null;
+
+public function retryUntil()
+{
+    return now()->addHour();
+}
+```
+
+```php
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\Attributes\RetryFor;
+
+// After (retry for one hour):
+#[RetryFor(hours: 1)]
+class ProcessPodcast implements ShouldQueue
+{
+    public function handle(): void
+    {
+        // Job will be retried for 1 hour, then marked as failed
+    }
+}
+```
+
+You may specify the duration using seconds, minutes, or hours:
+
+```php
+// 3600 seconds (1 hour)
+#[RetryFor(seconds: 3600)]
+class ProcessPodcast implements ShouldQueue { }
+
+// 60 minutes (1 hour)
+#[RetryFor(minutes: 60)]
+class ProcessPodcast implements ShouldQueue { }
+```
+
+---
+
+---
+
 # Signature
 
 > Define command signature
@@ -2817,6 +2884,80 @@ class LocationServiceTest extends TestCase
 ```
 
 > **Warning:** Laravel TestCase methods that rely on the container (e.g. facades, `$this->app`) will not work inside `#[UnitTest]` methods.
+
+---
+
+---
+
+# WithoutMigrationEvents
+
+> Skip migration events during tests
+
+# `#[WithoutMigrationEvents]`
+
+**Description:** Prevents migration events from being dispatched during test execution. Can be applied to a test class or individual test method.
+
+**Namespace:** `Illuminate\Foundation\Testing\Attributes\WithoutMigrationEvents`
+
+**Added in:** Laravel 13.35
+
+## Usage
+
+```php
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\Attributes\WithoutMigrationEvents;
+use Tests\TestCase;
+
+// Before:
+class MigrationTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_migrations_run_without_events(): void
+    {
+        $this->withoutMigrationEvents();
+        // Test runs with migrations but events are not dispatched
+    }
+}
+```
+
+```php
+use Illuminate\Foundation\Testing\Attributes\WithoutMigrationEvents;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+// After (prevent events for the entire test class):
+#[WithoutMigrationEvents]
+class MigrationTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_migrations_run_silently(): void
+    {
+        // Migration events are not dispatched
+    }
+}
+```
+
+You may also apply it to individual test methods:
+
+```php
+class MigrationTest extends TestCase
+{
+    use RefreshDatabase;
+
+    #[WithoutMigrationEvents]
+    public function test_a_specific_migration(): void
+    {
+        // Migration events are not dispatched for this test
+    }
+
+    public function test_another_migration(): void
+    {
+        // Migration events are dispatched for this test
+    }
+}
+```
 
 ---
 

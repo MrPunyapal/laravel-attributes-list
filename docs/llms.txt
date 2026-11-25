@@ -42,6 +42,7 @@
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/CountCrashesAsExceptions: Count worker crashes towards max exceptions
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/WithoutRelations: Ignore relations during serialization
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/DebounceFor: Debounce job execution for a given duration
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/queue/RetryFor: Maximum duration to retry a job
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Signature: Define command signature
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Description: Define command description
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/console/Aliases: Define command aliases
@@ -61,6 +62,7 @@
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/SetUp: Mark a trait method as a test setup hook
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/TearDown: Mark a trait method as a test teardown hook
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/UnitTest: Skip framework boot for individual test methods
+- https://mrpunyapal.github.io/laravel-attributes-list/attributes/testing/WithoutMigrationEvents: Skip migration events during tests
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/factories/UseModel: Define model for factory
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/api-resources/Collects: Define resource collection mapping
 - https://mrpunyapal.github.io/laravel-attributes-list/attributes/api-resources/PreserveKeys: Preserve keys in resource output
