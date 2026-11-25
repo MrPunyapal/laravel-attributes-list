@@ -1,6 +1,6 @@
 # `#[Table]`
 
-**Description:** Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model.
+**Description:** Defines the database table name, primary key, key type, and incrementing behavior for an Eloquent model. Pass `key: false` to disable the primary key.
 
 **Namespace:** `Illuminate\Database\Eloquent\Attributes\Table`
 
@@ -28,6 +28,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     //
+}
+```
+
+Disable the primary key with `key: false`:
+
+```php
+#[Table('some_table', key: false)]
+class SomeModel extends Model
+{
+    // No primary key
 }
 ```
 
