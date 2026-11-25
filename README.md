@@ -64,6 +64,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[CountCrashesAsExceptions]`](attributes/queue/CountCrashesAsExceptions.md) — Count worker crashes towards max exceptions
 * [`#[WithoutRelations]`](attributes/queue/WithoutRelations.md) — Ignore relations during serialization
 * [`#[DebounceFor]`](attributes/queue/DebounceFor.md) — Debounce job execution for a given duration
+* [`#[RetryFor]`](attributes/queue/RetryFor.md) — Maximum duration to retry a job
 
 ---
 
@@ -103,6 +104,7 @@ npx skills add MrPunyapal/laravel-attributes-list --skill laravel-attributes
 * [`#[SetUp]`](attributes/testing/SetUp.md) — Mark a trait method as a test setup hook
 * [`#[TearDown]`](attributes/testing/TearDown.md) — Mark a trait method as a test teardown hook
 * [`#[UnitTest]`](attributes/testing/UnitTest.md) — Skip framework boot for individual test methods
+* [`#[WithoutMigrationEvents]`](attributes/testing/WithoutMigrationEvents.md) — Skip migration events during tests
 
 ---
 
